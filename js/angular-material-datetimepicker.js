@@ -81,7 +81,8 @@
             shortTime: '=',
             format: '@',
             cancelText: '@',
-            okText: '@'
+            okText: '@',
+            lang: '@'
           },
           link: function (scope, element, attrs, ngModel) {
             var isOn = false;
