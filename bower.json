@@ -28,7 +28,7 @@
     "test-infra"
   ],
   "dependencies": {
-    "momentjs": "~2.10.2",
+    "moment": "~2.11.2",
     "angular-material": "~1.0.6"
   }
 }
