@@ -156,7 +156,7 @@
                 .then(function (v) {
                   scope.currentDate = v ? v._d : v;
                   isOn = false;
-                  $timeout(scope.ngChange)
+                  $timeout(scope.ngChange);
                 }, function () {
                   isOn = false;
                 })
