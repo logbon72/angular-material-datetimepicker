@@ -78,8 +78,8 @@
         this.locale = localeString;
       };
     })
-    .directive('mdcDatetimePicker', ['$mdDialog',
-      function ($mdDialog) {
+    .directive('mdcDatetimePicker', ['$mdDialog', '$timeout',
+      function ($mdDialog, $timeout) {
 
         return {
           restrict: 'A',
@@ -96,7 +96,8 @@
             okText: '@',
             lang: '@',
             amText: '@',
-            pmText: '@'
+            pmText: '@',
+            ngChange: '&'
           },
           link: function (scope, element, attrs, ngModel) {
             var isOn = false;
@@ -155,6 +156,7 @@
                 .then(function (v) {
                   scope.currentDate = v ? v._d : v;
                   isOn = false;
+                  $timeout(scope.ngChange)
                 }, function () {
                   isOn = false;
                 })
