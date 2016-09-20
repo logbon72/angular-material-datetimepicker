@@ -66,7 +66,7 @@
     + '      </md-dialog-actions>'
     + '</md-dialog>';
 
-  angular.module(moduleName, ['ngMaterial'])
+  angular.module(moduleName, ['material.components.dialog'])
     .provider('mdcDatetimePickerDefaultLocale', function () {
       this.locale = 'en';
 
@@ -498,10 +498,11 @@
           MONTHS.push(i);
         }
 
-        var currentMonthIndex = function (date) {
+        var currentMonthIndex = function (date, low) {
+          low = low ? low : 0;
           var year = date.year();
           var month = date.month();
-          return ((year - YEAR_MIN) * 12) + month - 1;
+          return (((year - YEAR_MIN) * 12) + month - 1 ) - low;
         };
 
         return {
@@ -551,7 +552,8 @@
               }, function (val2, val1) {
                 if (val2 != val1) {
                   var nDate = moment(val2, 'YYYY-MM');
-                  var index = currentMonthIndex(nDate) - calendar.months[0];
+                  var low = picker.minDate ? currentMonthIndex(picker.minDate) : 0;
+                  var index = currentMonthIndex(nDate, low);
                   if (calendar.topIndex != index) {
                     calendar.topIndex = index;
                   }
