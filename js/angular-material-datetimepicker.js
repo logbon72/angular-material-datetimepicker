@@ -96,7 +96,8 @@
             okText: '@',
             lang: '@',
             amText: '@',
-            pmText: '@'
+            pmText: '@',
+            onChange: '&'
           },
           link: function (scope, element, attrs, ngModel) {
             var isOn = false;
@@ -153,6 +154,9 @@
                   skipHide: true
                 })
                 .then(function (v) {
+                  scope.onChange({
+                    $dateTime: v
+                  });
                   scope.currentDate = v ? v._d : v;
                   isOn = false;
                 }, function () {

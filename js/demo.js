@@ -12,7 +12,9 @@
       $scope.dateTime = new Date();
       $scope.minDate = moment().subtract(1, 'month');
       $scope.maxDate = moment().add(1, 'month');
-
+      $scope.onChange = function($dateTime) {
+        console.log($dateTime);
+      }
     })
 
     .directive('exSourceCode', function () {
