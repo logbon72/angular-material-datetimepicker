@@ -90,6 +90,7 @@
             date: '=',
             minDate: '=',
             maxDate: '=',
+            weekStart: '=',
             shortTime: '=',
             format: '@',
             cancelText: '@',
