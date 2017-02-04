@@ -93,3 +93,4 @@ The directive accepts several attributes which are described below:
 | **time**			| Boolean						| true => Has Timepicker (default: true)		|
 | **cancel-text**	| String						| Text for the cancel button (default: Cancel)	|
 | **ok-text**		| String						| Text for the OK button (default: OK)			|
+| **on-change**		| Function						| Callback which will be executed when the date will be applied (example: `on-change="onChange($dateTime)"`) `$dateTime` will be a moment object | 			|
