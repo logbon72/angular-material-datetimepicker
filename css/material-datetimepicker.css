@@ -4,6 +4,7 @@ md-dialog.dtp {
     color: #333;
     background-color: #fff;
     max-height: none;
+    min-width: 300px;
 }
 
 
@@ -95,6 +96,9 @@ md-dialog.dtp {
 .dtp div.dtp-picker {
     padding: 10px;
     text-align: center;
+
+    /* Prevent dialog resizing when switcing between date/time */
+    overflow: hidden;
 }
 
 .dtp div.dtp-picker-month, .dtp div.dtp-actual-time {
@@ -140,11 +144,16 @@ md-dialog.dtp {
 .dtp table.dtp-picker-days tr > td > span.dtp-select-day {
     color: #BDBDBD !important;
 }
-.dtp table.dtp-picker-days tr > td > .dtp-select-day {
+
+.dtp table.dtp-picker-days tr > td, .dtp table.dtp-picker-days tr > td > .dtp-select-day {
     width: 36px;
     height: 36px;
+}
+
+.dtp table.dtp-picker-days tr > td > .dtp-select-day {
     display: inline-block;
 }
+
 .dtp table.dtp-picker-days tr > td > .dtp-select-day, .dtp .dtp-picker-time > a {
     color: #212121;
     text-decoration: none;
@@ -157,6 +166,21 @@ md-dialog.dtp {
     color: #fff;
 }
 
+.dtp table.dtp-picker-days tr > td > a.selected.hilite {
+    padding: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    background: #8BC34A;
+    color: #fff;
+}
+
+.dtp table.dtp-picker-days tr > td > a.hilite:not(.selected) {
+    padding: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #8BC34A;
+}
+
 .dtp table.dtp-picker-days tr > td > a:hover:not(.selected) {
     background: #dddddd;
 }
@@ -166,6 +190,8 @@ md-dialog.dtp {
     text-align: center;
     font-weight: 700;
     padding: 4px 3px;
+    width: 38px;
+    height: 28px;
 }
 
 .dtp .p10 > a {
@@ -282,7 +308,7 @@ md-dialog.dtp {
 }
 
 .dtp .dtp-buttons {
-    padding: 0 10px 10px 10px;
+    padding-bottom: 10px;
     text-align: right;
 }
 

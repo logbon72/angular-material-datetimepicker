@@ -1,4 +1,4 @@
-(function (moment) {
+(function () {
   'use strict';
   var moduleName = "ngMaterialDatePicker";
 
@@ -43,7 +43,7 @@
     + '            </div>'
     + '            <div class="dtp-picker">'
     + '                <mdc-datetime-picker-calendar date="picker.currentDate" picker="picker" class="dtp-picker-calendar" ng-show="picker.currentView === picker.VIEWS.DATE"></mdc-datetime-picker-calendar>'
-    + '                <div class="dtp-picker-datetime" ng-show="picker.currentView !== picker.VIEWS.DATE">'
+    + '                <div class="dtp-picker-datetime" ng-cloak ng-if="picker.currentView !== picker.VIEWS.DATE">'
     + '                    <div class="dtp-actual-meridien">'
     + '                        <div class="left p20">'
     + '                            <a href="#" mdc-dtp-noclick class="dtp-meridien-am" ng-class="{selected: picker.meridien == \'AM\'}" ng-click="picker.selectAM()">{{picker.params.amText}}</a>'
@@ -61,54 +61,83 @@
     + '        </div>'
     + '    </md-dialog-content>'
     + '    <md-dialog-actions class="dtp-buttons">'
+    + '            <md-button class="dtp-btn-ok md-button" ng-click="picker.today()"> {{picker.params.todayText}}</md-button>'
     + '            <md-button class="dtp-btn-cancel md-button" ng-click="picker.cancel()"> {{picker.params.cancelText}}</md-button>'
     + '            <md-button class="dtp-btn-ok md-button" ng-click="picker.ok()"> {{picker.params.okText}}</md-button>'
     + '      </md-dialog-actions>'
     + '</md-dialog>';
 
+
   angular.module(moduleName, ['material.components.dialog'])
-    .provider('mdcDatetimePickerDefaultLocale', function () {
+    .provider('mdcDatetimePicker', function () {
       this.locale = 'en';
 
       this.$get = function () {
-        return this.locale;
+        return this;
       };
 
       this.setDefaultLocale = function (localeString) {
         this.locale = localeString;
       };
     })
-    .directive('mdcDatetimePicker', ['$mdDialog',
-      function ($mdDialog) {
+    .factory('mdcDefaultParams', ['mdcDatetimePickerDefaultLocale', function (mdcDatetimePickerDefaultLocale) {
+      var default_params = {
+        date: true,
+        time: true,
+        format: 'YYYY-MM-DD',
+        minDate: null,
+        maxDate: null,
+        currentDate: null,
+        lang: mdcDatetimePickerDefaultLocale,
+        weekStart: 0,
+        shortTime: false,
+        cancelText: 'Cancel',
+        okText: 'OK',
+        amText: 'AM',
+        pmText: 'PM',
+        todayText: 'Today',
+      };
+      return default_params;
+    }])
+    .directive('mdcDatetimePicker', ['$mdDialog', '$timeout',
+      function ($mdDialog, $timeout) {
 
         return {
           restrict: 'A',
           require: 'ngModel',
           scope: {
             currentDate: '=ngModel',
+            ngChange: '&',
             time: '=',
             date: '=',
             minDate: '=',
             maxDate: '=',
             shortTime: '=',
+            weekStart: '=',
             format: '@',
             cancelText: '@',
             okText: '@',
             lang: '@',
             amText: '@',
-            pmText: '@'
+            pmText: '@',
+            showTodaysDate: '@',
+            todayText: '@',
           },
           link: function (scope, element, attrs, ngModel) {
             var isOn = false;
             if (!scope.format) {
               if (scope.date && scope.time) {
-                scope.format = 'YYYY-MM-DD HH:mm:ss';
+                scope.format = 'YYYY-MM-DD HH:mm';
               } else if (scope.date) {
                 scope.format = 'YYYY-MM-DD';
               } else {
                 scope.format = 'HH:mm';
               }
             }
+
+            var dateOfTheDay = null;
+            if (scope.showTodaysDate !== undefined && scope.showTodaysDate !== "false")
+              dateOfTheDay = moment();
 
             if (angular.isString(scope.currentDate) && scope.currentDate !== '') {
               scope.currentDate = moment(scope.currentDate, scope.format);
@@ -140,32 +169,102 @@
                 }
               }
               options.currentDate = scope.currentDate;
+              options.showTodaysDate = dateOfTheDay;
+
               var locals = {options: options};
               $mdDialog.show({
-                  template: template,
-                  controller: PluginController,
-                  controllerAs: 'picker',
-                  locals: locals,
-                  openFrom: element,
-                  parent: angular.element(document.body),
-                  bindToController: true,
-                  disableParentScroll: false,
-                  skipHide: true
-                })
+                template: template,
+                controller: PluginController,
+                controllerAs: 'picker',
+                locals: locals,
+                openFrom: element,
+                parent: angular.element(document.body),
+                bindToController: true,
+                disableParentScroll: false,
+                hasBackDrop: false,
+                skipHide: true
+              })
                 .then(function (v) {
                   scope.currentDate = v ? v._d : v;
                   isOn = false;
+
+                  if (!moment(scope.currentDate).isSame(options.currentDate)) {
+                    $timeout(scope.ngChange, 0);
+                  }
+
+                  element.blur()
+
                 }, function () {
                   isOn = false;
+                  element.blur()
                 })
               ;
             });
           }
         };
       }])
+    /** Returns a service that opens a dialog when the attribute shown is called
+     The dialog serves to select a date/time/etc. depending on the options given to the function show
+
+     @param options extends mdcDefaultParams
+     {
+       date: {boolean} =true,
+         time: {boolean] =true,
+         format: {string} ='YYYY-MM-DD',
+         minDate: {strign} =null,
+         maxDate: {string} =null,
+         currentDate: {string} =null,
+         lang: {string} =mdcDatetimePickerDefaultLocale,
+         weekStart: {int} =0,
+         shortTime: {boolean} =false,
+         cancelText: {string} ='Cancel',
+         todayText: {string} ='Today',
+         okText: {string} ='OK',
+         amText: {string} ='AM',
+         pmText: {string} ='PM'
+     }
+   @return promise
+    */
+    .factory('dateTimeDialog', ["$mdDialog", "$q", "mdcDefaultParams", function ($mdDialog, $q, mdcDefaultParams) {
+      var accepted_options = ['time', 'date', 'minDate', 'maxDate', 'shortTime', 'format', 'cancelText', 'todayText', 'okText', 'lang', 'amText', 'pmText']
+
+      var service = {
+        show: function (options) {
+          var deferred = $q.defer();
+          var params = mdcDefaultParams;
+          for (var i in options) {
+            if (accepted_options.indexOf[i] != -1) {
+              params = options[i];
+            }
+          }
+          var locals = {options: options};
+          $mdDialog.show({
+            template: template,
+            controller: PluginController,
+            controllerAs: 'picker',
+            locals: locals,
+            parent: angular.element(document.body),
+            bindToController: true,
+            clickOutsideToClose: true,
+            disableParentScroll: false
+          })
+            .then(function (v) {
+              var currentDate = v ? v._d : v;
+              deferred.resolve(v ? v._d : v);
+              //isOn = false;
+            }, function () {
+              deferred.reject();
+              //isOn = false;
+            })
+          return deferred.promise;
+        }
+      }
+      return service;
+
+    }])
   ;
 
-  var PluginController = function ($scope, $mdDialog, mdcDatetimePickerDefaultLocale) {
+  var PluginController = function ($scope, $mdDialog, mdcDatetimePicker, mdcDefaultParams) {
     this.currentView = VIEW_STATES.DATE;
     this._dialog = $mdDialog;
 
@@ -175,27 +274,12 @@
     this._attachedEvents = [];
     this.VIEWS = VIEW_STATES;
 
-    this.params = {
-      date: true,
-      time: true,
-      format: 'YYYY-MM-DD',
-      minDate: null,
-      maxDate: null,
-      currentDate: null,
-      lang: mdcDatetimePickerDefaultLocale,
-      weekStart: 0,
-      shortTime: false,
-      cancelText: 'Cancel',
-      okText: 'OK',
-      amText: 'AM',
-      pmText: 'PM'
-    };
-
+    this.params = mdcDefaultParams
     this.meridien = 'AM';
     this.params = angular.extend(this.params, this.options);
     this.init();
   };
-  PluginController.$inject = ['$scope', '$mdDialog', 'mdcDatetimePickerDefaultLocale'];
+  PluginController.$inject = ['$scope', '$mdDialog', 'mdcDatetimePicker', 'mdcDefaultParams'];
   PluginController.prototype = {
     init: function () {
       this.timeMode = this.params.time && !this.params.date;
@@ -223,8 +307,9 @@
             else {
               ret = moment(input).locale(that.params.lang);
             }
-          }
-          else {
+          } else if (typeof input === 'number') {
+            ret = moment(input).locale(that.params.lang);
+          } else {
             if (angular.isDate(input)) {
               var x = input.getTime();
               ret = moment(x, "x").locale(that.params.lang);
@@ -389,6 +474,9 @@
         }
       }
     },
+    today: function () {
+      this.selectDate(Date.now());
+    },
     ok: function () {
       switch (this.currentView) {
         case VIEW_STATES.DATE:
@@ -489,8 +577,8 @@
     .directive('mdcDatetimePickerCalendar', [
       function () {
 
-        var YEAR_MIN = 1900,
-          YEAR_MAX = 2100,
+        var YEAR_MIN = 1920,
+          YEAR_MAX = new Date().getFullYear() + 30,
           MONTHS_IN_ALL = (YEAR_MAX - YEAR_MIN + 1) * 12,
           ITEM_HEIGHT = 240,
           MONTHS = [];
@@ -513,8 +601,8 @@
           },
           bindToController: true,
           controllerAs: 'cal',
-          controller: ['$scope',
-            function ($scope) {
+          controller: ['$scope', function ($scope) {
+            this.$onInit = function () {
               var calendar = this,
                 picker = this.picker,
                 days = [];
@@ -565,8 +653,8 @@
                 if (date !== null) {
                   month.name = date.format('MMMM YYYY');
                   var startOfMonth = moment(date).locale(picker.params.lang).startOf('month')
-                    .hour(date.hour())
-                    .minute(date.minute())
+                      .hour(date.hour())
+                      .minute(date.minute())
                     ;
                   var iNumDay = startOfMonth.format('d');
                   month.days = [];
@@ -617,10 +705,17 @@
                 return m && calendar.date.date() === m.date() && calendar.date.month() === m.month() && calendar.date.year() === m.year();
               };
 
+              calendar.isDateOfTheDay = function (m) {
+                var today = calendar.picker.options.showTodaysDate;
+                if (today === null)
+                  return false;
+
+                return m && today.date() === m.date() && today.month() === m.month() && today.year() === m.year();
+              }
             }
-          ],
+          }],
           template: '<md-virtual-repeat-container md-top-index="cal.topIndex" class="months">' +
-          '<div md-virtual-repeat="idx in cal.months" md-start-index="cal.topIndex" md-item-size="' + ITEM_HEIGHT + '">' +
+          '<div md-virtual-repeat="idx in ::cal.months" md-auto-shrink md-item-size="' + ITEM_HEIGHT + '">' +
           '     <div mdc-datetime-picker-calendar-month idx="idx"></div>' +
           '</div>' +
           '</md-virtual-repeat-container>'
@@ -631,32 +726,34 @@
         var buildCalendarContent = function (element, scope) {
           var tbody = angular.element(element[0].querySelector('tbody'));
           var calendar = scope.cal, month = scope.month;
-          tbody.html('');
+
+          var tbodyHtml = [];
+
           month.days.forEach(function (weekDays, i) {
-            var tr = angular.element('<tr></tr>');
+            tbodyHtml.push('<tr>');
             weekDays.forEach(function (weekDay, j) {
-              var td = angular.element('<td> </td>');
+              tbodyHtml.push('<td>');
               if (weekDay) {
-                var aOrSpan;
                 if (calendar.isInRange(weekDay)) {
                   //build a
-                  var scopeRef = 'month["days"][' + i + '][' + j + ']';
-                  aOrSpan = angular.element("<a href='#' mdc-dtp-noclick></a>")
-                    .attr('ng-class', '{selected: cal.isSelectedDay(' + scopeRef + ')}')
-                    .attr('ng-click', 'cal.selectDate(' + scopeRef + ')')
+                  var scopeRef = 'month[\'days\'][' + i + '][' + j + ']';
+
+                  tbodyHtml.push('<a href="#" mdc-dtp-noclick class="dtp-select-day" ng-class="{selected: cal.isSelectedDay(' + scopeRef + '), hilite: cal.isDateOfTheDay(' + scopeRef + ')}" ng-click="cal.selectDate(' + scopeRef + ')">');
+                  tbodyHtml.push(weekDay.format('D'));
+                  tbodyHtml.push('</a>');
                   ;
                 } else {
-                  aOrSpan = angular.element('<span></span>')
+                  tbodyHtml.push('<span class="dtp-select-day">');
+                  tbodyHtml.push(weekDay.format('D'));
+                  tbodyHtml.push('</span>');
                 }
-                aOrSpan
-                  .addClass('dtp-select-day')
-                  .html(weekDay.format('D'));
-                td.append(aOrSpan);
               }
-              tr.append(td);
+              tbodyHtml.push('</td>');
             });
-            tbody.append(tr);
+            tbodyHtml.push('</tr>');
           });
+
+          tbody.html(tbodyHtml.join(''));
           $compile(tbody)(scope);
         };
 
@@ -670,7 +767,7 @@
           + '<table class="table dtp-picker-days">'
           + '    <thead>'
           + '    <tr>'
-          + '        <th ng-repeat="day in cal.week">{{cal.toDay(day)}}</th>'
+          + '        <th ng-repeat="day in cal.week track by $index">{{cal.toDay(day)}}</th>'
           + '    </tr>'
           + '    </thead>'
           + '    <tbody>'
@@ -756,8 +853,10 @@
                 var top = (r - y - mT / 2) - (pT + mT);
 
                 var hour = {
+                  left: left,
+                  top: top,
                   value: (minuteMode ? (h * 5) : h), //5 for minute 60/12
-                  style: {'margin-left': left+'px', 'margin-top': top+'px'}
+                  style: {'margin-left': left + 'px', 'margin-top': top + 'px'}
                 };
 
                 if (minuteMode) {
@@ -889,4 +988,4 @@
         }
       }]);
 
-})(moment);
+})();
