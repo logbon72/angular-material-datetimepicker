@@ -47,7 +47,7 @@ npm i ng-material-datetimepicker
 
 ## Live Example
 
-Click [here](https://beenote.github.io/angular-material-datetimepicker/) to see live examples.
+Click [here](https://logbon72.github.io/angular-material-datetimepicker/) to see live examples.
 
 ## Usage
 
@@ -84,6 +84,7 @@ The directive accepts several attributes which are described below:
 | Name				| Type							| Description									|
 | ----------------- | ----------------------------- | --------------------------------------------- |
 | **ng-model**	    | (String\|Date\|Moment)		| Initial Date or model to assign the date to 	|
+| **ng-change**	    | Function		                | A function to call when the input value changes. 	|
 | **format**		| String						| [MomentJS Format](momentjs.com/docs/#/parsing/string-format/),defaults to `HH:mm` for time picker only, `YYYY-MM-DD` for date picker only and `YYYY-MM-DD HH:mm` for both timepicker and date picker |
 | **short-time**	| Boolean						| true => Display 12 hours AM\|PM 				|
 | **min-date**		| (String\|Date\|Moment)		| Minimum selectable date						|
@@ -94,3 +95,52 @@ The directive accepts several attributes which are described below:
 | **today-text**	| String						| Text for the today button (default: Today)	|
 | **ok-text** 		| String						| Text for the OK button (default: OK)			|
 | **week-start**	| Number						| First day of the week (default: 0 => Sunday)	|
+
+### Date/Time Dialog Service
+ 
+You can also use the Date Time picker as a service, using the `mdcDateTimeDialog` service. The dialog returns a promise which is resolved with the selected date-time value and rejected on cancellation. 
+
+Example usage: 
+
+```javascript
+    someModule.controller('DemoCtrl', function ($scope, mdcDateTimeDialog) {
+
+      $scope.displayDialog = function () {
+        mdcDateTimeDialog.show({
+          maxDate: $scope.maxDate,
+          time: false
+        })
+          .then(function (date) {
+            $scope.selectedDateTime = date;
+            console.log('New Date / Time selected:', date);
+          }, function() {
+            console.log('Selection canceled');
+          });
+      };
+    })
+```
+
+The `mdcDateTimeDialog.show` accepts the same options as the directive. 
+
+```javascript
+     {
+       date: {boolean} =true,
+         time: {boolean} =true,
+         format: {string} ='YYYY-MM-DD',
+         minDate: {strign} =null,
+         maxDate: {string} =null,
+         currentDate: {string} =null,
+         lang: {string} =mdcDatetimePickerDefaultLocale.locale,
+         weekStart: {int} =0,
+         shortTime: {boolean} =false,
+         cancelText: {string} ='Cancel',
+         todayText: {string} ='Today',
+         okText: {string} ='OK',
+         amText: {string} ='AM',
+         pmText: {string} ='PM'
+     }
+```
+
+## Important Note on Using Locales
+
+Please see this [issue](https://github.com/logbon72/angular-material-datetimepicker/issues/51). To use a locale with your date time picker dialog, you'll have to include the moment.js locale file.
