@@ -28,7 +28,7 @@
     "test-infra"
   ],
   "dependencies": {
-    "moment": "^2.14.1",
-    "angular-material": "^1.1.0"
+    "moment": "^2.17.1",
+    "angular-material": "^1.1.1"
   }
 }
