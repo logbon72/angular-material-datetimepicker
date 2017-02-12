@@ -18,21 +18,21 @@ amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
 
-angular-animate@^1.6.1:
-  version "1.6.1"
-  resolved "https://registry.yarnpkg.com/angular-animate/-/angular-animate-1.6.1.tgz#19e3b82b7392e2bbdd83af33c0af0d85437f3a14"
+angular-animate@^1.5.10:
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/angular-animate/-/angular-animate-1.6.2.tgz#def2a8b9ede53b4b6e234c25f5c64e4b4385df15"
 
-angular-aria@^1.6.1:
-  version "1.6.1"
-  resolved "https://registry.yarnpkg.com/angular-aria/-/angular-aria-1.6.1.tgz#0fcbf1152b4c26e8671daddea7443a1b983434b9"
+angular-aria@^1.5.10:
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/angular-aria/-/angular-aria-1.6.2.tgz#c5047cae595ec61d24490b6b34b4452e1ecdae1f"
 
-angular-material@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/angular-material/-/angular-material-1.1.2.tgz#7a5aeebaa350bba8e97c68804b994cfd60c3d125"
+angular-material@^1.1.1:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/angular-material/-/angular-material-1.1.3.tgz#b466d53aaa42c1555766a1ded53a28baeb7b2fe6"
 
-angular@^1.6.1:
-  version "1.6.1"
-  resolved "https://registry.yarnpkg.com/angular/-/angular-1.6.1.tgz#a7b6d763a74c157325692619e97257e69d9b6a27"
+angular@^1.5.10:
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/angular/-/angular-1.6.2.tgz#d0b677242ac4bf9ae81424297c6320973af4bb5a"
 
 ansi-regex@^2.0.0:
   version "2.1.1"
