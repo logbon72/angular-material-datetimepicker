@@ -57,7 +57,7 @@
     + '        </div>'
     + '    </md-dialog-content>'
     + '    <md-dialog-actions class="dtp-buttons">'
-    + '            <md-button class="dtp-btn-ok md-button" ng-click="picker.today()"> {{picker.params.todayText}}</md-button>'
+    + '            <md-button class="dtp-btn-today md-button" ng-click="picker.today()"> {{picker.params.todayText}}</md-button>'
     + '            <md-button class="dtp-btn-cancel md-button" ng-click="picker.cancel()"> {{picker.params.cancelText}}</md-button>'
     + '            <md-button class="dtp-btn-ok md-button" ng-click="picker.ok()"> {{picker.params.okText}}</md-button>'
     + '      </md-dialog-actions>'
