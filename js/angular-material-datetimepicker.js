@@ -157,6 +157,7 @@
             element.on('focus', function (e) {
               e.preventDefault();
               element.blur();
+              element.parent().removeClass('md-input-focused');
               if (isOn) {
                 return;
               }
@@ -192,10 +193,12 @@
                   }
 
                   element.blur();
+                  element.parent().removeClass('md-input-focused');
 
                 }, function () {
                   isOn = false;
                   element.blur();
+                  element.parent().removeClass('md-input-focused');
                 })
               ;
             });
