@@ -152,7 +152,6 @@
               });
             }
 
-            element.attr('readonly', '');
             //@TODO custom event to trigger input
             element.on('focus', function (e) {
               e.preventDefault();
@@ -192,16 +191,15 @@
                     $timeout(scope.ngChange, 0);
                   }
 
-                  element.blur();
                   element.parent().removeClass('md-input-focused');
 
                 }, function () {
                   isOn = false;
-                  element.blur();
                   element.parent().removeClass('md-input-focused');
                 })
               ;
             });
+            
           }
         };
       }])
@@ -632,13 +630,10 @@
                 calendar.months = MONTHS.slice(low, high);
               }
 
-
               calendar.getItemAtIndex = function (index) {
                 var month = ((index + 1) % 12) || 12;
                 var year = YEAR_MIN + Math.floor(index / 12);
-                var monthObj = moment(picker.currentDate)
-                  .year(year)
-                  .month(month);
+                var monthObj = moment(picker.currentDate).year(year).month(month);
                 return generateMonthCalendar(monthObj);
               };
 
@@ -663,8 +658,7 @@
                   month.name = date.format('MMMM YYYY');
                   var startOfMonth = moment(date).locale(picker.params.lang).startOf('month')
                       .hour(date.hour())
-                      .minute(date.minute())
-                    ;
+                      .minute(date.minute());
                   var iNumDay = startOfMonth.format('d');
                   month.days = [];
                   for (var i = startOfMonth.date(); i <= startOfMonth.daysInMonth(); i++) {
@@ -725,7 +719,8 @@
               };
             };
           }],
-          template: '<md-virtual-repeat-container md-top-index="cal.topIndex" class="months">' +
+          template: 
+          '<md-virtual-repeat-container md-top-index="cal.topIndex" class="months">' +
           '<div md-virtual-repeat="idx in ::cal.months" md-auto-shrink md-item-size="' + ITEM_HEIGHT + '">' +
           '     <div mdc-datetime-picker-calendar-month idx="idx"></div>' +
           '</div>' +
@@ -837,7 +832,7 @@
             var componentRoot = document.querySelector('md-dialog.dtp');
             var exec = function () {
               var clock = angular.element(element[0].querySelector('.dtp-picker-clock')),
-                pickerEl = angular.element(componentRoot.querySelector('.dtp-picker'));
+                  pickerEl = angular.element(componentRoot.querySelector('.dtp-picker'));
 
               var w = componentRoot.querySelector('.dtp-content').offsetWidth;
               var pl = parseInt(css(pickerEl, 'paddingLeft').replace('px', '')) || 0;
