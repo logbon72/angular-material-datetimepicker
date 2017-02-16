@@ -39,12 +39,11 @@
             scope.title = attrs.title || "Source Code";
             var sourceCode = tmp[0].outerHTML
                 .replace('ng-model=', 'angularModel=')
-              .replace('ng-click=', 'angularClick=')
+                .replace('ng-click=', 'angularClick=')
                 .replace(/ng-[a-z\-]+/g, '')
                 .replace(/ +/g, ' ')
                 .replace('angularModel=', 'ng-model=')
-                .replace('angularClick=', 'ng-click=')
-              ;
+                .replace('angularClick=', 'ng-click=');
 
             scope.sourceCode = style_html(sourceCode, {
               'indent_size': 2,
