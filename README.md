@@ -97,7 +97,7 @@ The directive accepts several attributes which are described below:
 | **ok-text** 		| String						| Text for the OK button (default: OK)			|
 | **week-start**	| Number						| First day of the week (default: 0 => Sunday)	|
 | **disable-dates**	| Date[]						| Dates to be disabled or not selectable by user.|
-| **disable-parent-scroll**	| Boolean						| false => Disable scrolling while the dialog is open (default : false) |
+| **disable-parent-scroll**	| Boolean						| true => Disable scrolling while the dialog is open (default : false) |
 
 ### Date/Time Dialog Service
  
