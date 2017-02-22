@@ -183,6 +183,7 @@
                 bindToController: true,
                 disableParentScroll: options.disableParentScroll || false,
                 hasBackDrop: false,
+                skipHide: true,
                 multiple: true
               })
                 .then(function (v) {
@@ -251,6 +252,7 @@
             bindToController: true,
             clickOutsideToClose: true,
             disableParentScroll: options.disableParentScroll || false,
+            skipHide: true,
             multiple: true
           })
             .then(function (v) {
