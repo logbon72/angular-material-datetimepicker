@@ -92,7 +92,8 @@
         amText: 'AM',
         pmText: 'PM',
         todayText: 'Today',
-        disableDates: []
+        disableDates: [],
+        disableParentScroll: false
       };
       return default_params;
     }])
@@ -119,7 +120,8 @@
             amText: '@',
             pmText: '@',
             showTodaysDate: '@',
-            todayText: '@'
+            todayText: '@',
+            disableParentScroll: '='
           },
           link: function (scope, element, attrs, ngModel) {
             var isOn = false;
@@ -179,7 +181,7 @@
                 openFrom: element,
                 parent: angular.element(document.body),
                 bindToController: true,
-                disableParentScroll: false,
+                disableParentScroll: options.disableParentScroll || false,
                 hasBackDrop: false,
                 multiple: true
               })
@@ -221,7 +223,8 @@
          todayText: {string} ='Today',
          okText: {string} ='OK',
          amText: {string} ='AM',
-         pmText: {string} ='PM'
+         pmText: {string} ='PM',
+         disableParentScroll: {boolean} =false
      }
    @return promise
     */
@@ -237,6 +240,7 @@
               params = options[i];
             }
           }
+
           var locals = {options: options};
           $mdDialog.show({
             template: template,
@@ -246,7 +250,7 @@
             parent: angular.element(document.body),
             bindToController: true,
             clickOutsideToClose: true,
-            disableParentScroll: false,
+            disableParentScroll: options.disableParentScroll || false,
             multiple: true
           })
             .then(function (v) {

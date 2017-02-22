@@ -96,6 +96,8 @@ The directive accepts several attributes which are described below:
 | **today-text**	| String						| Text for the today button (default: Today)	|
 | **ok-text** 		| String						| Text for the OK button (default: OK)			|
 | **week-start**	| Number						| First day of the week (default: 0 => Sunday)	|
+| **disable-dates**	| Date[]						| Dates to be disabled or not selectable by user.|
+| **disable-parent-scroll**	| Boolean						| false => Disable scrolling while the dialog is open (default : false) |
 
 ### Date/Time Dialog Service
  
@@ -126,19 +128,20 @@ The `mdcDateTimeDialog.show` accepts the same options as the directive.
 ```javascript
      {
        date: {boolean} =true,
-         time: {boolean} =true,
-         format: {string} ='YYYY-MM-DD',
-         minDate: {strign} =null,
-         maxDate: {string} =null,
-         currentDate: {string} =null,
-         lang: {string} =mdcDatetimePickerDefaultLocale.locale,
-         weekStart: {int} =0,
-         shortTime: {boolean} =false,
-         cancelText: {string} ='Cancel',
-         todayText: {string} ='Today',
-         okText: {string} ='OK',
-         amText: {string} ='AM',
-         pmText: {string} ='PM'
+       time: {boolean} =true,
+       format: {string} ='YYYY-MM-DD',
+       minDate: {strign} =null,
+       maxDate: {string} =null,
+       currentDate: {string} =null,
+       lang: {string} =mdcDatetimePickerDefaultLocale.locale,
+       weekStart: {int} =0,
+       shortTime: {boolean} =false,
+       cancelText: {string} ='Cancel',
+       todayText: {string} ='Today',
+       okText: {string} ='OK',
+       amText: {string} ='AM',
+       pmText: {string} ='PM',
+       disableParentScroll: {boolean} = false,
      }
 ```
 
