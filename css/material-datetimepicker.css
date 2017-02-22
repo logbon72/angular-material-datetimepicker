@@ -273,6 +273,10 @@ md-dialog.dtp {
     background: #eee;
 }
 
+html[dir="rtl"] .dtp div.dtp-picker-clock {
+    direction: ltr; 
+}
+
 .dtp-clock-center {
     width: 15px;
     height: 15px;

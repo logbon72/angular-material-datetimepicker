@@ -27,6 +27,12 @@
           });
       };
 
+      // Set and change the text direction
+      $scope.txtdir = document.documentElement.dir || 'ltr';
+      $scope.changeDir = function () {
+        $scope.txtdir = document.documentElement.dir = ($scope.txtdir === 'rtl') ? 'ltr' : 'rtl';
+      };
+
     })
 
     .directive('exSourceCode', function () {
