@@ -54,7 +54,7 @@
         <md-input-container flex-gt-md="30">
           <label>Timepicker Only | 12-hour</label>
           <input mdc-datetime-picker date="false" time="true" type="text" id="time" short-time="true"
-                 placeholder="Time"
+                 placeholder="Time" minutes="true"
                  min-date="minDate"
                  format="hh:mm a"
                  ng-model="time">
@@ -64,8 +64,8 @@
       <div layout-gt-md="row" layout="column" layout-align-gt-md="center center">
         <md-input-container flex-gt-md="30">
           <label>Timepicker Only | 24-hour</label>
-          <input mdc-datetime-picker date="false" time="true" type="text" id="time2"
-                 placeholder="Time"
+          <input mdc-datetime-picker date="false" time="true" type="text" id="time2" short-time="false"
+                 placeholder="Time" minutes="true"
                  min-date="minDate"
                  format="HH:mm"
                  ng-model="time">
@@ -77,9 +77,18 @@
         <md-input-container flex-gt-md="30">
           <label>Date/Time Picker</label>
           <input mdc-datetime-picker date="true" time="true" type="text" id="datetime"
-                 placeholder="Date" show-todays-date
+                 placeholder="Date" show-todays-date minutes="true"
                  min-date="date"
                  ng-model="dateTime">
+        </md-input-container>
+        <div flex-gt-md="grow" ex-source-code target="input"></div>
+      </div>
+
+      <div layout-gt-md="row" layout="column" layout-align-gt-md="center center">
+        <md-input-container flex-gt-md="30">
+          <label>Date/Time Picker no minutes</label>
+          <input mdc-datetime-picker date="true" time="true" minutes="false" type="text" id="datetimenomin"
+                 placeholder="Date" show-todays-date min-date="date" ng-model="dateTimeNoMin">
         </md-input-container>
         <div flex-gt-md="grow" ex-source-code target="input"></div>
       </div>
@@ -89,7 +98,7 @@
           <md-input-container>
             <label>Start Date/Time</label>
             <input mdc-datetime-picker date="true" time="true" type="text"
-                   placeholder="Date"
+                   placeholder="Date" minutes="true"
                    max-date="dateTimeEnd"
                    ng-model="dateTimeStart"
             />
@@ -97,7 +106,7 @@
           <md-input-container>
             <label>End Date/Time</label>
             <input mdc-datetime-picker date="true" time="true" type="text"
-                   placeholder="Date"
+                   placeholder="Date" minutes="true"
                    min-date="dateTimeStart"
                    ng-model="dateTimeEnd"
             />
@@ -120,7 +129,7 @@
       <div layout-gt-md="row" layout="column" layout-align-gt-md="center center">
 
         <div flex-gt-md="30">
-          <p>Test mdcDateTimeDialog Service</p>
+          <p>mdcDateTimeDialog Service</p>
           <md-button class="md-raised md-primary" ng-click="displayDialog()">
             Display Picker
           </md-button>

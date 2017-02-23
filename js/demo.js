@@ -10,6 +10,15 @@
       $scope.date = new Date();
       $scope.time = new Date();
       $scope.dateTime = new Date();
+     
+      // current date + 1 hour, no minutes, no seconds, no milliseconds
+      var newDate = new Date();
+      newDate.setHours(newDate.getHours() +1);
+      newDate.setMinutes(0);
+      newDate.setSeconds(0);
+      newDate.setMilliseconds(0);
+      $scope.dateTimeNoMin = newDate;
+
       $scope.minDate = moment().subtract(1, 'month');
       $scope.maxDate = moment().add(1, 'month');
       $scope.dates = [new Date('2016-11-14T00:00:00'), new Date('2016-11-15T00:00:00'),

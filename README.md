@@ -92,6 +92,7 @@ The directive accepts several attributes which are described below:
 | **max-date**		| (String\|Date\|Moment)		| Maximum selectable date						|
 | **date**			| Boolean						| true => Has Datepicker (default: true)        |
 | **time**			| Boolean						| true => Has Timepicker (default: true)		|
+| **minutes**			| Boolean						| true => Has Timepicker minutes (default: true)		|
 | **cancel-text**	| String						| Text for the cancel button (default: Cancel)	|
 | **today-text**	| String						| Text for the today button (default: Today)	|
 | **ok-text** 		| String						| Text for the OK button (default: OK)			|
@@ -129,6 +130,7 @@ The `mdcDateTimeDialog.show` accepts the same options as the directive.
      {
        date: {boolean} =true,
        time: {boolean} =true,
+       minutes: {boolean} =true,
        format: {string} ='YYYY-MM-DD',
        minDate: {strign} =null,
        maxDate: {string} =null,
@@ -141,6 +143,7 @@ The `mdcDateTimeDialog.show` accepts the same options as the directive.
        okText: {string} ='OK',
        amText: {string} ='AM',
        pmText: {string} ='PM',
+       disableDates: {date[]} =[],
        disableParentScroll: {boolean} = false,
      }
 ```

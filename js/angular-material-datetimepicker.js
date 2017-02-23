@@ -80,6 +80,7 @@
       var default_params = {
         date: true,
         time: true,
+        minutes: true,
         format: 'YYYY-MM-DD',
         minDate: null,
         maxDate: null,
@@ -108,6 +109,7 @@
             ngChange: '&',
             time: '=',
             date: '=',
+            minutes: '=',
             minDate: '=',
             maxDate: '=',
             disableDates: '=',
@@ -212,22 +214,24 @@
      @param options extends mdcDefaultParams
      {
        date: {boolean} =true,
-         time: {boolean] =true,
-         format: {string} ='YYYY-MM-DD',
-         minDate: {strign} =null,
-         maxDate: {string} =null,
-         currentDate: {string} =null,
-         lang: {string} =mdcDatetimePickerDefaultLocale,
-         weekStart: {int} =0,
-         shortTime: {boolean} =false,
-         cancelText: {string} ='Cancel',
-         todayText: {string} ='Today',
-         okText: {string} ='OK',
-         amText: {string} ='AM',
-         pmText: {string} ='PM',
-         disableParentScroll: {boolean} =false
+       time: {boolean} =true,
+       minutes: {boolean} =true,
+       format: {string} ='YYYY-MM-DD',
+       minDate: {strign} =null,
+       maxDate: {string} =null,
+       currentDate: {string} =null,
+       lang: {string} =mdcDatetimePickerDefaultLocale,
+       weekStart: {int} =0,
+       shortTime: {boolean} =false,
+       cancelText: {string} ='Cancel',
+       todayText: {string} ='Today',
+       okText: {string} ='OK',
+       amText: {string} ='AM',
+       pmText: {string} ='PM',
+       disableDates: {date[]} =[],
+       disableParentScroll: {boolean} =false
      }
-   @return promise
+     @return promise
     */
     .factory('mdcDateTimeDialog', ["$mdDialog", "$q", "mdcDefaultParams", function ($mdDialog, $q, mdcDefaultParams) {
       var accepted_options = Object.keys(mdcDefaultParams);
@@ -495,13 +499,16 @@
         case VIEW_STATES.DATE:
           if (this.params.time === true) {
             this.initHours();
-          }
-          else {
+          } else {
             this.hide(true);
           }
           break;
         case VIEW_STATES.HOUR:
-          this.initMinutes();
+          if (this.params.minutes === true) {
+            this.initMinutes();
+          } else {
+            this.hide(true);
+          }
           break;
         case VIEW_STATES.MINUTE:
           this.hide(true);
