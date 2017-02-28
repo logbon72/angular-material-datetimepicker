@@ -20,19 +20,21 @@
     '            <header class="dtp-header">' +
     '                <div class="dtp-actual-day" ng-show="picker.dateMode">{{picker.currentDate.format("dddd")}}</div>' +
     '                <div class="dtp-actual-day" ng-show="picker.timeMode">{{picker.params.shortTime ? picker.currentDate.format("A") : " "}}</div>' +
-    '                <div class="dtp-close text-right">' +
+    '                <div class="dtp-close text-right noselect">' +
     '                    <a href="#" mdc-dtp-noclick ng-click="picker.hide()">&times;</a>' +
     '                </div>' +
     '            </header>' +
     '            <div class="dtp-date" ng-show="picker.params.date">' +
-    '                <div layout="column">' +
-    '                    <div class="dtp-actual-month">{{picker.currentDate.format("MMM") | uppercase}}</div>' +
+    '                <div layout="row">' +
+    '                    <div ng-click="picker.incrementMonth(-1)" class="dtp-month-btn dtp-month-btn-prev noselect" flex="30"><span ng-if="picker.isPreviousMonthVisible()">&#x25B2;</span></div>' +
+    '                    <div class="dtp-actual-month" flex>{{picker.currentDate.format("MMM") | uppercase}}</div>' +
+    '                    <div ng-click="picker.incrementMonth(1)" class="dtp-month-btn dtp-month-btn-next noselect" flex="30"><span ng-if="picker.isNextMonthVisible()">&#x25BC;</span></div>' +
     '                </div>' +
     '                <div class="dtp-actual-num">{{picker.currentDate.format("DD")}}</div>' +
     '                <div layout="row">' +
-    ' <div ng-click="picker.incrementYear(-1)" class="dtp-year-btn dtp-year-btn-prev" flex="30"><span ng-if="picker.isPreviousYearVisible()" >&#x25B2;</span></div>' +
+    '                    <div ng-click="picker.incrementYear(-1)" class="dtp-year-btn dtp-year-btn-prev noselect" flex="30"><span ng-if="picker.isPreviousYearVisible()">&#x25B2;</span></div>' +
     '                    <div class="dtp-actual-year" flex>{{picker.currentDate.format("YYYY")}}</div>' +
-    ' <div ng-click="picker.incrementYear(1)" class="dtp-year-btn dtp-year-btn-next" flex="30"><span ng-if="picker.isNextYearVisible()" >&#x25BC;</span></div>' +
+    '                    <div ng-click="picker.incrementYear(1)" class="dtp-year-btn dtp-year-btn-next noselect" flex="30"><span ng-if="picker.isNextYearVisible()">&#x25BC;</span></div>' +
     '                </div>'+
     '            </div>' + //start time 
     '            <div class="dtp-time" ng-show="picker.params.time && !picker.params.date">' +
@@ -449,6 +451,15 @@
     isPM: function () {
       return this.meridien === 'PM';
     },
+    incrementMonth: function (amount) {
+      if (amount === 1 && this.isNextMonthVisible()) {
+        this.selectDate(this.currentDate.add(amount, 'month'));
+      }
+
+      if (amount === -1 && this.isPreviousMonthVisible()) {
+        this.selectDate(this.currentDate.add(amount, 'month'));
+      }
+    },
     incrementYear: function (amount) {
       if (amount === 1 && this.isNextYearVisible()) {
         this.selectDate(this.currentDate.add(amount, 'year'));
@@ -482,7 +493,6 @@
     },
     start: function () {
       this.currentView = VIEW_STATES.DATE;
-      //this.initDates();
       if (this.params.date) {
         this.initDate();
       } else {
@@ -898,7 +908,6 @@
               scope.mode = attrs.mode;
               setCurrentValue();
               clock.css('height', clockWidth + 'px');
-              //picker.initHands(true);
 
               var clockCenter = element[0].querySelector('.dtp-clock-center');
               var centerWidth = (clockCenter.offsetWidth / 2) || 7.5,
