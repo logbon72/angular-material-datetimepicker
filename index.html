@@ -101,7 +101,8 @@
                    placeholder="Date" minutes="true"
                    max-date="dateTimeEnd"
                    ng-model="dateTimeStart"
-            />
+                   min-date="null"
+          />
           </md-input-container>
           <md-input-container>
             <label>End Date/Time</label>
@@ -109,7 +110,8 @@
                    placeholder="Date" minutes="true"
                    min-date="dateTimeStart"
                    ng-model="dateTimeEnd"
-            />
+                   max-date="null"
+            >
           </md-input-container>
         </div>
 
