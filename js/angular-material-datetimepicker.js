@@ -281,7 +281,7 @@
 
     this._attachedEvents = [];
     this.VIEWS = VIEW_STATES;
-    this.params = mdcDefaultParams;
+    this.params = angular.copy(mdcDefaultParams);
     this.meridien = 'AM';
     this.params = angular.extend(this.params, this.options);
 
