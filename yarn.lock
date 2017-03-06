@@ -164,9 +164,9 @@ builtin-modules@^1.0.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/builtin-modules/-/builtin-modules-1.1.1.tgz#270f076c5a72c02f5b65a47df94c5fe3a278892f"
 
-bump-regex@^2.6.1:
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/bump-regex/-/bump-regex-2.6.1.tgz#e2dd5d2fb542459c4eef275e0e2df26381f36120"
+bump-regex@^2.7.0:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/bump-regex/-/bump-regex-2.7.0.tgz#4a21e2537113476c026be588b8a7dddef1934641"
   dependencies:
     semver "^5.1.0"
     xtend "^4.0.1"
@@ -217,12 +217,11 @@ chalk@^0.5.0:
     strip-ansi "^0.3.0"
     supports-color "^0.2.0"
 
-clean-css@^3.4.23:
-  version "3.4.24"
-  resolved "https://registry.yarnpkg.com/clean-css/-/clean-css-3.4.24.tgz#89f5a5e9da37ae02394fe049a41388abbe72c3b5"
+clean-css@^4.0.7:
+  version "4.0.8"
+  resolved "https://registry.yarnpkg.com/clean-css/-/clean-css-4.0.8.tgz#063dfd593404d3a3d1db494d4b6d0f378b0781b6"
   dependencies:
-    commander "2.8.x"
-    source-map "0.4.x"
+    source-map "0.5.x"
 
 cliui@^2.1.0:
   version "2.1.0"
@@ -271,12 +270,6 @@ cloneable-readable@^1.0.0:
 code-point-at@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
-
-commander@2.8.x:
-  version "2.8.1"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-2.8.1.tgz#06be367febfda0c330aa1e2a072d3dc9762425d4"
-  dependencies:
-    graceful-readlink ">= 1.0.0"
 
 concat-map@0.0.1:
   version "0.0.1"
@@ -608,27 +601,22 @@ graceful-fs@~1.2.0:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-1.2.3.tgz#15a4806a57547cb2d2dbf27f42e89a8c3451b364"
 
-"graceful-readlink@>= 1.0.0":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/graceful-readlink/-/graceful-readlink-1.0.1.tgz#4cafad76bc62f02fa039b2f94e9a3dd3a391a725"
-
-gulp-bump@^2.6.1:
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/gulp-bump/-/gulp-bump-2.6.1.tgz#9d27a9ec0e1b8608c39bb41238a35e860281bb18"
+gulp-bump@^2.7.0:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/gulp-bump/-/gulp-bump-2.7.0.tgz#4c3750bce93c5d816fe9a154e6619dd509a852d8"
   dependencies:
-    bump-regex "^2.6.1"
+    bump-regex "^2.7.0"
     plugin-error "^0.1.2"
     plugin-log "^0.1.0"
     semver "^5.3.0"
     through2 "^2.0.1"
 
-gulp-clean-css@^2.3.2:
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/gulp-clean-css/-/gulp-clean-css-2.3.2.tgz#7410769c4474c12ccd55e98ea74b1898d428acd0"
+gulp-clean-css@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/gulp-clean-css/-/gulp-clean-css-3.0.3.tgz#dcd6767413d51a9de9e4bc47b8ae7e02b43b1c4a"
   dependencies:
-    clean-css "^3.4.23"
-    gulp-util "^3.0.7"
-    object-assign "^4.1.0"
+    clean-css "^4.0.7"
+    gulp-util "^3.0.8"
     through2 "^2.0.3"
     vinyl-sourcemaps-apply "^0.2.1"
 
@@ -658,9 +646,9 @@ gulp-git@^1.7.1:
     require-dir "^0.1.0"
     through2 "^0.6.5"
 
-gulp-git@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/gulp-git/-/gulp-git-2.0.0.tgz#29da8251db078ace48ebcdf49861282e97a00fe9"
+gulp-git@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/gulp-git/-/gulp-git-2.0.1.tgz#7ee8e5088a0d293371740563f36b20cfd2b408c7"
   dependencies:
     any-shell-escape "^0.1.1"
     gulp-util "^3.0.6"
@@ -682,9 +670,9 @@ gulp-rename@^1.2.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/gulp-rename/-/gulp-rename-1.2.2.tgz#3ad4428763f05e2764dec1c67d868db275687817"
 
-gulp-sourcemaps@^2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/gulp-sourcemaps/-/gulp-sourcemaps-2.4.0.tgz#9ce8fcf9ab29769819dff04ca781976072838979"
+gulp-sourcemaps@^2.4.1:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/gulp-sourcemaps/-/gulp-sourcemaps-2.4.1.tgz#8f65dc5c0d07b2fd5c88bc60ec7f13e56716bf74"
   dependencies:
     acorn "4.X"
     convert-source-map "1.X"
@@ -718,7 +706,7 @@ gulp-uglify@^2.0.1:
     uglify-save-license "^0.4.1"
     vinyl-sourcemaps-apply "^0.2.0"
 
-gulp-util@*, gulp-util@^3.0.0, gulp-util@^3.0.6, gulp-util@^3.0.7:
+gulp-util@*, gulp-util@^3.0.0, gulp-util@^3.0.6, gulp-util@^3.0.7, gulp-util@^3.0.8:
   version "3.0.8"
   resolved "https://registry.yarnpkg.com/gulp-util/-/gulp-util-3.0.8.tgz#0054e1e744502e27c04c187c3ecc505dd54bbb4f"
   dependencies:
@@ -1367,7 +1355,7 @@ object-assign@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-3.0.0.tgz#9bedd5ca0897949bca47e7ff408062d549f587f2"
 
-object-assign@^4.0.1, object-assign@^4.1.0:
+object-assign@^4.0.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
 
@@ -1690,13 +1678,7 @@ source-map-url@~0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/source-map-url/-/source-map-url-0.3.0.tgz#7ecaf13b57bcd09da8a40c5d269db33799d4aaf9"
 
-source-map@0.4.x:
-  version "0.4.4"
-  resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.4.4.tgz#eba4f5da9c0dc999de68032d8b4f76173652036b"
-  dependencies:
-    amdefine ">=0.0.4"
-
-source-map@0.X, source-map@^0.5.1, source-map@~0.5.1:
+source-map@0.5.x, source-map@0.X, source-map@^0.5.1, source-map@~0.5.1:
   version "0.5.6"
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.5.6.tgz#75ce38f52bf0733c5a7f0c118d81334a2bb5f412"
 
@@ -2001,15 +1983,15 @@ y18n@^3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/y18n/-/y18n-3.2.1.tgz#6d15fba884c08679c0d77e88e7759e811e07fa41"
 
-yargs-parser@^4.2.0:
-  version "4.2.1"
-  resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-4.2.1.tgz#29cceac0dc4f03c6c87b4a9f217dd18c9f74871c"
+yargs-parser@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-5.0.0.tgz#275ecf0d7ffe05c77e64e7c86e4cd94bf0e1228a"
   dependencies:
     camelcase "^3.0.0"
 
-yargs@^6.6.0:
-  version "6.6.0"
-  resolved "https://registry.yarnpkg.com/yargs/-/yargs-6.6.0.tgz#782ec21ef403345f830a808ca3d513af56065208"
+yargs@^7.0.1:
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/yargs/-/yargs-7.0.1.tgz#7b083da14f9bd9c0ec21477030658f120d995351"
   dependencies:
     camelcase "^3.0.0"
     cliui "^3.2.0"
@@ -2023,7 +2005,7 @@ yargs@^6.6.0:
     string-width "^1.0.2"
     which-module "^1.0.0"
     y18n "^3.2.1"
-    yargs-parser "^4.2.0"
+    yargs-parser "^5.0.0"
 
 yargs@~3.10.0:
   version "3.10.0"

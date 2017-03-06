@@ -87,7 +87,7 @@ The directive accepts several attributes which are described below:
 | **ng-model**	    | (String\|Date\|Moment)		| Initial Date or model to assign the date to 	|
 | **ng-change**	    | Function		                | A function to call when the input value changes. 	|
 | **format**		| String						| [MomentJS Format](momentjs.com/docs/#/parsing/string-format/),defaults to `HH:mm` for time picker only, `YYYY-MM-DD` for date picker only and `YYYY-MM-DD HH:mm` for both timepicker and date picker |
-| **short-time**	| Boolean						| true => Display 12 hours AM\|PM 				|
+| **short-time**	| Boolean						| true => Display 12 hours AM\|PM (default: false)				|
 | **min-date**		| (String\|Date\|Moment)		| Minimum selectable date						|
 | **max-date**		| (String\|Date\|Moment)		| Maximum selectable date						|
 | **date**			| Boolean						| true => Has Datepicker (default: true)        |
