@@ -305,23 +305,22 @@
       return moment(date).minutes(minutes);
     },
     initDates: function () {
-      var that = this;
       var _dateParam = function (input, fallback) {
         var ret = null;
         if (angular.isDefined(input) && input !== null && input !== '') {
           if (angular.isString(input)) {
-            if (typeof(that.params.format) !== 'undefined' && that.params.format !== null) {
-              ret = moment(input, that.params.format).locale(that.params.lang);
+            if (typeof(this.params.format) !== 'undefined' && this.params.format !== null) {
+              ret = moment(input, this.params.format).locale(this.params.lang);
             }
             else {
-              ret = moment(input).locale(that.params.lang);
+              ret = moment(input).locale(this.params.lang);
             }
           } else if (typeof input === 'number') {
-            ret = moment(input).locale(that.params.lang);
+            ret = moment(input).locale(this.params.lang);
           } else {
             if (angular.isDate(input)) {
               var x = input.getTime();
-              ret = moment(x, "x").locale(that.params.lang);
+              ret = moment(x, "x").locale(this.params.lang);
             } else if (input._isAMomentObject) {
               ret = input;
             }
