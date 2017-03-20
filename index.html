@@ -1,115 +1,137 @@
 <html ng-app="mdDatetimePickerDemo">
 <head>
-    <title>Angular-Material DateTimePicker</title>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />-->
-    <!--<link rel="stylesheet" href="https://rawgit.com/FezVrasta/bootstrap-material-design/master/dist/css/material.min.css" />-->
-    <link href='http://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.0.0-rc3/angular-material.min.css" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" href="./css/material-datetimepicker.css" type="text/css"/>
-    <!--<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>-->
-    <!--<script type="text/javascript" src="https://rawgit.com/FezVrasta/bootstrap-material-design/master/dist/js/material.min.js"></script>-->
+  <title>Angular-Material DateTimePicker</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="http://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet" type="text/css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/github.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.3/angular-material.min.css" rel="stylesheet"
+        type="text/css"/>
+  <link rel="stylesheet" href="./css/material-datetimepicker.css" type="text/css"/>
 </head>
 <body ng-controller="DemoCtrl" layout="column">
 <md-content class="md-padding">
-    <div layout="column">
-        <h1>Angular Material DatePicker</h1>
-    </div>
+  <div layout="column">
+    <h1>Angular Material DatePicker</h1>
+  </div>
 
-    <md-card layout="column">
-        <md-toolbar class="md-primary">
-            <div class="md-toolbar-tools">
-                <h2>
-                    <span>Datetime Pickers</span>
-                </h2>
-            </div>
-        </md-toolbar>
-        <md-card-content class="md-padding">
-            <p>
-                You can double click / double tap to make selections.
-            </p>
+  <md-card layout="column">
+    <md-toolbar class="md-primary">
+      <div class="md-toolbar-tools">
+        <h2>
+          <span>Datetime Pickers</span>
+        </h2>
+      </div>
+    </md-toolbar>
+    <md-card-content class="md-padding">
+      <p>
+        You can double click / double tap to make selections.
+      </p>
 
-            <div layout-gt-md="row" layout="column" layout-align-gt-md="center center">
-                <md-input-container flex-gt-md="30">
-                    <label>Datepicker Only</label>
-                    <input time="false" date="true" mdc-datetime-picker type="text" id="date"
-                           placeholder="Date"
-                           ng-model="date" min-date="minDate" max-date="maxDate">
-                </md-input-container>
-                <div  flex-gt-md="grow" flex-md="initial" ex-source-code target="input"></div>
-            </div>
+      <div layout-gt-md="row" layout="column" layout-align-gt-md="center center">
+        <md-input-container flex-gt-md="30">
+          <label>Datepicker Only</label>
+          <input time="false" date="true" mdc-datetime-picker type="text" id="date"
+                 placeholder="Date"
+                 ng-model="date" min-date="minDate" max-date="maxDate">
+        </md-input-container>
+        <div flex-gt-md="grow" flex-md="initial" ex-source-code target="input"></div>
+      </div>
 
-            <div layout-gt-md="row" layout="column" layout-align-gt-md="center center" >
-                <md-input-container flex-gt-md="30">
-                    <label>Timepicker Only (12-hour)</label>
-                    <input mdc-datetime-picker date="false" time="true" type="text" id="time" short-time="true"
-                           placeholder="Time"
-                           min-date="minDate"
-                           format="hh:mm a"
-                           ng-model="time">
-                </md-input-container>
-                <div  flex-gt-md="grow" ex-source-code target="input"></div>
-            </div>
-            <div layout-gt-md="row" layout="column" layout-align-gt-md="center center" >
-                <md-input-container flex-gt-md="30">
-                    <label>Timepicker Only (24-hour)</label>
-                    <input mdc-datetime-picker date="false" time="true" type="text" id="time2"
-                           placeholder="Time"
-                           min-date="minDate"
-                           format="HH:mm"
-                           ng-model="time">
-                </md-input-container>
-                <div  flex-gt-md="grow" ex-source-code target="input"></div>
-            </div>
+      <div layout-gt-md="row" layout="column" layout-align-gt-md="center center">
+        <md-input-container flex-gt-md="30">
+          <label>Timepicker Only (12-hour)</label>
+          <input mdc-datetime-picker date="false" time="true" type="text" id="time" short-time="true"
+                 placeholder="Time"
+                 min-date="minDate"
+                 format="hh:mm a"
+                 ng-model="time">
+        </md-input-container>
+        <div flex-gt-md="grow" ex-source-code target="input"></div>
+      </div>
+      <div layout-gt-md="row" layout="column" layout-align-gt-md="center center">
+        <md-input-container flex-gt-md="30">
+          <label>Timepicker Only (24-hour)</label>
+          <input mdc-datetime-picker date="false" time="true" type="text" id="time2"
+                 placeholder="Time"
+                 min-date="minDate"
+                 format="HH:mm"
+                 ng-model="time">
+        </md-input-container>
+        <div flex-gt-md="grow" ex-source-code target="input"></div>
+      </div>
 
-            <div layout-gt-md="row" layout="column" layout-align-gt-md="center center" >
-                <md-input-container flex-gt-md="30">
-                    <label>Date/Time Picker</label>
-                    <input mdc-datetime-picker date="true" time="true" type="text" id="datetime"
-                           placeholder="Date"
-                           min-date="date"
-                           ng-model="dateTime">
-                </md-input-container>
-                <div  flex-gt-md="grow" ex-source-code target="input"></div>
-            </div>
+      <div layout-gt-md="row" layout="column" layout-align-gt-md="center center">
+        <md-input-container flex-gt-md="30">
+          <label>Date/Time Picker</label>
+          <input mdc-datetime-picker date="true" time="true" type="text" id="datetime"
+                 placeholder="Date" show-todays-date
+                 min-date="date"
+                 ng-model="dateTime">
+        </md-input-container>
+        <div flex-gt-md="grow" ex-source-code target="input"></div>
+      </div>
 
-            <div layout-gt-md="row" layout="column" layout-align-gt-md="center center" >
-                <div layout="column" flex-gt-md="30" class="range">
-                    <md-input-container>
-                        <label>Start Date/Time</label>
-                        <input mdc-datetime-picker date="true" time="true" type="text"
-                               placeholder="Date"
-                               max-date="dateTimeEnd"
-                               ng-model="dateTimeStart"
-                        />
-                    </md-input-container>
-                    <md-input-container>
-                        <label>End Date/Time</label>
-                        <input mdc-datetime-picker date="true" time="true" type="text"
-                               placeholder="Date"
-                               min-date="dateTimeStart"
-                               ng-model="dateTimeEnd"
-                        />
-                    </md-input-container>
-                </div>
+      <div layout-gt-md="row" layout="column" layout-align-gt-md="center center">
+        <div layout="column" flex-gt-md="30" class="range">
+          <md-input-container>
+            <label>Start Date/Time</label>
+            <input mdc-datetime-picker date="true" time="true" type="text"
+                   placeholder="Date"
+                   max-date="dateTimeEnd"
+                   ng-model="dateTimeStart"
+            />
+          </md-input-container>
+          <md-input-container>
+            <label>End Date/Time</label>
+            <input mdc-datetime-picker date="true" time="true" type="text"
+                   placeholder="Date"
+                   min-date="dateTimeStart"
+                   ng-model="dateTimeEnd"
+            />
+          </md-input-container>
+        </div>
 
-                <div  flex-gt-md="grow" ex-source-code target="div.range" title="DateRange Example"></div>
-            </div>
+        <div flex-gt-md="grow" ex-source-code target="div.range" title="DateRange Example"></div>
+      </div>
 
-        </md-card-content>
+      <div layout-gt-md="row" layout="column" layout-align-gt-md="center center">
+        <md-input-container flex-gt-md="30">
+          <label>Disable Certain Dates</label>
+          <input time="false" date="true" mdc-datetime-picker type="text" id="date-2"
+                 placeholder="Date"
+                 ng-model="date" min-date="minDate" max-date="maxDate" disable-dates="dates">
+        </md-input-container>
+        <div flex-gt-md="grow" ex-source-code target="input"></div>
+      </div>
 
-    </md-card>
+      <div layout-gt-md="row" layout="column" layout-align-gt-md="center center">
+
+        <div flex-gt-md="30">
+          <p>Test mdcDateTimeDialog Service</p>
+          <md-button class="md-raised md-primary" ng-click="displayDialog()">
+            Display Picker
+          </md-button>
+          <p ng-if="selectedDateTime">Date: {{selectedDateTime|date}}</p>
+        </div>
+
+        <div flex-gt-md="grow" ex-source-code target="button"></div>
+
+      </div>
+
+    </md-card-content>
+
+  </md-card>
 </md-content>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-animate.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-aria.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.0.0-rc3/angular-material.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment-with-locales.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-animate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-aria.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.3/angular-material.min.js"></script>
 <script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+        src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment-with-locales.min.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
 <script type="text/javascript" src="./beautifier.js"></script>
 <script type="text/javascript" src="./js/angular-material-datetimepicker.js"></script>
 <script type="text/javascript" src="./js/demo.js"></script>
