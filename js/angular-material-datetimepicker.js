@@ -96,8 +96,8 @@
       };
       return default_params;
     }])
-    .directive('mdcDatetimePicker', ['$mdDialog', '$timeout',
-      function ($mdDialog, $timeout) {
+    .directive('mdcDatetimePicker', ['$mdDialog', '$timeout','$compile',
+      function ($mdDialog, $timeout, $compile) {
 
         return {
           restrict: 'A',
@@ -119,7 +119,9 @@
             amText: '@',
             pmText: '@',
             showTodaysDate: '@',
-            todayText: '@'
+            todayText: '@',
+            showIcon: '@',
+            iconName: '@'
           },
           link: function (scope, element, attrs, ngModel) {
             var isOn = false;
@@ -152,11 +154,25 @@
               });
             }
 
-            element.attr('readonly', '');
+            var openElement;
+            var actionType;
+            if (scope.showIcon) {
+              scope.iconName = scope.iconName || 'date_range';
+              element.addClass('flex-80');
+              var html = "<md-button layout='column' flex='20' class='md-icon-button'><md-icon class='material-icons'>{{iconName}}</md-icon></md-button>";
+              openElement = $compile(html)(scope);
+              element.after(openElement);
+              actionType = 'click';
+            } else {
+              element.attr('readonly', '');
+              openElement = element;
+              actionType = 'focus';
+            }
+
             //@TODO custom event to trigger input
-            element.on('focus', function (e) {
+            openElement.on(actionType, function (e) {
               e.preventDefault();
-              element.blur();
+              openElement.blur();
               if (isOn) {
                 return;
               }
@@ -170,13 +186,13 @@
               options.currentDate = scope.currentDate;
               options.showTodaysDate = dateOfTheDay;
 
-              var locals = {options: options};
+              var locals = { options: options };
               $mdDialog.show({
                 template: template,
                 controller: PluginController,
                 controllerAs: 'picker',
                 locals: locals,
-                openFrom: element,
+                openFrom: openElement,
                 parent: angular.element(document.body),
                 bindToController: true,
                 disableParentScroll: false,
@@ -191,20 +207,19 @@
                     $timeout(scope.ngChange, 0);
                   }
 
-                  element.blur()
+                  openElement.blur()
 
                 }, function () {
                   isOn = false;
-                  element.blur()
+                  openElement.blur()
                 })
-              ;
+                ;
             });
           }
         };
       }])
     /** Returns a service that opens a dialog when the attribute shown is called
      The dialog serves to select a date/time/etc. depending on the options given to the function show
-
      @param options extends mdcDefaultParams
      {
        date: {boolean} =true,
@@ -236,7 +251,7 @@
               params = options[i];
             }
           }
-          var locals = {options: options};
+          var locals = { options: options };
           $mdDialog.show({
             template: template,
             controller: PluginController,
@@ -260,7 +275,7 @@
 
       return service;
     }])
-  ;
+    ;
 
   var PluginController = function ($scope, $mdDialog, mdcDefaultParams) {
     this.currentView = VIEW_STATES.DATE;
@@ -297,7 +312,7 @@
         var ret = null;
         if (angular.isDefined(input) && input !== null && input !== '') {
           if (angular.isString(input)) {
-            if (typeof(that.params.format) !== 'undefined' && that.params.format !== null) {
+            if (typeof (that.params.format) !== 'undefined' && that.params.format !== null) {
               ret = moment(input, that.params.format).locale(that.params.lang);
             }
             else {
@@ -340,7 +355,7 @@
     isAfterMinDate: function (date, checkHour, checkMinute) {
       var _return = true;
 
-      if (typeof(this.minDate) !== 'undefined' && this.minDate !== null) {
+      if (typeof (this.minDate) !== 'undefined' && this.minDate !== null) {
         var _minDate = moment(this.minDate);
         var _date = moment(date);
 
@@ -373,7 +388,7 @@
     isBeforeMaxDate: function (date, checkTime, checkMinute) {
       var _return = true;
 
-      if (typeof(this.maxDate) !== 'undefined' && this.maxDate !== null) {
+      if (typeof (this.maxDate) !== 'undefined' && this.maxDate !== null) {
         var _maxDate = moment(this.maxDate);
         var _date = moment(date);
 
@@ -596,7 +611,7 @@
           low = low ? low : 0;
           var year = date.year();
           var month = date.month();
-          return (((year - YEAR_MIN) * 12) + month - 1 ) - low;
+          return (((year - YEAR_MIN) * 12) + month - 1) - low;
         };
 
         return {
@@ -659,8 +674,8 @@
                 if (date !== null) {
                   month.name = date.format('MMMM YYYY');
                   var startOfMonth = moment(date).locale(picker.params.lang).startOf('month')
-                      .hour(date.hour())
-                      .minute(date.minute())
+                    .hour(date.hour())
+                    .minute(date.minute())
                     ;
                   var iNumDay = startOfMonth.format('d');
                   month.days = [];
@@ -796,7 +811,7 @@
         };
       }
     ])
-  ;
+    ;
 
   angular.module(moduleName)
     .directive('mdcDtpNoclick', function () {
@@ -863,7 +878,7 @@
                   left: left,
                   top: top,
                   value: (minuteMode ? (h * 5) : h), //5 for minute 60/12
-                  style: {'margin-left': left + 'px', 'margin-top': top + 'px'}
+                  style: { 'margin-left': left + 'px', 'margin-top': top + 'px' }
                 };
 
                 if (minuteMode) {
@@ -899,11 +914,11 @@
               }).addClass(!minuteMode ? 'on' : '');
 
               angular.element(element[0].querySelector('.dtp-minute-hand')).css
-              ({
-                left: r + (mL * 1.5) + 'px',
-                height: _mL + 'px',
-                marginTop: (r - _mL - pL) + 'px'
-              }).addClass(minuteMode ? 'on' : '');
+                ({
+                  left: r + (mL * 1.5) + 'px',
+                  height: _mL + 'px',
+                  marginTop: (r - _mL - pL) + 'px'
+                }).addClass(minuteMode ? 'on' : '');
 
               angular.element(clockCenter).css({
                 left: (r + pL + mL - centerWidth) + 'px',
