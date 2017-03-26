@@ -7,7 +7,7 @@
     'ngMaterialDatePicker'
   ])
     .controller('DemoCtrl', function ($scope, mdcDateTimeDialog) {
-      $scope.date = new Date();
+      $scope.date = moment().startOf('day');
       $scope.time = new Date();
       $scope.dateTime = new Date();
      
@@ -27,6 +27,7 @@
 
       $scope.displayDialog = function () {
         mdcDateTimeDialog.show({
+          currentDate: moment().startOf('day'),
           maxDate: $scope.maxDate,
           time: false
         })
