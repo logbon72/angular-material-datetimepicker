@@ -45,6 +45,16 @@ npm i ng-material-datetimepicker
 bower install ng-material-datetimepicker
 ```
 
+## CDN
+```
+https://unpkg.com/ng-material-datetimepicker@1.5.10/dist/angular-material-datetimepicker.min.js
+https://unpkg.com/ng-material-datetimepicker@1.5.10/dist/angular-material-datetimepicker.min.js.map
+https://unpkg.com/ng-material-datetimepicker@1.5.10/dist/material-datetimepicker.min.css
+
+https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.5.10/dist/angular-material-datetimepicker.min.js
+https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.5.10/dist/angular-material-datetimepicker.min.js.map
+https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.5.10/dist/material-datetimepicker.min.css
+```
 
 ## Live Example
 
