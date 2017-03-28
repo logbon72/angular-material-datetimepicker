@@ -37,6 +37,15 @@ Depends on the following library:
 - AngularJS
 - Moment
 
+```
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.3/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular-animate.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular-aria.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.3/angular-material.min.css" rel="stylesheet" type="text/css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.3/angular-material.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment-with-locales.min.js"></script>
+```
+
 ## Installing via yarn, npm or bower
 
 ```
@@ -47,13 +56,15 @@ bower install ng-material-datetimepicker
 
 ## CDN
 ```
-https://unpkg.com/ng-material-datetimepicker@1.5.10/dist/angular-material-datetimepicker.min.js
-https://unpkg.com/ng-material-datetimepicker@1.5.10/dist/angular-material-datetimepicker.min.js.map
-https://unpkg.com/ng-material-datetimepicker@1.5.10/dist/material-datetimepicker.min.css
-
-https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.5.10/dist/angular-material-datetimepicker.min.js
-https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.5.10/dist/angular-material-datetimepicker.min.js.map
-https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.5.10/dist/material-datetimepicker.min.css
+<script src="https://unpkg.com/ng-material-datetimepicker@1.5.10/dist/angular-material-datetimepicker.min.js"></script>
+<script src="https://unpkg.com/ng-material-datetimepicker@1.5.10/dist/angular-material-datetimepicker.min.js.map"></script>
+<link href="https://unpkg.com/ng-material-datetimepicker@1.5.10/dist/material-datetimepicker.min.css rel="stylesheet" type="text/css">
+```
+or
+```
+<script src="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.5.10/dist/angular-material-datetimepicker.min.js"></script>
+<script src="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.5.10/dist/angular-material-datetimepicker.min.js.map"></script>
+<link href="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.5.10/dist/material-datetimepicker.min.css" rel="stylesheet" type="text/css">
 ```
 
 ## Live Example
@@ -157,7 +168,3 @@ The `mdcDateTimeDialog.show` accepts the same options as the directive.
        disableParentScroll: {boolean} = false,
      }
 ```
-
-## Important Note on Using Locales
-
-Please see this [issue](https://github.com/logbon72/angular-material-datetimepicker/issues/51). To use a locale with your date time picker dialog, you'll have to include the moment.js locale file.
