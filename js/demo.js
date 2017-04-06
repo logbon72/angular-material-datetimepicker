@@ -4,10 +4,24 @@
 (function () {
   'use strict';
   angular.module('mdDatetimePickerDemo', [
-    'ngMaterialDatePicker'
+    'ngMaterialDatePicker',
+    'pascalprecht.translate'
   ])
-    .controller('DemoCtrl', function ($scope, mdcDateTimeDialog) {
+    .config(function($translateProvider) {
+      $translateProvider.translations('en', {
+        CANCEL: "Cancel",
+        TODAY: "Today",
+      });
+      $translateProvider.translations('fr', {
+        CANCEL: "Annuler",
+        TODAY: "Aujourd'hui",
+      });
+      $translateProvider.preferredLanguage('en');
+		  $translateProvider.useSanitizeValueStrategy('sceParameters');
+    })
+    .controller('DemoCtrl', function ($scope, mdcDateTimeDialog, $translate) {
       $scope.date = moment().startOf('day');
+      $scope.dateLang = new Date();
       $scope.time = new Date();
       $scope.dateTime = new Date();
      
@@ -25,6 +39,8 @@
         new Date('2017-11-30T00:00:00'), new Date('2017-12-12T00:00:00'), new Date('2017-12-13T00:00:00'),
         new Date('2017-12-31T00:00:00')];
 
+      $scope.langs = [{'value': 'en', 'label': 'English'},{'value': 'fr', 'label': 'Français'}];
+
       $scope.displayDialog = function () {
         mdcDateTimeDialog.show({
           currentDate: moment().startOf('day'),
@@ -41,6 +57,11 @@
       $scope.txtdir = document.documentElement.dir || 'ltr';
       $scope.changeDir = function () {
         $scope.txtdir = document.documentElement.dir = ($scope.txtdir === 'rtl') ? 'ltr' : 'rtl';
+      };
+
+      $scope.changeLanguage = function() {
+        $translate.use($scope.selectedLang);
+        moment.locale($scope.selectedLang);
       };
 
     })
