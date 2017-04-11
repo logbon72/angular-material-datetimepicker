@@ -291,10 +291,7 @@ md-dialog.dtp {
     padding: 10px;
     border-radius: 50% !important;
     background: #eee;
-}
-
-html[dir="rtl"] .dtp div.dtp-picker-clock {
-    direction: ltr; 
+    direction: ltr;
 }
 
 .dtp-clock-center {
