@@ -96,7 +96,8 @@
         pmText: 'PM',
         todayText: 'Today',
         disableDates: [],
-        disableParentScroll: false
+        disableParentScroll: false,
+        autoOk: false
       };
       return default_params;
     }])
@@ -125,7 +126,8 @@
             pmText: '@',
             showTodaysDate: '@',
             todayText: '@',
-            disableParentScroll: '='
+            disableParentScroll: '=',
+            autoOk: '='
           },
           link: function (scope, element, attrs, ngModel) {
             var isOn = false;
@@ -231,7 +233,8 @@
        amText: {string} ='AM',
        pmText: {string} ='PM',
        disableDates: {date[]} =[],
-       disableParentScroll: {boolean} =false
+       disableParentScroll: {boolean} =false,
+       autoOk: {boolean} =false
      }
      @return promise
     */
@@ -725,6 +728,9 @@
                     return picker.ok();
                   }
                   picker.selectDate(moment(date).hour(calendar.date.hour()).minute(calendar.date.minute()));
+                  if (picker.params.autoOk) {
+                    picker.ok();
+                  }
                 }
               };
 
@@ -1002,6 +1008,9 @@
                 picker.currentDate.minute(val);
               }
               picker.currentDate.second(0);
+              if (picker.params.autoOk) {
+                picker.ok();
+              }
             };
 
             scope.pointAvailable = function (point) {

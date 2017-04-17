@@ -2,30 +2,24 @@
 
 Originally designed for Bootstrap Material, this has been modified to work with [Angular Material](https://material.angularjs.org/). This is an Android style date-time picker for Angular Material. Some added features include:
 
-- Double click to select date or time
-- Swipe left to go to next month or Swipe right to go to previous month.
+- Double or single click to select date and/or time
+- Swipe left to go to next month or Swipe right to go to previous month
+- Configurable first day of the week
+- Support 24 hours format display
+- Can disable dates, not selectable by user
+- Can disable minutes view
+- Compatible with right-to-left direction
 
 ## Updates
 
-** I have kept this section of the document as an acknowledgement for all the work done on the original Bootstrap Material plugin **
-
-| Date				| Author			| Description											 |
-| ----------------- | ----------------- | ------------------------------------------------------ |
-| 2017-01-30		| hexadecy			| Add support only for angular 1.5.x - 1.6.x ($onInit)	 |
-| 2015-11-12		| logbon72			| Adapted plugin for Angular Material 					 |
-| 2015-10-19		| benletchford		| Fixed not being able to tab into input				 |
-| 2015-10-19		| drblue 			| Fixed erroneous package.json-file 					 |
-| 2015-10-19		| Perdona			| Fix auto resize when month has 6 weeks				 |
-| 2015-07-01		| T00rk 			| Redesigned element without using modal				 |
-| 2015-06-16		| T00rk 			| Use Timepicker alone / Display short time (12 hours)	 |
-| 2015-06-13		| T00rk 			| Fixed issue with HTML value tag 						 |
-| 2015-05-25		| T00rk 			| Changed repo name to bootstrap-material-datetimepicker * |
-| 2015-05-12		| T00rk				| Added parameters for button text						 |
-| 2015-05-05		| Sovanna			| FIX undefined _minDate in isBeforeMaxDate func		 |
-| 2015-04-10		| T00rk				| Little change in clock design							 |
-| 2015-04-10		| Peterzen			| Added bower and requirejs support						 |
-| 2015-04-08		| T00rk				| Fixed problem on locale switch						 |
-| 2015-03-04		| T00rk				| Added Time picker										 |
+| Date       | Author   | Description                                          |
+| ---------- | -------- | ---------------------------------------------------- |
+| 2017-04-17 | hexadecy | Single click to select                               |
+| 2017-02-27 | hexadecy | Can hide minutes view, Month next and prev buttons   |
+| 2017-02-22 | hexadecy | Fix for rtl website                                  |
+| 2017-02-15 | hexadecy | Fix inputs are not bluring after selection is made   |
+| 2017-01-30 | hexadecy | Add support only for angular 1.5.x - 1.6.x ($onInit) |
+| 2015-11-12 | logbon72 | Adapted plugin for Angular Material                  |
 
 ### Dependencies
 
@@ -56,15 +50,15 @@ bower install ng-material-datetimepicker
 
 ## CDN
 ```
-<script src="https://unpkg.com/ng-material-datetimepicker@1.5.10/dist/angular-material-datetimepicker.min.js"></script>
-<script src="https://unpkg.com/ng-material-datetimepicker@1.5.10/dist/angular-material-datetimepicker.min.js.map"></script>
-<link href="https://unpkg.com/ng-material-datetimepicker@1.5.10/dist/material-datetimepicker.min.css rel="stylesheet" type="text/css">
+<script src="https://unpkg.com/ng-material-datetimepicker@1.5.12/dist/angular-material-datetimepicker.min.js"></script>
+<script src="https://unpkg.com/ng-material-datetimepicker@1.5.12/dist/angular-material-datetimepicker.min.js.map"></script>
+<link href="https://unpkg.com/ng-material-datetimepicker@1.5.12/dist/material-datetimepicker.min.css rel="stylesheet" type="text/css">
 ```
 or
 ```
-<script src="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.5.10/dist/angular-material-datetimepicker.min.js"></script>
-<script src="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.5.10/dist/angular-material-datetimepicker.min.js.map"></script>
-<link href="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.5.10/dist/material-datetimepicker.min.css" rel="stylesheet" type="text/css">
+<script src="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.5.12/dist/angular-material-datetimepicker.min.js"></script>
+<script src="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.5.12/dist/angular-material-datetimepicker.min.js.map"></script>
+<link href="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.5.12/dist/material-datetimepicker.min.css" rel="stylesheet" type="text/css">
 ```
 
 ## Live Example
@@ -103,23 +97,24 @@ This plugin exposes a directive which should be used as an attribute for an inpu
 
 The directive accepts several attributes which are described below:
 
-| Name				| Type							| Description									|
-| ----------------- | ----------------------------- | --------------------------------------------- |
-| **ng-model**	    | (String\|Date\|Moment)		| Initial Date or model to assign the date to 	|
-| **ng-change**	    | Function		                | A function to call when the input value changes. 	|
-| **format**		| String						| [MomentJS Format](momentjs.com/docs/#/parsing/string-format/),defaults to `HH:mm` for time picker only, `YYYY-MM-DD` for date picker only and `YYYY-MM-DD HH:mm` for both timepicker and date picker |
-| **short-time**	| Boolean						| true => Display 12 hours AM\|PM (default: false)				|
-| **min-date**		| (String\|Date\|Moment)		| Minimum selectable date						|
-| **max-date**		| (String\|Date\|Moment)		| Maximum selectable date						|
-| **date**			| Boolean						| true => Has Datepicker (default: true)        |
-| **time**			| Boolean						| true => Has Timepicker (default: true)		|
-| **minutes**			| Boolean						| true => Has Timepicker minutes (default: true)		|
-| **cancel-text**	| String						| Text for the cancel button (default: Cancel)	|
-| **today-text**	| String						| Text for the today button (default: Today)	|
-| **ok-text** 		| String						| Text for the OK button (default: OK)			|
-| **week-start**	| Number						| First day of the week (default: 0 => Sunday)	|
-| **disable-dates**	| Date[]						| Dates to be disabled or not selectable by user.|
-| **disable-parent-scroll**	| Boolean						| true => Disable scrolling while the dialog is open (default : false) |
+| Name                      | Type                    | Description                                                          |
+| ------------------------- | ----------------------- | -------------------------------------------------------------------- |
+| **ng-model**              | (String\|Date\|Moment   | Initial Date or model to assign the date to                          |
+| **ng-change**             | Function                | A function to call when the input value changes.                     |
+| **format**                | String                  | [MomentJS Format](momentjs.com/docs/#/parsing/string-format/),defaults to `HH:mm` for time picker only, `YYYY-MM-DD` for date picker only and `YYYY-MM-DD HH:mm` for both timepicker and date picker |
+| **short-time**            | Boolean                 | true => Display 12 hours AM\|PM (default: false)                     |
+| **min-date**              | (String\|Date\|Moment)  | Minimum selectable date                                              |
+| **max-date**              | (String\|Date\|Moment)  | Maximum selectable date                                              |
+| **date**                  | Boolean	                | true => Has Datepicker (default: true)                               |
+| **time**                  | Boolean                 | true => Has Timepicker (default: true)                               |
+| **minutes**               | Boolean                 | true => Has Timepicker minutes (default: true)                       |
+| **cancel-text**           | String                  | Text for the cancel button (default: Cancel)                         |
+| **today-text**            | String                  | Text for the today button (default: Today)                           |
+| **ok-text**               | String                  | Text for the OK button (default: OK)                                 |
+| **week-start**            | Number                  | First day of the week (default: 0 => Sunday)                         |
+| **disable-dates**         | Date[]                  | Dates to be disabled or not selectable by user.                      |
+| **disable-parent-scroll** | Boolean                 | true => Disable scrolling while the dialog is open (default : false) |
+| **auto-ok**               | Boolean                 | true => Single click (default: false)                                |
 
 ### Date/Time Dialog Service
  
@@ -166,5 +161,6 @@ The `mdcDateTimeDialog.show` accepts the same options as the directive.
        pmText: {string} ='PM',
        disableDates: {date[]} =[],
        disableParentScroll: {boolean} = false,
+       autoOk: {boolean} =false
      }
 ```
