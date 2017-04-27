@@ -44,11 +44,11 @@
     '                <mdc-datetime-picker-calendar date="picker.currentDate" picker="picker" class="dtp-picker-calendar" ng-show="picker.currentView === picker.VIEWS.DATE"></mdc-datetime-picker-calendar>' +
     '                <div class="dtp-picker-datetime" ng-cloak ng-if="picker.currentView !== picker.VIEWS.DATE">' +
     '                    <div class="dtp-actual-meridien">' +
-    '                        <div class="left p20">' +
+    '                        <div ng-if="picker.params.shortTime" class="left p20">' +
     '                            <a id="time-periods-am" href="#" mdc-dtp-noclick class="dtp-meridien-am" ng-class="{selected: picker.meridien == \'AM\'}" ng-click="picker.selectAM()">{{picker.params.amText}}</a>' +
     '                        </div>' +
     '                        <div ng-show="!picker.timeMode" class="dtp-actual-time p60">{{picker.currentNearest5Minute().format(picker.params.shortTime ? "hh:mm" : "HH:mm")}}</div>' +
-    '                        <div class="right p20">' +
+    '                        <div ng-if="picker.params.shortTime" class="right p20">' +
     '                            <a id="time-periods-pm" href="#" mdc-dtp-noclick class="dtp-meridien-pm" ng-class="{selected: picker.meridien == \'PM\'}" ng-click="picker.selectPM()">{{picker.params.pmText}}</a>' +
     '                        </div>' +
     '                        <div class="clearfix"></div>' +
@@ -486,7 +486,11 @@
     },
     isHourAvailable: function (hour) {
       var _date = moment(this.currentDate);
-      _date.hour(this.convertHours(hour)).minute(0).second(0);
+      if (this.params.shortTime) {
+        _date.hour(this.convertHours(hour)).minute(0).second(0);
+      } else {
+        _date.hour(hour).minute(0).second(0);
+      }
       return this.isAfterMinDate(_date, true, false) && this.isBeforeMaxDate(_date, true, false);
     },
     isMinuteAvailable: function (minute) {
@@ -842,9 +846,13 @@
 
         var template = 
           '<div class="dtp-picker-clock"><span ng-if="!points || points.length < 1">&nbsp;</span>' +
-          '<div ng-repeat="point in points" class="dtp-picker-time" ng-style="point.style">' +
+          '<div ng-repeat="point in points" class="dtp-picker-time noselect" ng-style="point.style">' +
           '   <a href="#" id="time-{{mode}}-{{point.display}}" mdc-dtp-noclick ng-class="{selected: point.value===currentValue}" class="dtp-select-hour" ng-click="setTime(point.value)" ng-if="pointAvailable(point)">{{point.display}}</a>' +
           '   <a href="#" mdc-dtp-noclick class="disabled dtp-select-hour" ng-if="!pointAvailable(point)">{{point.display}}</a>' +
+          '</div>' +
+          '<div ng-if="points24.length" ng-repeat="point24 in points24" class="dtp-picker-time noselect" ng-style="point24.style">' +
+          '   <a href="#" id="time-24hours-{{point24.display}}" mdc-dtp-noclick ng-class="{selected: point24.value===currentValue}" class="dtp-select-hour" ng-click="setTime(point24.value)" ng-if="pointAvailable(point24)">{{point24.display}}</a>' +
+          '   <a href="#" mdc-dtp-noclick class="disabled dtp-select-hour" ng-if="!pointAvailable(point24)">{{point24.display}}</a>' +
           '</div>' +
           '<div class="dtp-hand dtp-hour-hand"></div>' +
           '<div class="dtp-hand dtp-minute-hand"></div>' +
@@ -878,8 +886,8 @@
               var mT = parseInt(css(clock, 'marginTop').replace('px', '')) || 0;
 
               var r = (clockWidth / 2);
-              var j = r / 1.2; //???
-
+              var j = r / 1.2; // radius for low number
+   
               var points = [];
 
               for (var h = 0; h < 12; ++h) {
@@ -902,15 +910,38 @@
                   if (picker.params.shortTime) {
                     hour.display = (h === 0) ? 12 : h;
                   } else {
-                    hour.display = picker.isPM() ? h + 12 : h;
+                    hour.display = h;
                   }
                 }
 
-
                 points.push(hour);
               }
-
               scope.points = points;
+
+              if (!picker.params.shortTime && !minuteMode) {
+                var points24 = [];
+
+                var j24 = r / 1.8; // radius for high number
+                for (var h24 = 12; h24 < 24; ++h24) {
+                  var x24 = j24 * Math.sin(Math.PI * 2 * (h24 / 12));
+                  var y24 = j24 * Math.cos(Math.PI * 2 * (h24 / 12));
+                  var left24 = (r + x24 + pL / 2) - (pL + mL);
+                  var top24 = (r - y24 - mT / 2) - (pT + mT);
+
+                  var hour24 = {
+                    left: left24,
+                    top: top24,
+                    value: h24,
+                    style: {'margin-left': left24 + 'px', 'margin-top': top24 + 'px'}
+                  };
+
+                  hour24.display = h24;
+
+                  points24.push(hour24);
+                }
+                scope.points24 = points24;
+              }
+
               scope.mode = attrs.mode;
               setCurrentValue();
               clock.css('height', clockWidth + 'px');
@@ -918,7 +949,7 @@
               var clockCenter = element[0].querySelector('.dtp-clock-center');
               var centerWidth = (clockCenter.offsetWidth / 2) || 7.5,
                 centerHeight = (clockCenter.offsetHeight / 2) || 7.5;
-              var _hL = r / 1.8;
+              var _hL = r / (picker.params.shortTime ? 1.8 : 2.3);
               var _mL = r / 1.5;
 
               angular.element(element[0].querySelector('.dtp-hour-hand')).css({
@@ -963,7 +994,8 @@
 
             var setCurrentValue = function () {
               var date = picker.currentNearest5Minute();
-              scope.currentValue = minuteMode ? date.minute() : (date.hour() % 12);
+              var nbH = picker.params.shortTime ? 12 : 24;
+              scope.currentValue = minuteMode ? date.minute() : (date.hour() % nbH);
             };
 
             scope.$watch(function () {
@@ -974,36 +1006,18 @@
               animateHands();
             });
 
-
-            var setDisplayPoints = function (isPM, points) {
-              for (var i = 0; i < points.length; i++) {
-                points[i].display = i;
-                if (isPM) {
-                  points[i].display += 12;
-                }
-              }
-              return points;
-            };
-
-            if (!picker.params.shortTime) {
-              scope.$watch('picker.meridien', function () {
-                if (!minuteMode) {
-                  if (scope.points) {
-                    var points = setDisplayPoints(picker.isPM(), angular.copy(scope.points));
-                    scope.points = points;
-                  }
-                }
-              });
-            }
-
-
             scope.setTime = function (val) {
               if (val === scope.currentValue) {
                 picker.ok();
               }
 
               if (!minuteMode) {
-                picker.currentDate.hour(picker.isPM() ? (val + 12) : val);
+                if (picker.params.shortTime) {
+                  picker.currentDate.hour(picker.isPM() ? (val + 12) : val);
+                } else {
+                  picker.currentDate.hour(val);
+                }
+
               } else {
                 picker.currentDate.minute(val);
               }
