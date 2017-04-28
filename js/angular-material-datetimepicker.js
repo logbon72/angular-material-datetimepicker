@@ -1007,7 +1007,8 @@
             });
 
             scope.setTime = function (val) {
-              if (val === scope.currentValue) {
+              // double click
+              if (val === scope.currentValue && !picker.params.autoOk) {
                 picker.ok();
               }
 
@@ -1022,6 +1023,7 @@
                 picker.currentDate.minute(val);
               }
               picker.currentDate.second(0);
+              // single click
               if (picker.params.autoOk) {
                 picker.ok();
               }

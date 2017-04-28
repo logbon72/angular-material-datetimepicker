@@ -5,7 +5,7 @@ Originally designed for Bootstrap Material, this has been modified to work with 
 - Double or single click to select date and/or time
 - Swipe left to go to next month or Swipe right to go to previous month
 - Configurable first day of the week
-- Support 24 hours format display
+- Support 24-hour format display
 - Can disable dates, not selectable by user
 - Can disable minutes view
 - Compatible with right-to-left direction
@@ -14,7 +14,7 @@ Originally designed for Bootstrap Material, this has been modified to work with 
 
 | Date       | Author   | Description                                          |
 | ---------- | -------- | ---------------------------------------------------- |
-| 2017-04-26 | hexadecy | 24 hour clock face                                   |
+| 2017-04-26 | hexadecy | New 24-hour clock face                               |
 | 2017-04-17 | hexadecy | Single click to select                               |
 | 2017-02-27 | hexadecy | Can hide minutes view, Month next and prev buttons   |
 | 2017-02-22 | hexadecy | Fix for rtl website                                  |
