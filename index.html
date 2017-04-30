@@ -7,6 +7,7 @@
   <link rel="icon" type="image/png" href="favicon.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/github.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.4/angular-material.min.css" rel="stylesheet" type="text/css"/>
   <link rel="stylesheet" href="./css/material-datetimepicker.css" type="text/css"/>
@@ -159,7 +160,6 @@
       </div>
 
       <div layout-gt-md="row" layout="column" layout-align-gt-md="center center">
-
         <div flex-gt-md="30">
           <p>mdcDateTimeDialog Service</p>
           <md-button class="md-raised md-primary" ng-click="displayDialog()">
@@ -167,11 +167,22 @@
           </md-button>
           <p ng-if="selectedDateTime">Date: {{selectedDateTime|date}}</p>
         </div>
-
         <div flex-gt-md="grow" ex-source-code target="button"></div>
-
       </div>
 
+      <br>
+      <label>mdcDateTimeDialog Service Input</label>
+      <div layout-gt-md="row" layout="column" layout-align-gt-md="center center">
+        <div layout="row" flex-gt-md="30" layout-align="start center">  
+          <md-input-container md-float>
+            <input type="date" ng-model="selectedDateTimeIn" id="dateinput">
+          </md-input-container>
+          <md-button class="md-primary md-icon-button" style="top:-12px;left:-12px;" ng-click="displayDialogIn()">
+            <md-icon class="material-icons">today</md-icon>
+          </md-button>
+        </div>
+        <div flex-gt-md="grow" ex-source-code target="input"></div>
+      </div>
     </md-card-content>
 
   </md-card>

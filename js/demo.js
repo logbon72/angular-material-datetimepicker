@@ -53,6 +53,17 @@
           });
       };
 
+      $scope.displayDialogIn = function () {
+        mdcDateTimeDialog.show({
+          currentDate: $scope.selectedDateTimeIn || moment().startOf('day'),
+          maxDate: $scope.maxDate,
+          time: false
+        })
+          .then(function (date) {
+            $scope.selectedDateTimeIn = date;
+          });
+      };
+
       // Set and change the text direction
       $scope.txtdir = document.documentElement.dir || 'ltr';
       $scope.changeDir = function () {
