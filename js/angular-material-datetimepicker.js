@@ -1007,26 +1007,29 @@
             });
 
             scope.setTime = function (val) {
-              // double click
-              if (val === scope.currentValue && !picker.params.autoOk) {
-                picker.ok();
-              }
-
               if (!minuteMode) {
+                // double click
+                if (val === scope.currentValue && !picker.params.autoOk){
+                  picker.ok();
+                }
+
                 if (picker.params.shortTime) {
                   picker.currentDate.hour(picker.isPM() ? (val + 12) : val);
                 } else {
                   picker.currentDate.hour(val);
                 }
-
+                // single click
+                if (picker.params.autoOk) {
+                  picker.ok();
+                }
               } else {
+                // double click
+                if (val === scope.currentValue){
+                  picker.ok();
+                }
                 picker.currentDate.minute(val);
               }
               picker.currentDate.second(0);
-              // single click
-              if (picker.params.autoOk) {
-                picker.ok();
-              }
             };
 
             scope.pointAvailable = function (point) {
