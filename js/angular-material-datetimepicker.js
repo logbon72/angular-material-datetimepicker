@@ -639,19 +639,20 @@
           bindToController: true,
           controllerAs: 'cal',
           controller: ['$scope', function ($scope) {
-            this.$onInit = function () {
-              var calendar = this,
-                picker = this.picker,
-                days = [];
+            var calendar = this, picker;
 
+            this.$onInit = function () {
+              picker = this.picker;
+
+              var days = [];
               for (var i = picker.params.weekStart; days.length < 7; i++) {
                 if (i > 6) {
                   i = 0;
                 }
                 days.push(i.toString());
               }
-
               calendar.week = days;
+
               if (!picker.maxDate && !picker.minDate) {
                 calendar.months = MONTHS;
               } else {
@@ -660,96 +661,100 @@
                 calendar.months = MONTHS.slice(low, high);
               }
 
-              calendar.getItemAtIndex = function (index) {
-                var month = ((index + 1) % 12) || 12;
-                var year = YEAR_MIN + Math.floor(index / 12);
-                var monthObj = moment(picker.currentDate).year(year).month(month);
-                return generateMonthCalendar(monthObj);
-              };
-
               calendar.topIndex = currentMonthIndex(picker.currentDate) - calendar.months[0];
+            };
 
-              $scope.$watch(function () {
-                return picker.currentDate ? picker.currentDate.format('YYYY-MM') : '';
-              }, function (val2, val1) {
-                if (val2 != val1) {
-                  var nDate = moment(val2, 'YYYY-MM');
-                  var low = picker.minDate ? currentMonthIndex(picker.minDate) : 0;
-                  var index = currentMonthIndex(nDate, low);
-                  if (calendar.topIndex != index) {
-                    calendar.topIndex = index;
-                  }
+            if (angular.version.major === 1 && angular.version.minor < 5) {
+              this.$onInit();
+            }
+          
+            calendar.getItemAtIndex = function (index) {
+              var month = ((index + 1) % 12) || 12;
+              var year = YEAR_MIN + Math.floor(index / 12);
+              var monthObj = moment(picker.currentDate).year(year).month(month);
+              return generateMonthCalendar(monthObj);
+            };
+
+            $scope.$watch(function () {
+              return picker.currentDate ? picker.currentDate.format('YYYY-MM') : '';
+            }, function (val2, val1) {
+              if (val2 != val1) {
+                var nDate = moment(val2, 'YYYY-MM');
+                var low = picker.minDate ? currentMonthIndex(picker.minDate) : 0;
+                var index = currentMonthIndex(nDate, low);
+                if (calendar.topIndex != index) {
+                  calendar.topIndex = index;
                 }
-              });
+              }
+            });
 
-              var generateMonthCalendar = function (date) {
-                var month = {};
-                if (date !== null) {
-                  month.name = date.format('MMMM YYYY');
-                  var startOfMonth = moment(date).locale(picker.params.lang).startOf('month')
-                      .hour(date.hour())
-                      .minute(date.minute());
-                  var iNumDay = startOfMonth.format('d');
-                  month.days = [];
-                  for (var i = startOfMonth.date(); i <= startOfMonth.daysInMonth(); i++) {
-                    if (i === startOfMonth.date()) {
-                      var iWeek = calendar.week.indexOf(iNumDay.toString());
-                      if (iWeek > 0) {
-                        for (var x = 0; x < iWeek; x++) {
-                          month.days.push(0);
-                        }
+            var generateMonthCalendar = function (date) {
+              var month = {};
+              if (date !== null) {
+                month.name = date.format('MMMM YYYY');
+                var startOfMonth = moment(date).locale(picker.params.lang).startOf('month')
+                    .hour(date.hour())
+                    .minute(date.minute());
+                var iNumDay = startOfMonth.format('d');
+                month.days = [];
+                for (var i = startOfMonth.date(); i <= startOfMonth.daysInMonth(); i++) {
+                  if (i === startOfMonth.date()) {
+                    var iWeek = calendar.week.indexOf(iNumDay.toString());
+                    if (iWeek > 0) {
+                      for (var x = 0; x < iWeek; x++) {
+                        month.days.push(0);
                       }
                     }
-                    month.days.push(moment(startOfMonth).locale(picker.params.lang).date(i));
                   }
-
-                  var daysInAWeek = 7, daysTmp = [], slices = Math.ceil(month.days.length / daysInAWeek);
-                  for (var j = 0; j < slices; j++) {
-                    daysTmp.push(month.days.slice(j * daysInAWeek, (j + 1) * daysInAWeek));
-                  }
-                  month.days = daysTmp;
-                  return month;
+                  month.days.push(moment(startOfMonth).locale(picker.params.lang).date(i));
                 }
 
-              };
-
-              calendar.toDay = function (i) {
-                return moment(parseInt(i), "d")
-                  .locale(picker.params.lang)
-                  .format("dd")
-                  .substring(0, 1);
-              };
-
-              calendar.isInRange = function (date) {
-                return picker.isAfterMinDate(moment(date), false, false) &&
-                  picker.isBeforeMaxDate(moment(date), false, false) &&
-                  picker.isInDisableDates(moment(date));
-              };
-
-              calendar.selectDate = function (date) {
-                if (date) {
-                  if (calendar.isSelectedDay(date)) {
-                    return picker.ok();
-                  }
-                  picker.selectDate(moment(date).hour(calendar.date.hour()).minute(calendar.date.minute()));
-                  if (picker.params.autoOk) {
-                    picker.ok();
-                  }
+                var daysInAWeek = 7, daysTmp = [], slices = Math.ceil(month.days.length / daysInAWeek);
+                for (var j = 0; j < slices; j++) {
+                  daysTmp.push(month.days.slice(j * daysInAWeek, (j + 1) * daysInAWeek));
                 }
-              };
+                month.days = daysTmp;
+                return month;
+              }
 
-              calendar.isSelectedDay = function (m) {
-                return m && calendar.date.date() === m.date() && calendar.date.month() === m.month() && calendar.date.year() === m.year();
-              };
+            };
 
-              calendar.isDateOfTheDay = function (m) {
-                var today = calendar.picker.options.showTodaysDate;
-                if (!today) {
-                  return false;
+            calendar.toDay = function (i) {
+              return moment(parseInt(i), "d")
+                .locale(picker.params.lang)
+                .format("dd")
+                .substring(0, 1);
+            };
+
+            calendar.isInRange = function (date) {
+              return picker.isAfterMinDate(moment(date), false, false) &&
+                picker.isBeforeMaxDate(moment(date), false, false) &&
+                picker.isInDisableDates(moment(date));
+            };
+
+            calendar.selectDate = function (date) {
+              if (date) {
+                if (calendar.isSelectedDay(date)) {
+                  return picker.ok();
                 }
+                picker.selectDate(moment(date).hour(calendar.date.hour()).minute(calendar.date.minute()));
+                if (picker.params.autoOk) {
+                  picker.ok();
+                }
+              }
+            };
 
-                return m && today.date() === m.date() && today.month() === m.month() && today.year() === m.year();
-              };
+            calendar.isSelectedDay = function (m) {
+              return m && calendar.date.date() === m.date() && calendar.date.month() === m.month() && calendar.date.year() === m.year();
+            };
+
+            calendar.isDateOfTheDay = function (m) {
+              var today = calendar.picker.options.showTodaysDate;
+              if (!today) {
+                return false;
+              }
+
+              return m && today.date() === m.date() && today.month() === m.month() && today.year() === m.year();
             };
           }],
           template: 
