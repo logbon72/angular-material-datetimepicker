@@ -19,7 +19,7 @@ Originally designed for Bootstrap Material, this has been modified to work with 
 | 2017-02-27 | hexadecy | Can hide minutes view, Month next and prev buttons   |
 | 2017-02-22 | hexadecy | Fix for rtl website                                  |
 | 2017-02-15 | hexadecy | Fix inputs are not bluring after selection is made   |
-| 2017-01-30 | hexadecy | Add support only for angular 1.5.x - 1.6.x ($onInit) |
+| 2017-01-30 | hexadecy | Add support for angular 1.6.x                        |
 | 2015-11-12 | logbon72 | Adapted plugin for Angular Material                  |
 
 ### Dependencies
