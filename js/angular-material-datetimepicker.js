@@ -509,7 +509,12 @@
       }
     },
     today: function () {
-      this.selectDate(Date.now());
+      var date = moment();
+      var minutes = (5 * Math.round(date.minute() / 5));
+      if (minutes >= 60) {
+        minutes = 55; //always push down
+      }
+      this.selectDate(moment(date).minutes(minutes));
     },
     ok: function () {
       switch (this.currentView) {
