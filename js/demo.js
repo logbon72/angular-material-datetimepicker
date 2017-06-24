@@ -50,7 +50,7 @@
           .then(function (date) {
             $scope.selectedDateTime = date;
             console.log('New Date / Time selected:', date);
-          });
+          }, function(){});
       };
 
       $scope.displayDialogIn = function () {
@@ -61,7 +61,7 @@
         })
           .then(function (date) {
             $scope.selectedDateTimeIn = date;
-          });
+          }, function(){});
       };
 
       // Set and change the text direction

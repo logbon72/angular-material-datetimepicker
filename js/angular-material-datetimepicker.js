@@ -1,5 +1,7 @@
 (function () {
   'use strict';
+
+function ngMaterialDatePicker(moment) {
   var moduleName = "ngMaterialDatePicker";
 
   var VIEW_STATES = {
@@ -1055,5 +1057,14 @@
           }
         };
       }]);
+}
 
+  var isElectron = window && window.process && window.process.type;
+  if (typeof define === 'function' && define.amd) {
+    define(['moment'], ngMaterialDatePicker);
+  } else if (typeof module !== 'undefined' && module && module.exports && (typeof require === 'function') && !isElectron) {
+    module.exports = ngMaterialDatePicker(require('moment'));
+  } else {
+    ngMaterialDatePicker((typeof global !== 'undefined' ? global : window).moment);
+  }
 })();
