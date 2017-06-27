@@ -99,7 +99,8 @@ function ngMaterialDatePicker(moment) {
         todayText: 'Today',
         disableDates: [],
         disableParentScroll: false,
-        autoOk: false
+        autoOk: false,
+        disableClick: false
       };
       return default_params;
     }])
@@ -129,7 +130,8 @@ function ngMaterialDatePicker(moment) {
             showTodaysDate: '@',
             todayText: '@',
             disableParentScroll: '=',
-            autoOk: '='
+            autoOk: '=',
+            disableClick: '='
           },
           link: function (scope, element, attrs, ngModel) {
             var isOn = false;
@@ -153,6 +155,10 @@ function ngMaterialDatePicker(moment) {
             }
 
             if (ngModel) {
+              ngModel.$options = ngModel.$options.createChild({
+                '*': '$inherit',
+                debounce: 500
+              });
               ngModel.$formatters.push(function (value) {
                 if (typeof value === 'undefined') {
                   return;
@@ -160,57 +166,65 @@ function ngMaterialDatePicker(moment) {
                 var m = moment(value);
                 return m.isValid() ? m.format(scope.format) : '';
               });
+              ngModel.$parsers.push(function (value) {
+                if (typeof value === 'undefined') {
+                  return;
+                }
+                var m = moment(value, scope.format);
+                return m.isValid() ? m._d : scope.currentDate;
+              });
             }
 
             //@TODO custom event to trigger input
-            element.on('focus', function (e) {
-              e.preventDefault();
-              element.blur();
-              element.parent().removeClass('md-input-focused');
-              if (isOn) {
-                return;
-              }
-              isOn = true;
-              var options = {};
-              for (var i in attrs) {
-                if (scope.hasOwnProperty(i) && !angular.isUndefined(scope[i])) {
-                  options[i] = scope[i];
+            if (!scope.disableClick) {
+              element.on('focus', function (e) {
+                e.preventDefault();
+                element.blur();
+                element.parent().removeClass('md-input-focused');
+                if (isOn) {
+                  return;
                 }
-              }
-              options.currentDate = scope.currentDate;
-              options.showTodaysDate = dateOfTheDay;
-
-              var locals = {options: options};
-              $mdDialog.show({
-                template: template,
-                controller: PluginController,
-                controllerAs: 'picker',
-                locals: locals,
-                openFrom: element,
-                parent: angular.element(document.body),
-                bindToController: true,
-                disableParentScroll: options.disableParentScroll || false,
-                hasBackDrop: false,
-                skipHide: true,
-                multiple: true
-              })
-                .then(function (v) {
-                  scope.currentDate = v ? v._d : v;
-                  isOn = false;
-
-                  if (!moment(scope.currentDate).isSame(options.currentDate)) {
-                    $timeout(scope.ngChange, 0);
+                isOn = true;
+                var options = {};
+                for (var i in attrs) {
+                  if (scope.hasOwnProperty(i) && !angular.isUndefined(scope[i])) {
+                    options[i] = scope[i];
                   }
+                }
+                options.currentDate = scope.currentDate;
+                options.showTodaysDate = dateOfTheDay;
 
-                  element.parent().removeClass('md-input-focused');
-
-                }, function () {
-                  isOn = false;
-                  element.parent().removeClass('md-input-focused');
+                var locals = {options: options};
+                $mdDialog.show({
+                  template: template,
+                  controller: PluginController,
+                  controllerAs: 'picker',
+                  locals: locals,
+                  openFrom: element,
+                  parent: angular.element(document.body),
+                  bindToController: true,
+                  disableParentScroll: options.disableParentScroll || false,
+                  hasBackDrop: false,
+                  skipHide: true,
+                  multiple: true
                 })
-              ;
-            });
-            
+                  .then(function (v) {
+                    scope.currentDate = v ? v._d : v;
+                    isOn = false;
+
+                    if (!moment(scope.currentDate).isSame(options.currentDate)) {
+                      $timeout(scope.ngChange, 0);
+                    }
+
+                    element.parent().removeClass('md-input-focused');
+
+                  }, function () {
+                    isOn = false;
+                    element.parent().removeClass('md-input-focused');
+                  })
+                ;
+              });
+            }
           }
         };
       }])
