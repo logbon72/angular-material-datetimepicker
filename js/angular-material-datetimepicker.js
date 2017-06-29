@@ -100,7 +100,7 @@ function ngMaterialDatePicker(moment) {
         disableDates: [],
         disableParentScroll: false,
         autoOk: false,
-        disableClick: false
+        editInput: false
       };
       return default_params;
     }])
@@ -131,7 +131,7 @@ function ngMaterialDatePicker(moment) {
             todayText: '@',
             disableParentScroll: '=',
             autoOk: '=',
-            disableClick: '='
+            editInput: '='
           },
           link: function (scope, element, attrs, ngModel) {
             var isOn = false;
@@ -176,7 +176,7 @@ function ngMaterialDatePicker(moment) {
             }
 
             //@TODO custom event to trigger input
-            if (!scope.disableClick) {
+            if (!scope.editInput) {
               element.on('focus', function (e) {
                 e.preventDefault();
                 element.blur();

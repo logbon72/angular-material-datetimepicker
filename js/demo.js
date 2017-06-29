@@ -64,6 +64,17 @@
           }, function(){});
       };
 
+      $scope.displayDialogEdit = function () {
+        mdcDateTimeDialog.show({
+          currentDate: $scope.dateTimeEdit || moment().startOf('day'),
+          maxDate: $scope.maxDate,
+          time: true
+        })
+          .then(function (date) {
+            $scope.dateTimeEdit = date;
+          }, function(){});
+      };
+
       // Set and change the text direction
       $scope.txtdir = document.documentElement.dir || 'ltr';
       $scope.changeDir = function () {
