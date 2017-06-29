@@ -1057,6 +1057,7 @@ function ngMaterialDatePicker(moment) {
           }
         };
       }]);
+    return moduleName;
 }
 
   var isElectron = window && window.process && window.process.type;
