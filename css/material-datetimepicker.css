@@ -357,3 +357,9 @@ md-dialog.dtp {
     text-align: center;
 }
 
+[dir=rtl] .dtp div.dtp-year-btn-next, [dir=rtl] .dtp div.dtp-month-btn-next,
+[dir=rtl] .dtp div.dtp-year-btn-prev, [dir=rtl] .dtp div.dtp-month-btn-prev {
+    -ms-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+}

@@ -28,13 +28,13 @@ function ngMaterialDatePicker(moment) {
     '            </header>' +
     '            <div class="dtp-date" ng-show="picker.params.date">' +
     '                <div layout="row">' +
-    '                    <div ng-click="picker.incrementMonth(-1)" class="dtp-month-btn dtp-month-btn-prev noselect" flex="30"><span ng-if="picker.isPreviousMonthVisible()">&#x25C0;</span></div>' +
+    '                    <div ng-click="picker.incrementMonth(-1)" class="dtp-month-btn dtp-month-btn-prev noselect" flex="30"><span ng-if="picker.isPreviousMonthVisible()">&#x25C4;</span></div>' +
     '                    <div class="dtp-actual-month" flex>{{picker.currentDate.format("MMM") | uppercase}}</div>' +
     '                    <div ng-click="picker.incrementMonth(1)" class="dtp-month-btn dtp-month-btn-next noselect" flex="30"><span ng-if="picker.isNextMonthVisible()">&#x25BA;</span></div>' +
     '                </div>' +
     '                <div class="dtp-actual-num">{{picker.currentDate.format("DD")}}</div>' +
     '                <div layout="row">' +
-    '                    <div ng-click="picker.incrementYear(-1)" class="dtp-year-btn dtp-year-btn-prev noselect" flex="30"><span ng-if="picker.isPreviousYearVisible()">&#x25C0;</span></div>' +
+    '                    <div ng-click="picker.incrementYear(-1)" class="dtp-year-btn dtp-year-btn-prev noselect" flex="30"><span ng-if="picker.isPreviousYearVisible()">&#x25C4;</span></div>' +
     '                    <div class="dtp-actual-year" flex>{{picker.currentDate.format("YYYY")}}</div>' +
     '                    <div ng-click="picker.incrementYear(1)" class="dtp-year-btn dtp-year-btn-next noselect" flex="30"><span ng-if="picker.isNextYearVisible()">&#x25BA;</span></div>' +
     '                </div>'+
