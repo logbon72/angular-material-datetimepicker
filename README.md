@@ -9,7 +9,7 @@ Originally designed for Bootstrap Material, this has been modified to work with 
 - Can disable dates, not selectable by user
 - Can disable minutes view
 - Compatible with right-to-left direction
-- Support RequireJS 
+- Support RequireJS and Webpack
 
 ## Updates
 
@@ -85,8 +85,8 @@ This plugin exposes a directive which should be used as an attribute for an inpu
     <md-input-container flex-gt-md="30">
         <label>Timepicker Only</label>
         <input mdc-datetime-picker date="false" time="true" type="text" id="time" short-time="true"
-               show-todays-date
-               placeholder="Time"
+               show-todays-date="" click-outside-to-close="true"
+               placeholder="Time" auto-ok="true"
                min-date="minDate"
                format="hh:mm a"
                ng-change="vm.saveChange()"
@@ -115,8 +115,11 @@ The directive accepts several attributes which are described below:
 | **ok-text**               | String                  | Text for the OK button (default: OK)                                 |
 | **week-start**            | Number                  | First day of the week (default: 0 => Sunday)                         |
 | **disable-dates**         | Date[]                  | Dates to be disabled or not selectable by user.                      |
+| **show-todays-date**      | Empty string            | Show today's date (default: undefined)                               |
 | **disable-parent-scroll** | Boolean                 | true => Disable scrolling while the dialog is open (default : false) |
 | **auto-ok**               | Boolean                 | true => Single click (default: false)                                |
+| **edit-input**            | Boolean                 | true => Input editable and don't show dialog (default: false)        |
+| **click-outside-to-close**| Boolean                 | true => A click outside close the dialog (default: false)            |
 
 ### Date/Time Dialog Service
  
@@ -158,11 +161,14 @@ The `mdcDateTimeDialog.show` accepts the same options as the directive.
        shortTime: {boolean} =false,
        cancelText: {string} ='Cancel',
        todayText: {string} ='Today',
+       showTodaysDate: {string} ='',
        okText: {string} ='OK',
        amText: {string} ='AM',
        pmText: {string} ='PM',
        disableDates: {date[]} =[],
        disableParentScroll: {boolean} = false,
-       autoOk: {boolean} =false
+       autoOk: {boolean} =false,
+       editInput: {boolean} =false,
+       clickOutsideToClose: {boolean} =false,
      }
 ```

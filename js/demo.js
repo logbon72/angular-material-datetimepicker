@@ -45,7 +45,9 @@
         mdcDateTimeDialog.show({
           currentDate: moment().startOf('day'),
           maxDate: $scope.maxDate,
-          time: false
+          showTodaysDate: '',
+          time: false,
+          clickOutsideToClose: true
         })
           .then(function (date) {
             $scope.selectedDateTime = date;
@@ -53,21 +55,11 @@
           }, function(){});
       };
 
-      $scope.displayDialogIn = function () {
-        mdcDateTimeDialog.show({
-          currentDate: $scope.selectedDateTimeIn || moment().startOf('day'),
-          maxDate: $scope.maxDate,
-          time: false
-        })
-          .then(function (date) {
-            $scope.selectedDateTimeIn = date;
-          }, function(){});
-      };
-
       $scope.displayDialogEdit = function () {
         mdcDateTimeDialog.show({
           currentDate: $scope.dateTimeEdit || moment().startOf('day'),
           maxDate: $scope.maxDate,
+          showTodaysDate: '',
           time: true
         })
           .then(function (date) {

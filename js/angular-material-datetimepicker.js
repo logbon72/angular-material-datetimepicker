@@ -100,7 +100,8 @@ function ngMaterialDatePicker(moment) {
         disableDates: [],
         disableParentScroll: false,
         autoOk: false,
-        editInput: false
+        editInput: false,
+        clickOutsideToClose: false
       };
       return default_params;
     }])
@@ -131,7 +132,8 @@ function ngMaterialDatePicker(moment) {
             todayText: '@',
             disableParentScroll: '=',
             autoOk: '=',
-            editInput: '='
+            editInput: '=',
+            clickOutsideToClose: '=',
           },
           link: function (scope, element, attrs, ngModel) {
             var isOn = false;
@@ -203,6 +205,7 @@ function ngMaterialDatePicker(moment) {
                   openFrom: element,
                   parent: angular.element(document.body),
                   bindToController: true,
+                  clickOutsideToClose: options.clickOutsideToClose || false,
                   disableParentScroll: options.disableParentScroll || false,
                   hasBackDrop: false,
                   skipHide: true,
@@ -244,13 +247,16 @@ function ngMaterialDatePicker(moment) {
        weekStart: {int} =0,
        shortTime: {boolean} =false,
        cancelText: {string} ='Cancel',
+       showTodaysDate: {string} ='',
        todayText: {string} ='Today',
        okText: {string} ='OK',
        amText: {string} ='AM',
        pmText: {string} ='PM',
        disableDates: {date[]} =[],
        disableParentScroll: {boolean} =false,
-       autoOk: {boolean} =false
+       autoOk: {boolean} =false,
+       editInput: {boolean} =false,
+       clickOutsideToClose: {boolean} =false
      }
      @return promise
     */
@@ -267,6 +273,12 @@ function ngMaterialDatePicker(moment) {
             }
           }
 
+          var dateOfTheDay = null;
+          if (options.showTodaysDate !== undefined && options.showTodaysDate !== "false") {
+            dateOfTheDay = moment();
+          }
+          options.showTodaysDate = dateOfTheDay;
+
           var locals = {options: options};
           $mdDialog.show({
             template: template,
@@ -275,7 +287,7 @@ function ngMaterialDatePicker(moment) {
             locals: locals,
             parent: angular.element(document.body),
             bindToController: true,
-            clickOutsideToClose: true,
+            clickOutsideToClose: options.clickOutsideToClose || false,
             disableParentScroll: options.disableParentScroll || false,
             skipHide: true,
             multiple: true
