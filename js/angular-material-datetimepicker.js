@@ -162,19 +162,18 @@ function ngMaterialDatePicker(moment) {
                 debounce: 500
               });
               ngModel.$formatters.push(function (value) {
-                if (typeof value === 'undefined') {
-                  return;
-                }
+                if (typeof value === 'undefined') return;
                 var m = moment(value);
                 return m.isValid() ? m.format(scope.format) : '';
               });
+              
               ngModel.$parsers.push(function (value) {
-                if (typeof value === 'undefined') {
-                  return;
-                }
+                if (typeof value === 'undefined') return;
                 var m = moment(value, scope.format);
-                return m.isValid() ? m._d : scope.currentDate;
+                if (m.isValid()) return m._d;
+                return;
               });
+              
             }
 
             //@TODO custom event to trigger input
