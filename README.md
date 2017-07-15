@@ -85,7 +85,7 @@ This plugin exposes a directive which should be used as an attribute for an inpu
     <md-input-container flex-gt-md="30">
         <label>Timepicker Only</label>
         <input mdc-datetime-picker date="false" time="true" type="text" id="time" short-time="true"
-               show-todays-date="" click-outside-to-close="true"
+               show-todays-date click-outside-to-close="true"
                placeholder="Time" auto-ok="true"
                min-date="minDate"
                format="hh:mm a"
@@ -115,7 +115,7 @@ The directive accepts several attributes which are described below:
 | **ok-text**               | String                  | Text for the OK button (default: OK)                                 |
 | **week-start**            | Number                  | First day of the week (default: 0 => Sunday)                         |
 | **disable-dates**         | Date[]                  | Dates to be disabled or not selectable by user.                      |
-| **show-todays-date**      | Empty string            | Show today's date (default: undefined)                               |
+| **show-todays-date**      | Attribute               | Show today's date (default: undefined)                               |
 | **disable-parent-scroll** | Boolean                 | true => Disable scrolling while the dialog is open (default : false) |
 | **auto-ok**               | Boolean                 | true => Single click (default: false)                                |
 | **edit-input**            | Boolean                 | true => Input editable and don't show dialog (default: false)        |

@@ -53,7 +53,7 @@
         <md-input-container flex-gt-md="30">
           <label>Datepicker Only</label>
           <input time="false" date="true" mdc-datetime-picker type="text" id="date"
-                 placeholder="Date" click-outside-to-close="true"
+                 placeholder="Date" click-outside-to-close="true" show-todays-date
                  ng-model="date" min-date="minDate" max-date="maxDate">
         </md-input-container>
         <div flex-gt-md="grow" flex-md="initial" ex-source-code target="input"></div>
@@ -87,7 +87,7 @@
         <md-input-container flex-gt-md="30">
           <label>Date/Time Picker</label>
           <input mdc-datetime-picker date="true" time="true" type="text" id="datetime"
-                 placeholder="Date" show-todays-date="" minutes="true"
+                 placeholder="Date" show-todays-date minutes="true"
                  min-date="date"
                  ng-model="dateTime">
         </md-input-container>
@@ -98,7 +98,7 @@
         <md-input-container flex-gt-md="25">
           <label>Date/Time Picker edit input</label>
           <input mdc-datetime-picker date="true" time="true" type="text" id="datetimeedit"
-                 placeholder="Date" show-todays-date="" minutes="true"
+                 placeholder="Date" show-todays-date minutes="true"
                  min-date="date" edit-input="true"
                  ng-model="dateTimeEdit">
         </md-input-container>
@@ -114,7 +114,7 @@
         <md-input-container flex-gt-md="30">
           <label>Date/Time Picker auto ok</label>
           <input mdc-datetime-picker date="true" time="true" type="text" id="datetimeauto"
-                 placeholder="Date" show-todays-date="" minutes="true"
+                 placeholder="Date" show-todays-date minutes="true"
                  min-date="date" auto-ok="true"
                  ng-model="dateTime">
         </md-input-container>
@@ -125,7 +125,7 @@
         <md-input-container flex-gt-md="30">
           <label>Date Picker with lang</label>
           <input mdc-datetime-picker date="true" time="false" type="text" id="datelang"
-                 placeholder="Date" show-todays-date="" minutes="true" lang="{{selectedLang}}"
+                 placeholder="Date" show-todays-date minutes="true" lang="{{selectedLang}}"
                  min-date="date" format="MMM D, YYYY"
                  class="md-input" cancel-text="{{'CANCEL'|translate}}" today-text="{{'TODAY'|translate}}"
                  ng-model="dateLang">
@@ -137,7 +137,7 @@
         <md-input-container flex-gt-md="30">
           <label>Date/Time Picker no minutes</label>
           <input mdc-datetime-picker date="true" time="true" minutes="false" type="text" id="datetimenomin"
-                 placeholder="Date" show-todays-date="" min-date="date" ng-model="dateTimeNoMin">
+                 placeholder="Date" show-todays-date min-date="date" ng-model="dateTimeNoMin">
         </md-input-container>
         <div flex-gt-md="grow" ex-source-code target="input"></div>
       </div>
