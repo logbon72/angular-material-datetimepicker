@@ -15,15 +15,16 @@ Originally designed for Bootstrap Material, this has been modified to work with 
 
 ## Updates
 
-| Date       | Author   | Description                                          |
-| ---------- | -------- | ---------------------------------------------------- |
-| 2017-04-26 | hexadecy | New 24-hour clock face                               |
-| 2017-04-17 | hexadecy | Single click to select                               |
-| 2017-02-27 | hexadecy | Can hide minutes view, Month next and prev buttons   |
-| 2017-02-22 | hexadecy | Fix for rtl website                                  |
-| 2017-02-15 | hexadecy | Fix inputs are not bluring after selection is made   |
-| 2017-01-30 | hexadecy | Add support for angular 1.6.x                        |
-| 2015-11-12 | logbon72 | Adapted plugin for Angular Material                  |
+| Date       | Author   | Description                                            |
+| ---------- | -------- | ------------------------------------------------------ |
+| 2017-07-22 | hexadecy | Mouse or touch move to select time, minute steps param |
+| 2017-04-26 | hexadecy | New 24-hour clock face                                 |
+| 2017-04-17 | hexadecy | Single click to select                                 |
+| 2017-02-27 | hexadecy | Can hide minutes view, Month next and prev buttons     |
+| 2017-02-22 | hexadecy | Fix for rtl website                                    |
+| 2017-02-15 | hexadecy | Fix inputs are not bluring after selection is made     |
+| 2017-01-30 | hexadecy | Add support for angular 1.6.x                          |
+| 2015-11-12 | logbon72 | Adapted plugin for Angular Material                    |
 
 ### Dependencies
 
@@ -54,15 +55,15 @@ bower install ng-material-datetimepicker
 
 ## CDN
 ```
-<script src="https://unpkg.com/ng-material-datetimepicker@1.6.7/dist/angular-material-datetimepicker.min.js"></script>
-<script src="https://unpkg.com/ng-material-datetimepicker@1.6.7/dist/angular-material-datetimepicker.min.js.map"></script>
-<link href="https://unpkg.com/ng-material-datetimepicker@1.6.7/dist/material-datetimepicker.min.css rel="stylesheet" type="text/css">
+<script src="https://unpkg.com/ng-material-datetimepicker@1.7.0/dist/angular-material-datetimepicker.min.js"></script>
+<script src="https://unpkg.com/ng-material-datetimepicker@1.7.0/dist/angular-material-datetimepicker.min.js.map"></script>
+<link href="https://unpkg.com/ng-material-datetimepicker@1.7.0/dist/material-datetimepicker.min.css rel="stylesheet" type="text/css">
 ```
 or
 ```
-<script src="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.6.7/dist/angular-material-datetimepicker.min.js"></script>
-<script src="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.6.7/dist/angular-material-datetimepicker.min.js.map"></script>
-<link href="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.6.7/dist/material-datetimepicker.min.css" rel="stylesheet" type="text/css">
+<script src="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.7.0/dist/angular-material-datetimepicker.min.js"></script>
+<script src="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.7.0/dist/angular-material-datetimepicker.min.js.map"></script>
+<link href="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.7.0/dist/material-datetimepicker.min.css" rel="stylesheet" type="text/css">
 ```
 
 ## Live Example
