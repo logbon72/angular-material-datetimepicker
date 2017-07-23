@@ -127,7 +127,7 @@ md-dialog.dtp {
 
 .dtp .dtp-close {
     position: absolute;
-    top: 1px;
+    top: 0;
     right: 5px;
     font-size: 16px;
 }
