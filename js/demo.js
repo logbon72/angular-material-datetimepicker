@@ -46,7 +46,7 @@
           currentDate: moment().startOf('day'),
           maxDate: $scope.maxDate,
           showTodaysDate: '',
-          time: false,
+          time: true,
           clickOutsideToClose: true
         })
           .then(function (date) {

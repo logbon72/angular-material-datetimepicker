@@ -20,8 +20,8 @@ function ngMaterialDatePicker(moment) {
     '    <md-dialog-content class="dtp-content">' +
     '        <div class="dtp-date-view">' +
     '            <header class="dtp-header">' +
-    '                <div class="dtp-actual-day" ng-show="picker.dateMode">{{picker.currentDate.format("dddd")}}</div>' +
-    '                <div class="dtp-actual-day" ng-show="picker.timeMode">{{picker.params.shortTime ? picker.currentDate.format("A") : " "}}</div>' +
+    '                <div class="dtp-actual-day" ng-show="picker.dateMode">{{picker.currentNearestMinute().format("dddd")}}</div>' +
+    '                <div class="dtp-actual-day" ng-hide="picker.timeMode">{{picker.params.shortTime ? picker.currentDate.format("A") : " "}}</div>' +
     '                <div class="dtp-close text-right noselect">' +
     '                    <a href="#" mdc-dtp-noclick ng-click="picker.hide()">&times;</a>' +
     '                </div>' +
@@ -40,7 +40,7 @@ function ngMaterialDatePicker(moment) {
     '                </div>'+
     '            </div>' + //start time 
     '            <div class="dtp-time" ng-show="picker.params.time && !picker.params.date">' +
-    '                <div class="dtp-actual-maxtime">{{picker.currentNearest5Minute().format(picker.params.shortTime ? "hh:mm" : "HH:mm")}}</div>' +
+    '                <div class="dtp-actual-maxtime">{{picker.currentNearestMinute().format(picker.params.shortTime ? "hh:mm" : "HH:mm")}} <span class="dtp-actual-meridien" ng-if="picker.params.shortTime">{{picker.currentDate.format("A")}}</span></div>' +
     '            </div>' +
     '            <div class="dtp-picker">' +
     '                <mdc-datetime-picker-calendar date="picker.currentDate" picker="picker" class="dtp-picker-calendar" ng-show="picker.currentView === picker.VIEWS.DATE"></mdc-datetime-picker-calendar>' +
@@ -49,7 +49,7 @@ function ngMaterialDatePicker(moment) {
     '                        <div ng-if="picker.params.shortTime" class="left p20">' +
     '                            <a id="time-periods-am" href="#" mdc-dtp-noclick class="dtp-meridien-am" ng-class="{selected: picker.meridien == \'AM\'}" ng-click="picker.selectAM()">{{picker.params.amText}}</a>' +
     '                        </div>' +
-    '                        <div ng-show="!picker.timeMode" class="dtp-actual-time p60">{{picker.currentNearest5Minute().format(picker.params.shortTime ? "hh:mm" : "HH:mm")}}</div>' +
+    '                        <div ng-show="!picker.timeMode" class="dtp-actual-time p60">{{picker.currentNearestMinute().format(picker.params.shortTime ? "hh:mm" : "HH:mm")}}</div>' +
     '                        <div ng-if="picker.params.shortTime" class="right p20">' +
     '                            <a id="time-periods-pm" href="#" mdc-dtp-noclick class="dtp-meridien-pm" ng-class="{selected: picker.meridien == \'PM\'}" ng-click="picker.selectPM()">{{picker.params.pmText}}</a>' +
     '                        </div>' +
@@ -101,7 +101,8 @@ function ngMaterialDatePicker(moment) {
         disableParentScroll: false,
         autoOk: false,
         editInput: false,
-        clickOutsideToClose: false
+        clickOutsideToClose: false,
+        minuteSteps: 5
       };
       return default_params;
     }])
@@ -134,6 +135,7 @@ function ngMaterialDatePicker(moment) {
             autoOk: '=',
             editInput: '=',
             clickOutsideToClose: '=',
+            minuteSteps: '='
           },
           link: function (scope, element, attrs, ngModel) {
             var isOn = false;
@@ -255,13 +257,13 @@ function ngMaterialDatePicker(moment) {
        disableParentScroll: {boolean} =false,
        autoOk: {boolean} =false,
        editInput: {boolean} =false,
-       clickOutsideToClose: {boolean} =false
+       clickOutsideToClose: {boolean} =false,
+       minuteSteps: {int} =5
      }
      @return promise
     */
     .factory('mdcDateTimeDialog', ["$mdDialog", "$q", "mdcDefaultParams", function ($mdDialog, $q, mdcDefaultParams) {
       var accepted_options = Object.keys(mdcDefaultParams);
-      console.log(accepted_options);
       var service = {
         show: function (options) {
           var deferred = $q.defer();
@@ -326,11 +328,14 @@ function ngMaterialDatePicker(moment) {
       this.initDates();
       this.start();
     },
-    currentNearest5Minute: function () {
+    currentNearestMinute: function () {
+      var nearestMin = this.params.minuteSteps;
+      if (nearestMin < 1 || nearestMin > 59) nearestMin = 1;
+
       var date = this.currentDate || moment();
-      var minutes = (5 * Math.round(date.minute() / 5));
+      var minutes = (nearestMin * Math.round(date.minute() / nearestMin));
       if (minutes >= 60) {
-        minutes = 55; //always push down
+        minutes = 60 - nearestMin; //always push down
       }
       return moment(date).minutes(minutes);
     },
@@ -536,10 +541,11 @@ function ngMaterialDatePicker(moment) {
       }
     },
     today: function () {
+      var nearestMin = this.params.minuteSteps;
       var date = moment();
-      var minutes = (5 * Math.round(date.minute() / 5));
+      var minutes = (nearestMin * Math.round(date.minute() / nearestMin));
       if (minutes >= 60) {
-        minutes = 55; //always push down
+        minutes = 60 - nearestMin; //always push down
       }
       this.selectDate(moment(date).minutes(minutes));
     },
@@ -878,11 +884,11 @@ function ngMaterialDatePicker(moment) {
       };
     });
   angular.module(moduleName)
-    .directive('mdcDatetimePickerClock', [
-      function () {
+    .directive('mdcDatetimePickerClock', ['$timeout',
+      function ($timeout) {
 
         var template = 
-          '<div class="dtp-picker-clock"><span ng-if="!points || points.length < 1">&nbsp;</span>' +
+          '<div id="timePicker" class="dtp-picker-clock"><span ng-if="!points || points.length < 1">&nbsp;</span>' +
           '<div ng-repeat="point in points" class="dtp-picker-time noselect" ng-style="point.style">' +
           '   <a href="#" id="time-{{mode}}-{{point.display}}" mdc-dtp-noclick ng-class="{selected: point.value===currentValue}" class="dtp-select-hour" ng-click="setTime(point.value)" ng-if="pointAvailable(point)">{{point.display}}</a>' +
           '   <a href="#" mdc-dtp-noclick class="disabled dtp-select-hour" ng-if="!pointAvailable(point)">{{point.display}}</a>' +
@@ -904,6 +910,70 @@ function ngMaterialDatePicker(moment) {
             var picker = scope.picker;
             //banking on the fact that there will only be one at a time
             var componentRoot = document.querySelector('md-dialog.dtp');
+
+            var setTimeDegRay = function(deg, ray) {
+              var val = 0;
+              deg = deg >= 360 ? 0 : deg;
+              if (deg !== 0) {
+                var divider = minuteMode ? 60 : 12;
+                val = Math.round(divider / 360 * deg);
+              }
+
+              if (minuteMode) {
+                var nearestMin = picker.params.minuteSteps;
+                if (nearestMin < 1 || nearestMin > 59) nearestMin = 1;
+
+                var minutes = (nearestMin * Math.round(val / nearestMin));
+                if (minutes >= 60) {
+                  minutes = 60 - nearestMin; //always push down
+                }
+                picker.currentDate.minute(minutes);
+              } else {
+                if (val === 12) val = 0;
+                if (!picker.params.shortTime) picker.meridien = ray > 84 ? 'AM' : 'PM';
+                picker.currentDate.hour(picker.isPM() ? val + 12 : val);
+              }
+              picker.currentDate.second(0);
+            };
+
+            var isTouchSupported = ('ontouchstart' in window) ? true : false,
+            EVENTS = {
+              POINTER_DOWN : isTouchSupported ? 'touchstart' : 'mousedown',
+              POINTER_UP   : isTouchSupported ? 'touchend'   : 'mouseup',
+              POINTER_MOVE : isTouchSupported ? 'touchmove'  : 'mousemove'
+            };
+
+            var onMoveEvent = function(e) {
+              e.preventDefault();
+
+              var closestTarget = e.currentTarget.closest('div'),
+              clientRect = closestTarget.getClientRects()[0];
+
+              if (isTouchSupported) e = e.changedTouches[0];
+              
+              var x = ((closestTarget.offsetWidth / 2) - (e.pageX - clientRect.left)),
+                  y = ((e.pageY - clientRect.top) - (closestTarget.offsetHeight / 2));
+              
+              var ray = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
+              var deg = Math.round((Math.atan2(x, y) * (180 / Math.PI)));
+
+              $timeout(function() {
+                setTimeDegRay(deg+180, ray);
+              });
+            };
+
+            element.on(EVENTS.POINTER_DOWN, function() {
+               element.on(EVENTS.POINTER_MOVE, onMoveEvent);
+            });
+
+            element.on(EVENTS.POINTER_UP, function() {
+                element.off(EVENTS.POINTER_MOVE);
+            });
+
+            scope.$on("$destroy", function() {
+                element.off(EVENTS.POINTER_MOVE, onMoveEvent); 
+            });
+
             var exec = function () {
               var clock = angular.element(element[0].querySelector('.dtp-picker-clock')),
                   pickerEl = angular.element(componentRoot.querySelector('.dtp-picker'));
@@ -1010,13 +1080,12 @@ function ngMaterialDatePicker(moment) {
             };
 
             var animateHands = function () {
-              var _date = picker.currentNearest5Minute();
+              var _date = picker.currentNearestMinute();
               var h = _date.hour();
               var m = _date.minute();
 
-              rotateElement(angular.element(element[0].querySelector('.dtp-hour-hand')), (360 / 12) * h);
-              var mdg = ((360 / 60) * (5 * Math.round(m / 5)));
-              rotateElement(angular.element(element[0].querySelector('.dtp-minute-hand')), mdg);
+              rotateElement(angular.element(element[0].querySelector('.dtp-hour-hand')), 30 * h);
+              rotateElement(angular.element(element[0].querySelector('.dtp-minute-hand')), 6 * m);
             };
 
             var rotateElement = function (el, deg) {
@@ -1030,13 +1099,13 @@ function ngMaterialDatePicker(moment) {
 
 
             var setCurrentValue = function () {
-              var date = picker.currentNearest5Minute();
+              var date = picker.currentNearestMinute();
               var nbH = picker.params.shortTime ? 12 : 24;
               scope.currentValue = minuteMode ? date.minute() : (date.hour() % nbH);
             };
 
             scope.$watch(function () {
-              var tmp = picker.currentNearest5Minute();
+              var tmp = picker.currentNearestMinute();
               return tmp ? tmp.format('HH:mm') : '';
             }, function () {
               setCurrentValue();
@@ -1054,6 +1123,8 @@ function ngMaterialDatePicker(moment) {
                   picker.currentDate.hour(picker.isPM() ? (val + 12) : val);
                 } else {
                   picker.currentDate.hour(val);
+                  if (val >= 12) picker.meridien = 'PM';
+                  else picker.meridien = 'AM';
                 }
                 // single click
                 if (picker.params.autoOk) {

@@ -76,7 +76,7 @@
           <label>Timepicker Only | 24-hour</label>
           <input mdc-datetime-picker date="false" time="true" type="text" id="time2" short-time="false"
                  placeholder="Time" minutes="true"
-                 min-date="minDate"
+                 min-date="minDate" minute-steps="1"
                  format="HH:mm"
                  ng-model="time">
         </md-input-container>
@@ -115,7 +115,7 @@
           <label>Date/Time Picker auto ok</label>
           <input mdc-datetime-picker date="true" time="true" type="text" id="datetimeauto"
                  placeholder="Date" show-todays-date minutes="true"
-                 min-date="date" auto-ok="true"
+                 min-date="date" auto-ok="true" short-time="true"
                  ng-model="dateTime">
         </md-input-container>
         <div flex-gt-md="grow" ex-source-code target="input"></div>
@@ -181,7 +181,7 @@
           <md-button class="md-raised md-primary" ng-click="displayDialog()">
             Display Picker
           </md-button>
-          <p ng-if="selectedDateTime">Date: {{selectedDateTime|date}}</p>
+          <p ng-if="selectedDateTime">Date: {{selectedDateTime|date:'medium'}}</p>
         </div>
         <div flex-gt-md="grow" ex-source-code target="button"></div>
       </div>

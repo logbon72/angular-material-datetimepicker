@@ -3,11 +3,13 @@
 Originally designed for Bootstrap Material, this has been modified to work with [Angular Material](https://material.angularjs.org/). This is an Android style date-time picker for Angular Material. Some added features include:
 
 - Double or single click to select date and/or time
+- Mouse click down with mouse move or touch move to select time
 - Swipe left to go to next month or Swipe right to go to previous month
 - Configurable first day of the week
 - Support 24-hour format display
 - Can disable dates, not selectable by user
 - Can disable minutes view
+- 1 to 59 minute steps (normally 1, 5, 10, 15)
 - Compatible with right-to-left direction
 - Support RequireJS and Webpack
 
@@ -87,7 +89,7 @@ This plugin exposes a directive which should be used as an attribute for an inpu
         <input mdc-datetime-picker date="false" time="true" type="text" id="time" short-time="true"
                show-todays-date click-outside-to-close="true"
                placeholder="Time" auto-ok="true"
-               min-date="minDate"
+               min-date="minDate" minute-steps="1"
                format="hh:mm a"
                ng-change="vm.saveChange()"
                ng-model="time">
@@ -120,6 +122,7 @@ The directive accepts several attributes which are described below:
 | **auto-ok**               | Boolean                 | true => Single click (default: false)                                |
 | **edit-input**            | Boolean                 | true => Input editable and don't show dialog (default: false)        |
 | **click-outside-to-close**| Boolean                 | true => A click outside close the dialog (default: false)            |
+| **minute-steps**          | Number                  | 1 to 59 minute steps (default: 5)                                    |
 
 ### Date/Time Dialog Service
  
@@ -170,5 +173,6 @@ The `mdcDateTimeDialog.show` accepts the same options as the directive.
        autoOk: {boolean} =false,
        editInput: {boolean} =false,
        clickOutsideToClose: {boolean} =false,
+       minuteSteps: {int} =5,
      }
 ```
