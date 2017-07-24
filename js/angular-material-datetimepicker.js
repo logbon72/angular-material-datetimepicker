@@ -159,10 +159,9 @@ function ngMaterialDatePicker(moment) {
             }
 
             if (ngModel) {
-              ngModel.$options = ngModel.$options.createChild({
-                '*': '$inherit',
-                debounce: 500
-              });
+              var ngModelOptions = {'*': '$inherit', debounce: 500};
+              ngModel.$options = ngModel.$options ? ngModel.$options.createChild(ngModelOptions) : ngModelOptions;
+              
               ngModel.$formatters.push(function (value) {
                 if (typeof value === 'undefined') return;
                 var m = moment(value);
