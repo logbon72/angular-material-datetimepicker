@@ -16,9 +16,9 @@
   "homepage": "https://beenote.github.io/angular-material-datetimepicker/",
   "main": "js/angular-material-datetimepicker.js",
   "dependencies": {
-    "angular": "^1.6.4",
-    "angular-animate": "^1.6.4",
-    "angular-aria": "^1.6.4",
+    "angular": "^1.6.5",
+    "angular-animate": "^1.6.5",
+    "angular-aria": "^1.6.5",
     "angular-material": "^1.1.4",
     "moment": "^2.18.1"
   },
@@ -38,7 +38,7 @@
     "gulp-tag-version": "^1.3.0",
     "gulp-uglify": "^3.0.0",
     "pump": "^1.0.2",
-    "run-sequence": "^2.0.0",
+    "run-sequence": "^2.1.0",
     "yargs": "^8.0.2"
   }
 }

@@ -8,6 +8,7 @@ Originally designed for Bootstrap Material, this has been modified to work with 
 - Configurable first day of the week
 - Support 24-hour format display
 - Can disable dates, not selectable by user
+- Highlight Week days (Business Days)
 - Can disable minutes view
 - 1 to 59 minute steps (normally 1, 5, 10, 15)
 - Compatible with right-to-left direction
@@ -17,6 +18,7 @@ Originally designed for Bootstrap Material, this has been modified to work with 
 
 | Date       | Author   | Description                                            |
 | ---------- | -------- | ------------------------------------------------------ |
+| 2017-07-30 | hexadecy | Highlight only week-days (business days)        |
 | 2017-07-22 | hexadecy | Mouse or touch move to select time, minute steps param |
 | 2017-04-26 | hexadecy | New 24-hour clock face                                 |
 | 2017-04-17 | hexadecy | Single click to select                                 |
@@ -118,6 +120,7 @@ The directive accepts several attributes which are described below:
 | **ok-text**               | String                  | Text for the OK button (default: OK)                                 |
 | **week-start**            | Number                  | First day of the week (default: 0 => Sunday)                         |
 | **disable-dates**         | Date[]                  | Dates to be disabled or not selectable by user.                      |
+| **week-days**	            | Boolean                 | true => Highlight only week-days (default: false)                    |
 | **show-todays-date**      | Attribute               | Show today's date (default: undefined)                               |
 | **disable-parent-scroll** | Boolean                 | true => Disable scrolling while the dialog is open (default : false) |
 | **auto-ok**               | Boolean                 | true => Single click (default: false)                                |
@@ -170,6 +173,7 @@ The `mdcDateTimeDialog.show` accepts the same options as the directive.
        amText: {string} ='AM',
        pmText: {string} ='PM',
        disableDates: {date[]} =[],
+       weekDays: {boolean} =false,
        disableParentScroll: {boolean} = false,
        autoOk: {boolean} =false,
        editInput: {boolean} =false,

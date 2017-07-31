@@ -8,20 +8,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/github.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.4/angular-material.min.css" rel="stylesheet" type="text/css"/>
   <link rel="stylesheet" href="./css/material-datetimepicker.css" type="text/css"/>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-animate.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-aria.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-animate.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-aria.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.4/angular-material.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate/2.15.1/angular-translate.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-sanitize.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate/2.15.2/angular-translate.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-sanitize.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment-with-locales.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.6.4/angular-locale_fr.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.6.4/angular-locale_en.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.6.5/angular-locale_fr.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.6.5/angular-locale_en.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script type="text/javascript" src="./beautifier.js"></script>
   <script type="text/javascript" src="./js/angular-material-datetimepicker.js"></script>
   <script type="text/javascript" src="./js/demo.js"></script>
@@ -174,6 +174,15 @@
         </md-input-container>
         <div flex-gt-md="grow" ex-source-code target="input"></div>
       </div>
+
+    <div layout-gt-md="row" layout="column" layout-align-gt-md="center center">
+      <md-input-container flex-gt-md="30">
+        <label>Highlight Weekdays Only</label>
+        <input time="false" date="true" mdc-datetime-picker type="text" id="weekdaysdate"
+          placeholder="Date" ng-model="date" min-date="minDate" max-date="maxDate" week-days="true">
+      </md-input-container>
+      <div flex-gt-md="grow" ex-source-code target="input"></div>
+    </div>
 
       <div layout-gt-md="row" layout="column" layout-align-gt-md="center center">
         <div flex-gt-md="30">

@@ -31,21 +31,21 @@ amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
 
-angular-animate@^1.6.4:
-  version "1.6.4"
-  resolved "https://registry.yarnpkg.com/angular-animate/-/angular-animate-1.6.4.tgz#d3eb906d39834f2dfbdd982e6b8d7a3b4d9001d2"
+angular-animate@^1.6.5:
+  version "1.6.5"
+  resolved "https://registry.yarnpkg.com/angular-animate/-/angular-animate-1.6.5.tgz#3817c75880d05fc899a6c8d4b09d1cc62a71e93a"
 
-angular-aria@^1.6.4:
-  version "1.6.4"
-  resolved "https://registry.yarnpkg.com/angular-aria/-/angular-aria-1.6.4.tgz#c8683666ace196668f68e7220811bdcfc9e106e4"
+angular-aria@^1.6.5:
+  version "1.6.5"
+  resolved "https://registry.yarnpkg.com/angular-aria/-/angular-aria-1.6.5.tgz#37d9d35349df57934968dc7e1679d97ea96f863c"
 
 angular-material@^1.1.4:
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/angular-material/-/angular-material-1.1.4.tgz#27de35646f54ccd320080af0c708e1b438af87f6"
 
-angular@^1.6.4:
-  version "1.6.4"
-  resolved "https://registry.yarnpkg.com/angular/-/angular-1.6.4.tgz#03b7b15c01a0802d7e2cf593240e604054dc77fb"
+angular@^1.6.5:
+  version "1.6.5"
+  resolved "https://registry.yarnpkg.com/angular/-/angular-1.6.5.tgz#37f788eebec5ce2e3fa02b17bbcb2a231576a0d6"
 
 ansi-cyan@^0.1.1:
   version "0.1.1"
@@ -1742,9 +1742,9 @@ resolve@^1.1.6, resolve@^1.1.7:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.2.0.tgz#9589c3f2f6149d1417a40becc1663db6ec6bc26c"
 
-run-sequence@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/run-sequence/-/run-sequence-2.0.0.tgz#6ab754fe53cd771d47dbdee63c254882344d5896"
+run-sequence@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/run-sequence/-/run-sequence-2.1.0.tgz#149da012516f21dcf79db6dc99a2a95603631b21"
   dependencies:
     chalk "^1.1.3"
     gulp-util "^3.0.8"

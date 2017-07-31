@@ -98,6 +98,7 @@ function ngMaterialDatePicker(moment) {
         pmText: 'PM',
         todayText: 'Today',
         disableDates: [],
+        weekDays: false,
         disableParentScroll: false,
         autoOk: false,
         editInput: false,
@@ -121,6 +122,7 @@ function ngMaterialDatePicker(moment) {
             minDate: '=',
             maxDate: '=',
             disableDates: '=',
+            weekDays: '=',
             shortTime: '=',
             weekStart: '=',
             format: '@',
@@ -253,6 +255,7 @@ function ngMaterialDatePicker(moment) {
        amText: {string} ='AM',
        pmText: {string} ='PM',
        disableDates: {date[]} =[],
+       weekDays: {boolean} =false,
        disableParentScroll: {boolean} =false,
        autoOk: {boolean} =false,
        editInput: {boolean} =false,
@@ -374,6 +377,7 @@ function ngMaterialDatePicker(moment) {
         return moment(x).format('MMMM Do YYYY');
       });
       this.selectDate(this.currentDate);
+      this.weekDays = this.params.weekDays;
     },
     initDate: function () {
       this.currentView = VIEW_STATES.DATE;
@@ -453,6 +457,15 @@ function ngMaterialDatePicker(moment) {
     isInDisableDates: function (date) {
       var dut = date.format('MMMM Do YYYY');
       if (this.disableDates.indexOf(dut) > -1) {
+        return false;
+      }
+      return true;
+    },
+    isWeekDay: function(date) {
+      if (this.weekDays) {
+        if (date.isoWeekday() <= 5) {
+          return true;
+        }
         return false;
       }
       return true;
@@ -766,6 +779,7 @@ function ngMaterialDatePicker(moment) {
             calendar.isInRange = function (date) {
               return picker.isAfterMinDate(moment(date), false, false) &&
                 picker.isBeforeMaxDate(moment(date), false, false) &&
+                picker.isWeekDay(moment(date)) &&
                 picker.isInDisableDates(moment(date));
             };
 
