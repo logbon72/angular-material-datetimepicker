@@ -335,6 +335,11 @@ md-dialog.dtp {
     margin-left: -1px;
 }
 
+.dtp .dtp-second-hand {
+    width: 1px;
+    margin-left: -1px;
+}
+
 .dtp .dtp-hand.on {
     background: #8BC34A;
 }

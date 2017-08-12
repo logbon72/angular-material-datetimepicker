@@ -11,6 +11,7 @@ Originally designed for Bootstrap Material, this has been modified to work with 
 - Highlight Week days (Business Days)
 - Can disable minutes view
 - 1 to 59 minute steps (normally 1, 5, 10, 15)
+- Optionnal seconds clock
 - Compatible with right-to-left direction
 - Support RequireJS and Webpack
 
@@ -18,7 +19,8 @@ Originally designed for Bootstrap Material, this has been modified to work with 
 
 | Date       | Author   | Description                                            |
 | ---------- | -------- | ------------------------------------------------------ |
-| 2017-07-30 | hexadecy | Highlight only week-days (business days)        |
+| 2017-08-12 | hexadecy | Add optionnal seconds clock                            |
+| 2017-07-30 | hexadecy | Highlight only week-days (business days)               |
 | 2017-07-22 | hexadecy | Mouse or touch move to select time, minute steps param |
 | 2017-04-26 | hexadecy | New 24-hour clock face                                 |
 | 2017-04-17 | hexadecy | Single click to select                                 |
@@ -57,15 +59,15 @@ bower install ng-material-datetimepicker
 
 ## CDN
 ```
-<script src="https://unpkg.com/ng-material-datetimepicker@1.7.2/dist/angular-material-datetimepicker.min.js"></script>
-<script src="https://unpkg.com/ng-material-datetimepicker@1.7.2dist/angular-material-datetimepicker.min.js.map"></script>
-<link href="https://unpkg.com/ng-material-datetimepicker@1.7.2/dist/material-datetimepicker.min.css rel="stylesheet" type="text/css">
+<script src="https://unpkg.com/ng-material-datetimepicker@1.8.0/dist/angular-material-datetimepicker.min.js"></script>
+<script src="https://unpkg.com/ng-material-datetimepicker@1.8.0/dist/angular-material-datetimepicker.min.js.map"></script>
+<link href="https://unpkg.com/ng-material-datetimepicker@1.8.0/dist/material-datetimepicker.min.css rel="stylesheet" type="text/css">
 ```
 or
 ```
-<script src="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.7.2/dist/angular-material-datetimepicker.min.js"></script>
-<script src="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.7.2/dist/angular-material-datetimepicker.min.js.map"></script>
-<link href="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.7.2/dist/material-datetimepicker.min.css" rel="stylesheet" type="text/css">
+<script src="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.8.0/dist/angular-material-datetimepicker.min.js"></script>
+<script src="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.8.0/dist/angular-material-datetimepicker.min.js.map"></script>
+<link href="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.8.0/dist/material-datetimepicker.min.css" rel="stylesheet" type="text/css">
 ```
 
 ## Live Example
@@ -107,7 +109,7 @@ The directive accepts several attributes which are described below:
 | Name                      | Type                    | Description                                                          |
 | ------------------------- | ----------------------- | -------------------------------------------------------------------- |
 | **ng-model**              | (String\|Date\|Moment   | Initial Date or model to assign the date to                          |
-| **ng-change**             | Function                | A function to call when the input value changes.                     |
+| **ng-change**             | Function                | A function to call when the input value changes                      |
 | **format**                | String                  | [MomentJS Format](momentjs.com/docs/#/parsing/string-format/),defaults to `HH:mm` for time picker only, `YYYY-MM-DD` for date picker only and `YYYY-MM-DD HH:mm` for both timepicker and date picker |
 | **short-time**            | Boolean                 | true => Display 12 hours AM\|PM (default: false)                     |
 | **min-date**              | (String\|Date\|Moment)  | Minimum selectable date                                              |
@@ -115,11 +117,12 @@ The directive accepts several attributes which are described below:
 | **date**                  | Boolean	                | true => Has Datepicker (default: true)                               |
 | **time**                  | Boolean                 | true => Has Timepicker (default: true)                               |
 | **minutes**               | Boolean                 | true => Has Timepicker minutes (default: true)                       |
+| **seconds**               | Boolean                 | true => Has Timepicker seconds (default: false)                      |
 | **cancel-text**           | String                  | Text for the cancel button (default: Cancel)                         |
 | **today-text**            | String                  | Text for the today button (default: Today)                           |
 | **ok-text**               | String                  | Text for the OK button (default: OK)                                 |
 | **week-start**            | Number                  | First day of the week (default: 0 => Sunday)                         |
-| **disable-dates**         | Date[]                  | Dates to be disabled or not selectable by user.                      |
+| **disable-dates**         | Date[]                  | Dates to be disabled or not selectable by user                       |
 | **week-days**	            | Boolean                 | true => Highlight only week-days (default: false)                    |
 | **show-todays-date**      | Attribute               | Show today's date (default: undefined)                               |
 | **disable-parent-scroll** | Boolean                 | true => Disable scrolling while the dialog is open (default : false) |
@@ -141,13 +144,12 @@ Example usage:
         mdcDateTimeDialog.show({
           maxDate: $scope.maxDate,
           time: false
-        })
-          .then(function (date) {
-            $scope.selectedDateTime = date;
-            console.log('New Date / Time selected:', date);
-          }, function() {
-            console.log('Selection canceled');
-          });
+        }).then(function (date) {
+          $scope.selectedDateTime = date;
+          console.log('New Date / Time selected:', date);
+        }, function() {
+          console.log('Selection canceled');
+        });
       };
     })
 ```
@@ -159,6 +161,7 @@ The `mdcDateTimeDialog.show` accepts the same options as the directive.
        date: {boolean} =true,
        time: {boolean} =true,
        minutes: {boolean} =true,
+       seconds: {boolean} =true,
        format: {string} ='YYYY-MM-DD',
        minDate: {strign} =null,
        maxDate: {string} =null,
