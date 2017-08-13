@@ -354,6 +354,9 @@
         minutes = 60 - nearestMin; //always push down
       }
       var seconds = date.second();
+      if (seconds >= 60) {
+        seconds = 60 - 1; //always push down
+      }
       return moment(date).minutes(minutes).seconds(seconds);
     },
     initDates: function () {
@@ -968,6 +971,7 @@
                 if (!picker.params.shortTime) picker.meridien = ray > 84 ? 'AM' : 'PM';
                 picker.currentDate.hour(picker.isPM() ? val + 12 : val);
               } else {
+                if (val >= 60) val = 0;
                 picker.currentDate.second(val);
               }
               
