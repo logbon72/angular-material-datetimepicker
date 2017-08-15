@@ -101,7 +101,6 @@ This plugin exposes a directive which should be used as an attribute for an inpu
     </md-input-container>
 ```
 
-
 ### Directive Attributes
 
 The directive accepts several attributes which are described below:
@@ -166,7 +165,7 @@ The `mdcDateTimeDialog.show` accepts the same options as the directive.
        minDate: {strign} =null,
        maxDate: {string} =null,
        currentDate: {string} =null,
-       lang: {string} =mdcDatetimePickerDefaultLocale.locale,
+       lang: {string} =window.navigator.userLanguage || window.navigator.language || 'en',
        weekStart: {int} =0,
        shortTime: {boolean} =false,
        cancelText: {string} ='Cancel',
@@ -184,3 +183,12 @@ The `mdcDateTimeDialog.show` accepts the same options as the directive.
        minuteSteps: {int} =5,
      }
 ```
+
+### Change locale
+
+To change locale you can use this method after injecting mdcDatetimePickerDefaultLocale provider in your controller.
+```javascript
+  mdcDatetimePickerDefaultLocale.setDefaultLocale('fr');
+```
+
+If you use https://github.com/lgalfaso/angular-dynamic-locale it will override this default.

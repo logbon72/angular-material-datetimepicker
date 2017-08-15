@@ -19,7 +19,7 @@
       $translateProvider.preferredLanguage('en');
 		  $translateProvider.useSanitizeValueStrategy('sceParameters');
     })
-    .controller('DemoCtrl', function ($scope, mdcDateTimeDialog, $translate) {
+    .controller('DemoCtrl', function ($scope, mdcDateTimeDialog, $translate, mdcDatetimePickerDefaultLocale) {
       $scope.date = moment().startOf('day');
       $scope.dateLang = new Date();
       $scope.time = new Date();
@@ -76,6 +76,7 @@
       $scope.changeLanguage = function() {
         $translate.use($scope.selectedLang);
         moment.locale($scope.selectedLang);
+        mdcDatetimePickerDefaultLocale.setDefaultLocale($scope.selectedLang);
       };
 
     })
