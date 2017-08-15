@@ -79,18 +79,16 @@
     '</md-dialog>';
 
   angular.module(moduleName, ['ngMaterial'])
-    .provider('mdcDatetimePickerDefaultLocale', function () {
-      this.locale = window.navigator.userLanguage || window.navigator.language || 'en';
-
+    .service('mdcDatetimePickerDefaultLocale', ['mdcDefaultParams', function (mdcDefaultParams) {
       this.$get = function () {
-        return this;
+        return mdcDefaultParams().lang;
       };
 
       this.setDefaultLocale = function (localeString) {
-        this.locale = localeString;
+        mdcDefaultParams({ lang: localeString });
       };
-    })
-    .factory('mdcDefaultParams', ['mdcDatetimePickerDefaultLocale', function (mdcDatetimePickerDefaultLocale) {
+    }])
+    .factory('mdcDefaultParams', function () {
       var default_params = {
         date: true,
         time: true,
@@ -100,7 +98,7 @@
         minDate: null,
         maxDate: null,
         currentDate: null,
-        lang: mdcDatetimePickerDefaultLocale.locale,
+        lang: window.navigator.userLanguage || window.navigator.language || 'en',
         weekStart: 0,
         shortTime: false,
         cancelText: 'Cancel',
@@ -116,8 +114,19 @@
         clickOutsideToClose: false,
         minuteSteps: 5
       };
-      return default_params;
-    }])
+
+      return function (params) {
+        if (params) {
+          for (var i in params) {
+            if (default_params.hasOwnProperty(i) && params.hasOwnProperty(i)) {
+              default_params[i] = params[i];
+            }
+          }
+        }
+
+        return default_params;
+      };
+    })
     .directive('mdcDatetimePicker', ['$mdDialog', '$timeout',
       function ($mdDialog, $timeout) {
 
@@ -260,7 +269,7 @@
        minDate: {strign} =null,
        maxDate: {string} =null,
        currentDate: {string} =null,
-       lang: {string} =mdcDatetimePickerDefaultLocale,
+       lang: {string} =window.navigator.userLanguage || window.navigator.language || 'en',
        weekStart: {int} =0,
        shortTime: {boolean} =false,
        cancelText: {string} ='Cancel',
@@ -280,11 +289,12 @@
      @return promise
     */
     .factory('mdcDateTimeDialog', ["$mdDialog", "$q", "mdcDefaultParams", function ($mdDialog, $q, mdcDefaultParams) {
-      var accepted_options = Object.keys(mdcDefaultParams);
+      var defaultParams = mdcDefaultParams();
+      var accepted_options = Object.keys(defaultParams);
       var service = {
         show: function (options) {
           var deferred = $q.defer();
-          var params = angular.copy(mdcDefaultParams);
+          var params = angular.copy(defaultParams);
           for (var i in options) {
             if (accepted_options.indexOf[i] != -1 && options.hasOwnProperty(i)) {
               params = options[i];
@@ -329,7 +339,7 @@
 
     this._attachedEvents = [];
     this.VIEWS = VIEW_STATES;
-    this.params = angular.copy(mdcDefaultParams);
+    this.params = angular.copy(mdcDefaultParams());
     this.meridien = 'AM';
     this.params = angular.extend(this.params, this.options);
 
