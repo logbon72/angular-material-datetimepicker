@@ -135,18 +135,6 @@
 
       <div layout-gt-md="row" layout="column" layout-align-gt-md="center center">
         <md-input-container flex-gt-md="30">
-          <label>Date Picker with lang</label>
-          <input mdc-datetime-picker date="true" time="false" type="text" id="datelang"
-                 placeholder="Date" show-todays-date minutes="true" lang="{{selectedLang}}"
-                 min-date="date" format="MMM D, YYYY"
-                 class="md-input" cancel-text="{{'CANCEL'|translate}}" today-text="{{'TODAY'|translate}}"
-                 ng-model="dateLang">
-        </md-input-container>
-        <div flex-gt-md="grow" ex-source-code target="input"></div>
-      </div>
-
-      <div layout-gt-md="row" layout="column" layout-align-gt-md="center center">
-        <md-input-container flex-gt-md="30">
           <label>Date/Time Picker no minutes</label>
           <input mdc-datetime-picker date="true" time="true" minutes="false" type="text" id="datetimenomin"
                  placeholder="Date" show-todays-date min-date="date" ng-model="dateTimeNoMin">

@@ -389,3 +389,7 @@ md-dialog.dtp {
     -webkit-transform: rotate(180deg);
     transform: rotate(180deg);
 }
+
+.dtp-btn-today, .dtp-btn-ok, .dtp-btn-cancel {
+    min-width: 70px;
+}

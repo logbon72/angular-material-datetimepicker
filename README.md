@@ -116,12 +116,24 @@ The directive accepts several attributes which are described below:
 | **week-start**            | Number                  | First day of the week (default: 0 => Sunday)                         |
 | **disable-dates**         | Date[]                  | Dates to be disabled or not selectable by user                       |
 | **week-days**	            | Boolean                 | true => Highlight only week-days (default: false)                    |
-| **show-todays-date**      | Attribute               | Show today's date (default: undefined)                               |
+| **show-todays-date**      | Attribute               | Show today's date (default: false)                                   |
 | **disable-parent-scroll** | Boolean                 | true => Disable scrolling while the dialog is open (default : false) |
 | **auto-ok**               | Boolean                 | true => Single click (default: false)                                |
 | **edit-input**            | Boolean                 | true => Input editable and don't show dialog (default: false)        |
 | **click-outside-to-close**| Boolean                 | true => A click outside close the dialog (default: false)            |
 | **minute-steps**          | Number                  | 1 to 59 minute steps (default: 5)                                    |
+
+### Set or update params by injecting `mdcDefaultParams` provider
+To change params like the locale you can use this method instead of attributes for all datetimepicker:
+```javascript
+  mdcDefaultParams({ lang: 'fr', cancelText: 'annuler', todayText: 'maintenant', okText: 'ok' });
+  ...
+  mdcDefaultParams({ lang: 'en', cancelText: 'cancel', todayText: 'now', okText: 'ok' });
+```
+#### Notes
+`mdcDatetimePickerDefaultLocale` will be deprecated.
+
+If you use https://github.com/lgalfaso/angular-dynamic-locale it will always override the locale.
 
 ### Date/Time Dialog Service
 You can also use the Date Time picker as a service, using the `mdcDateTimeDialog` service. The dialog returns a promise which is resolved with the selected date-time value and rejected on cancellation. 
@@ -176,16 +188,8 @@ The `mdcDateTimeDialog.show` accepts the same options as the directive.
      }
 ```
 
-### Change locale
-To change locale you can use this method after injecting mdcDatetimePickerDefaultLocale provider in your controller.
-```javascript
-  mdcDatetimePickerDefaultLocale.setDefaultLocale('fr');
-```
-
-If you use https://github.com/lgalfaso/angular-dynamic-locale it will override this default.
-
 ### Theming
-Copy this css in your project to change color and background color.
+Copy this css code in your project to override default color.
 ```css
 .dtp table.dtp-picker-days tr > td > a.selected,
 .dtp table.dtp-picker-days tr > td > a.selected.hilite,
