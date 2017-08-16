@@ -1,5 +1,4 @@
 # Angular Material DateTimePicker
-
 Originally designed for Bootstrap Material, this has been modified to work with [Angular Material](https://material.angularjs.org/). This is an Android style date-time picker for Angular Material. Some added features include:
 
 - Double or single click to select date and/or time
@@ -16,7 +15,6 @@ Originally designed for Bootstrap Material, this has been modified to work with 
 - Support RequireJS and Webpack
 
 ## Updates
-
 | Date       | Author   | Description                                            |
 | ---------- | -------- | ------------------------------------------------------ |
 | 2017-08-12 | hexadecy | Add optionnal seconds clock                            |
@@ -31,7 +29,6 @@ Originally designed for Bootstrap Material, this has been modified to work with 
 | 2015-11-12 | logbon72 | Adapted plugin for Angular Material                    |
 
 ### Dependencies
-
 Depends on the following library:
 
 - AngularJS Material
@@ -50,7 +47,6 @@ Depends on the following library:
 ```
 
 ## Installing via yarn, npm or bower
-
 ```
 yarn add ng-material-datetimepicker
 npm i ng-material-datetimepicker
@@ -71,11 +67,9 @@ or
 ```
 
 ## Live Example
-
 Click [here](https://beenote.github.io/angular-material-datetimepicker/) to see live examples.
 
 ## Usage
-
 Add the plugin module as a dependency to your AngularJS module:
 
 ```js
@@ -102,7 +96,6 @@ This plugin exposes a directive which should be used as an attribute for an inpu
 ```
 
 ### Directive Attributes
-
 The directive accepts several attributes which are described below:
 
 | Name                      | Type                    | Description                                                          |
@@ -131,7 +124,6 @@ The directive accepts several attributes which are described below:
 | **minute-steps**          | Number                  | 1 to 59 minute steps (default: 5)                                    |
 
 ### Date/Time Dialog Service
- 
 You can also use the Date Time picker as a service, using the `mdcDateTimeDialog` service. The dialog returns a promise which is resolved with the selected date-time value and rejected on cancellation. 
 
 Example usage: 
@@ -185,10 +177,34 @@ The `mdcDateTimeDialog.show` accepts the same options as the directive.
 ```
 
 ### Change locale
-
 To change locale you can use this method after injecting mdcDatetimePickerDefaultLocale provider in your controller.
 ```javascript
   mdcDatetimePickerDefaultLocale.setDefaultLocale('fr');
 ```
 
 If you use https://github.com/lgalfaso/angular-dynamic-locale it will override this default.
+
+### Theming
+Copy this css in your project to change color and background color.
+```css
+.dtp table.dtp-picker-days tr > td > a.selected,
+.dtp table.dtp-picker-days tr > td > a.selected.hilite,
+.dtp div.dtp-date, .dtp div.dtp-time, .dtp .dtp-hand.on,
+.dtp .dtp-actual-meridien a.selected,
+.dtp .dtp-picker-time > a.dtp-select-hour.selected {
+  background: #2abab9;
+}
+
+.dtp table.dtp-picker-days tr > td > a.hilite:not(.selected),
+.dtp div.dtp-actual-time.p60 span.selected {
+  color: #2abab9;
+}
+
+.dtp div.dtp-year-btn, .dtp div.dtp-actual-year, .dtp div.dtp-actual-maxtime {
+  color: #d0f0f0;
+}
+
+.dtp > .dtp-content > .dtp-date-view > header.dtp-header {
+  background: #009796;
+}
+```
