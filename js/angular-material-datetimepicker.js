@@ -29,13 +29,27 @@
     '            <div class="dtp-date" ng-if="picker.params.date">' +
     '                <div layout="row">' +
     '                    <div ng-click="picker.incrementMonth(-1)" class="dtp-month-btn dtp-month-btn-prev noselect" flex="30"><span ng-if="picker.isPreviousMonthVisible()">&#x25C4;</span></div>' +
-    '                    <div class="dtp-actual-month" flex>{{picker.currentDate.format("MMM") | uppercase}}</div>' +
+    '                    <md-menu md-offset="8 10" flex>' +
+    '                        <div class="dtp-actual-month" flex ng-click="picker.openMenu($mdMenu, $event)">{{picker.currentDate.format("MMM") | uppercase}}</div>' +
+    '                        <md-menu-content>' +
+    '                            <md-menu-item ng-repeat="itemMonth in picker.monthsAvailable()">' +
+    '                            <md-button ng-click="picker.selectMonth(itemMonth)">{{itemMonth}}</md-button>' +
+    '                            </md-menu-item>' +
+    '                        </md-menu-content>' +
+    '                    </md-menu>' +
     '                    <div ng-click="picker.incrementMonth(1)" class="dtp-month-btn dtp-month-btn-next noselect" flex="30"><span ng-if="picker.isNextMonthVisible()">&#x25BA;</span></div>' +
     '                </div>' +
     '                <div class="dtp-actual-num">{{picker.currentDate.format("DD")}}</div>' +
     '                <div layout="row">' +
     '                    <div ng-click="picker.incrementYear(-1)" class="dtp-year-btn dtp-year-btn-prev noselect" flex="30"><span ng-if="picker.isPreviousYearVisible()">&#x25C4;</span></div>' +
-    '                    <div class="dtp-actual-year" flex>{{picker.currentDate.format("YYYY")}}</div>' +
+    '                    <md-menu md-offset="8 10" flex>' +
+    '                        <div class="dtp-actual-year" flex ng-click="picker.openMenu($mdMenu, $event)">{{picker.currentDate.format("YYYY")}}</div>' +
+    '                        <md-menu-content>' +
+    '                            <md-menu-item ng-repeat="itemYear in picker.yearsAvailable()">' +
+    '                            <md-button ng-click="picker.selectYear(itemYear)">{{itemYear}}</md-button>' +
+    '                            </md-menu-item>' +
+    '                        </md-menu-content>' +
+    '                    </md-menu>' +
     '                    <div ng-click="picker.incrementYear(1)" class="dtp-year-btn dtp-year-btn-next noselect" flex="30"><span ng-if="picker.isNextYearVisible()">&#x25BA;</span></div>' +
     '                </div>'+
     '            </div>' + //start time 
@@ -288,7 +302,7 @@
      }
      @return promise
     */
-    .factory('mdcDateTimeDialog', ["$mdDialog", "$q", "mdcDefaultParams", function ($mdDialog, $q, mdcDefaultParams) {
+    .factory('mdcDateTimeDialog', ["$mdDialog", "$q", "$mdMenu", "mdcDefaultParams", function ($mdDialog, $q, $mdMenu, mdcDefaultParams) {
       var defaultParams = mdcDefaultParams();
       var accepted_options = Object.keys(defaultParams);
       var service = {
@@ -536,6 +550,57 @@
       if (amount === -1 && this.isPreviousYearVisible()) {
         this.selectDate(this.currentDate.add(amount, 'year'));
       }
+    },
+    openMenu: function ($mdMenu, ev) {
+      $mdMenu.open(ev);  
+    },
+    monthsAvailable: function () {
+      var monthsArr = [], 
+          _date = moment(this.currentDate);
+
+      for (var m = 0; m < 12; m++) {
+        var curMonth = _date.month(m);
+        if (this.isAfterMinDate(curMonth.endOf('month')) && this.isBeforeMaxDate(curMonth.startOf('month'))) {
+          monthsArr.push(curMonth.format('MMMM'));
+        }
+      }
+      return monthsArr;
+    },
+    selectMonth: function (month) {
+      this.selectDate(this.currentDate.month(month));
+    },
+    yearsAvailable: function () {
+      var _minDate, _maxDate, len, startYear, yearsArr = [],
+      _date = this.currentDate.year();
+
+      if (typeof(this.minDate) !== 'undefined' && this.minDate !== null) {
+        _minDate = moment(this.minDate).year();
+      }
+      if (typeof(this.maxDate) !== 'undefined' && this.maxDate !== null) {
+        _maxDate = moment(this.maxDate).year();
+      }
+
+      if (_maxDate && _minDate) {
+        len = _maxDate - _minDate;
+        startYear = _minDate;
+      } else if (_minDate) { 
+        len = 115;
+        startYear = _minDate;
+      } else if (_maxDate) { 
+        len = 30;
+        startYear = _maxDate - len;
+      } else {
+        len = 60;
+        startYear = _date - len/2;
+      }
+     
+      for (var i=0; i < len; i++) {
+        yearsArr.push(startYear+i);
+      }
+      return yearsArr;
+    },
+    selectYear: function (year) {
+      this.selectDate(this.currentDate.year(year));
     },
     isPreviousMonthVisible: function () {
       return this.calendarStart && this.isAfterMinDate(moment(this.calendarStart).startOf('month'), false, false);

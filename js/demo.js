@@ -33,8 +33,8 @@
       newDate.setMilliseconds(0);
       $scope.dateTimeNoMin = newDate;
 
-      $scope.minDate = moment().subtract(3, 'year');
-      $scope.maxDate = moment().add(3, 'year');
+      $scope.minDate = moment().subtract(6, 'year');
+      $scope.maxDate = moment().add(6, 'year');
       $scope.dates = [new Date('2017-11-14T00:00:00'), new Date('2017-11-15T00:00:00'),
         new Date('2017-11-30T00:00:00'), new Date('2017-12-12T00:00:00'), new Date('2017-12-13T00:00:00'),
         new Date('2017-12-31T00:00:00')];

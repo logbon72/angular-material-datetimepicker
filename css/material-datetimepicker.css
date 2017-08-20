@@ -65,6 +65,7 @@ md-dialog.dtp {
 
 .dtp div.dtp-actual-month {
     font-size: 1.5em;
+    cursor: pointer;
 }
 
 .dtp div.dtp-actual-num {
@@ -85,6 +86,7 @@ md-dialog.dtp {
 .dtp div.dtp-actual-year {
     font-size: 1.6em;
     color: #DCEDC8;
+    cursor: pointer;
 }
 
 .dtp div.dtp-month-btn {
