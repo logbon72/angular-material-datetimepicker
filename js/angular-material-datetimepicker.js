@@ -180,6 +180,8 @@
                 parent: angular.element(document.body),
                 bindToController: true,
                 disableParentScroll: false,
+                clickOutsideToClose: true,
+                multiple: true,
                 hasBackDrop: false,
                 skipHide: true
               })
@@ -245,6 +247,7 @@
             parent: angular.element(document.body),
             bindToController: true,
             clickOutsideToClose: true,
+            multiple: true,
             disableParentScroll: false,
             skipHide: true
           })
