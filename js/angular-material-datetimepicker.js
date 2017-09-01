@@ -141,8 +141,8 @@
         return default_params;
       };
     })
-    .directive('mdcDatetimePicker', ['$mdDialog', '$timeout',
-      function ($mdDialog, $timeout) {
+    .directive('mdcDatetimePicker', ['$mdDialog', '$timeout', '$compile',
+      function ($mdDialog, $timeout, $compile) {
 
         return {
           restrict: 'A',
@@ -216,7 +216,6 @@
               
             }
 
-            //@TODO custom event to trigger input
             if (!scope.editInput) {
               element.on('focus', function (e) {
                 e.preventDefault();
@@ -266,6 +265,17 @@
                   })
                 ;
               });
+            } else {
+              element.addClass('dtp-no-msclear');
+              element.after($compile('<md-button class="md-icon-button dtp-clear" ng-click="clear()">&#x2715;</md-button>')(scope));
+
+              scope.clear = function() {
+                ngModel.$setViewValue(null);
+                ngModel.$render();
+                $timeout(function() {
+                  element[0].focus();
+                }, 0, false);
+              };
             }
           }
         };

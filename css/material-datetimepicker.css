@@ -395,3 +395,17 @@ md-dialog.dtp {
 .dtp-btn-today, .dtp-btn-ok, .dtp-btn-cancel {
     min-width: 70px;
 }
+
+.dtp-clear {
+    position: absolute; 
+    top: 0;
+    right: -10px;
+}
+
+/* Remove IE clear button */
+.dtp-no-msclear::-ms-clear { 
+    display: none; 
+    width : 0; 
+    height: 0; 
+}
+
