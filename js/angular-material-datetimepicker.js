@@ -423,7 +423,7 @@
       };
 
       this.currentDate = _dateParam(this.params.currentDate, moment());
-      this.currentNearestMinute();
+      this.currentDate = this.currentNearestMinute();
       this.minDate = _dateParam(this.params.minDate);
       this.maxDate = _dateParam(this.params.maxDate);
       this.disableDates = this.params.disableDates.map(function (x) {
