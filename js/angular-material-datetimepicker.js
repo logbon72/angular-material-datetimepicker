@@ -141,8 +141,8 @@
         return default_params;
       };
     })
-    .directive('mdcDatetimePicker', ['$mdDialog', '$timeout', '$compile',
-      function ($mdDialog, $timeout, $compile) {
+    .directive('mdcDatetimePicker', ['$mdDialog', '$timeout', '$compile', '$$mdSvgRegistry',
+      function ($mdDialog, $timeout, $compile, $$mdSvgRegistry) {
 
         return {
           restrict: 'A',
@@ -216,58 +216,68 @@
               
             }
 
-            if (!scope.editInput) {
-              element.on('focus', function (e) {
-                e.preventDefault();
-                element.blur();
+            function openCalendar (e) {
+              e.preventDefault();
+              element.blur();
+              element.parent().removeClass('md-input-focused');
+              if (isOn) {
+                return;
+              }
+              isOn = true;
+              var options = {};
+              for (var i in attrs) {
+                if (scope.hasOwnProperty(i) && !angular.isUndefined(scope[i])) {
+                  options[i] = scope[i];
+                }
+              }
+              options.currentDate = scope.currentDate;
+              options.showTodaysDate = dateOfTheDay;
+
+              var locals = {options: options};
+              $mdDialog.show({
+                template: template,
+                controller: PluginController,
+                controllerAs: 'picker',
+                locals: locals,
+                openFrom: element,
+                parent: angular.element(document.body),
+                bindToController: true,
+                clickOutsideToClose: options.clickOutsideToClose || false,
+                disableParentScroll: options.disableParentScroll || false,
+                hasBackDrop: false,
+                skipHide: true,
+                multiple: true
+              }).then(function (v) {
+                scope.currentDate = v ? v._d : v;
+                isOn = false;
+
+                if (!moment(scope.currentDate).isSame(options.currentDate)) {
+                  $timeout(scope.ngChange, 0);
+                }
+
                 element.parent().removeClass('md-input-focused');
-                if (isOn) {
-                  return;
-                }
-                isOn = true;
-                var options = {};
-                for (var i in attrs) {
-                  if (scope.hasOwnProperty(i) && !angular.isUndefined(scope[i])) {
-                    options[i] = scope[i];
-                  }
-                }
-                options.currentDate = scope.currentDate;
-                options.showTodaysDate = dateOfTheDay;
-
-                var locals = {options: options};
-                $mdDialog.show({
-                  template: template,
-                  controller: PluginController,
-                  controllerAs: 'picker',
-                  locals: locals,
-                  openFrom: element,
-                  parent: angular.element(document.body),
-                  bindToController: true,
-                  clickOutsideToClose: options.clickOutsideToClose || false,
-                  disableParentScroll: options.disableParentScroll || false,
-                  hasBackDrop: false,
-                  skipHide: true,
-                  multiple: true
-                })
-                  .then(function (v) {
-                    scope.currentDate = v ? v._d : v;
-                    isOn = false;
-
-                    if (!moment(scope.currentDate).isSame(options.currentDate)) {
-                      $timeout(scope.ngChange, 0);
-                    }
-
-                    element.parent().removeClass('md-input-focused');
-
-                  }, function () {
-                    isOn = false;
-                    element.parent().removeClass('md-input-focused');
-                  })
-                ;
+              }, function () {
+                isOn = false;
+                element.parent().removeClass('md-input-focused');
               });
+            }
+
+            if (!scope.editInput) {
+              element.on('focus', openCalendar);
             } else {
-              element.addClass('dtp-no-msclear');
-              element.after($compile('<md-button class="md-icon-button dtp-clear" ng-click="clear()">&#x2715;</md-button>')(scope));
+              element.addClass('dtp-no-msclear dtp-input');
+              var calendarButton =  
+              '<md-button class="dtp-btn-calendar md-icon-button" type="button" ' +
+                'tabindex="-1" aria-hidden="true" ' +
+                'ng-click="openCalendarDiag($event)">' +
+                '<md-icon aria-label="md-calendar" md-svg-src="' + $$mdSvgRegistry.mdCalendar + '"></md-icon>' +
+              '</md-button>',
+              clearButton = '<md-button ng-show="currentDate" class="md-icon-button dtp-clear" aria-hidden="true" ng-click="clear()">&#x2715;</md-button>';
+              element.after($compile(calendarButton + clearButton)(scope));
+
+              scope.openCalendarDiag = function(e) {
+                openCalendar(e);
+              };
 
               scope.clear = function() {
                 ngModel.$setViewValue(null);

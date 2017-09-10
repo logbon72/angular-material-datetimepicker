@@ -24,6 +24,7 @@
       $scope.dateLang = new Date();
       $scope.time = new Date();
       $scope.dateTime = new Date();
+      $scope.dateTimeEdit = new Date();
      
       // current date + 1 hour, no minutes, no seconds, no milliseconds
       var newDate = new Date();
