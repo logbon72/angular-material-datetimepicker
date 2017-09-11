@@ -4,6 +4,8 @@
   function ngMaterialDatePicker(moment) {
   var moduleName = "ngMaterialDatePicker";
 
+  var mdAccesTime = 'data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMDAwMDAwIiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4gICAgPHBhdGggZD0iTTExLjk5IDJDNi40NyAyIDIgNi40OCAyIDEyczQuNDcgMTAgOS45OSAxMEMxNy41MiAyMiAyMiAxNy41MiAyMiAxMlMxNy41MiAyIDExLjk5IDJ6TTEyIDIwYy00LjQyIDAtOC0zLjU4LTgtOHMzLjU4LTggOC04IDggMy41OCA4IDgtMy41OCA4LTggOHoiLz4gICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPiAgICA8cGF0aCBkPSJNMTIuNSA3SDExdjZsNS4yNSAzLjE1Ljc1LTEuMjMtNC41LTIuNjd6Ii8+PC9zdmc+';
+
   var VIEW_STATES = {
     DATE: 0,
     HOUR: 1,
@@ -270,7 +272,7 @@
               '<md-button class="dtp-btn-calendar md-icon-button" type="button" ' +
                 'tabindex="-1" aria-hidden="true" ' +
                 'ng-click="openCalendarDiag($event)">' +
-                '<md-icon aria-label="md-calendar" md-svg-src="' + $$mdSvgRegistry.mdCalendar + '"></md-icon>' +
+                '<md-icon aria-label="md-calendar" md-svg-src="' + (scope.date ? $$mdSvgRegistry.mdCalendar : mdAccesTime) + '"></md-icon>' +
               '</md-button>',
               clearButton = '<md-button ng-show="currentDate" class="md-icon-button dtp-clear" aria-hidden="true" ng-click="clear()">&#x2715;</md-button>';
               element.after($compile(calendarButton + clearButton)(scope));
