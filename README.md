@@ -18,6 +18,7 @@ Originally designed for Bootstrap Material, this has been modified to work with 
 ## Updates
 | Date       | Author   | Description                                            |
 | ---------- | -------- | ------------------------------------------------------ |
+| 2017-09-10 | hexadecy | Icon button when in edit-input mode                    |
 | 2017-08-19 | hexadecy | Quick year and month menu selector                     |
 | 2017-08-12 | hexadecy | Add optionnal seconds clock                            |
 | 2017-07-30 | hexadecy | Highlight only week-days (business days)               |
@@ -43,8 +44,8 @@ Depends on the following library:
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.6/angular.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular-animate.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular-aria.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.4/angular-material.min.css" rel="stylesheet" type="text/css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.4/angular-material.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.5/angular-material.min.css" rel="stylesheet" type="text/css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.5/angular-material.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment-with-locales.min.js"></script>
 ```
 
@@ -57,21 +58,21 @@ bower install ng-material-datetimepicker
 
 ## CDN
 ```
-<script src="https://unpkg.com/ng-material-datetimepicker@1.9.0/dist/angular-material-datetimepicker.min.js"></script>
-<script src="https://unpkg.com/ng-material-datetimepicker@1.9.0/dist/angular-material-datetimepicker.min.js.map"></script>
-<link href="https://unpkg.com/ng-material-datetimepicker@1.9.0/dist/material-datetimepicker.min.css rel="stylesheet" type="text/css">
+<script src="https://unpkg.com/ng-material-datetimepicker@1.9.1/dist/angular-material-datetimepicker.min.js"></script>
+<script src="https://unpkg.com/ng-material-datetimepicker@1.9.1/dist/angular-material-datetimepicker.min.js.map"></script>
+<link href="https://unpkg.com/ng-material-datetimepicker@1.9.1/dist/material-datetimepicker.min.css rel="stylesheet" type="text/css">
 ```
 or
 ```
-<script src="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.9.0/dist/angular-material-datetimepicker.min.js"></script>
-<script src="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.9.0/dist/angular-material-datetimepicker.min.js.map"></script>
-<link href="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.9.0/dist/material-datetimepicker.min.css" rel="stylesheet" type="text/css">
+<script src="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.9.1/dist/angular-material-datetimepicker.min.js"></script>
+<script src="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.9.1/dist/angular-material-datetimepicker.min.js.map"></script>
+<link href="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.9.1/dist/material-datetimepicker.min.css" rel="stylesheet" type="text/css">
 ```
 or
 ```
-<script src="https://cdn.jsdelivr.net/npm/ng-material-datetimepicker@v1.9.0/dist/angular-material-datetimepicker.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/ng-material-datetimepicker@v1.9.0/dist/angular-material-datetimepicker.min.js.map"></script>
-<link href="https://cdn.jsdelivr.net/npm/ng-material-datetimepicker@v1.9.0/dist/material-datetimepicker.min.css" rel="stylesheet" type="text/css">
+<script src="https://cdn.jsdelivr.net/npm/ng-material-datetimepicker@v1.9.1/dist/angular-material-datetimepicker.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/ng-material-datetimepicker@v1.9.1/dist/angular-material-datetimepicker.min.js.map"></script>
+<link href="https://cdn.jsdelivr.net/npm/ng-material-datetimepicker@v1.9.1/dist/material-datetimepicker.min.css" rel="stylesheet" type="text/css">
 ```
 
 ## Live Example
