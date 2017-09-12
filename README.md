@@ -18,7 +18,7 @@ Originally designed for Bootstrap Material, this has been modified to work with 
 ## Updates
 | Date       | Author   | Description                                            |
 | ---------- | -------- | ------------------------------------------------------ |
-| 2017-09-10 | hexadecy | Icon button when in edit-input mode                    |
+| 2017-09-11 | hexadecy | show-icon button, useful when in edit-input mode       |
 | 2017-08-19 | hexadecy | Quick year and month menu selector                     |
 | 2017-08-12 | hexadecy | Add optionnal seconds clock                            |
 | 2017-07-30 | hexadecy | Highlight only week-days (business days)               |
@@ -58,21 +58,21 @@ bower install ng-material-datetimepicker
 
 ## CDN
 ```
-<script src="https://unpkg.com/ng-material-datetimepicker@1.9.1/dist/angular-material-datetimepicker.min.js"></script>
-<script src="https://unpkg.com/ng-material-datetimepicker@1.9.1/dist/angular-material-datetimepicker.min.js.map"></script>
-<link href="https://unpkg.com/ng-material-datetimepicker@1.9.1/dist/material-datetimepicker.min.css rel="stylesheet" type="text/css">
+<script src="https://unpkg.com/ng-material-datetimepicker@1.9.2/dist/angular-material-datetimepicker.min.js"></script>
+<script src="https://unpkg.com/ng-material-datetimepicker@1.9.2/dist/angular-material-datetimepicker.min.js.map"></script>
+<link href="https://unpkg.com/ng-material-datetimepicker@1.9.2/dist/material-datetimepicker.min.css rel="stylesheet" type="text/css">
 ```
 or
 ```
-<script src="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.9.1/dist/angular-material-datetimepicker.min.js"></script>
-<script src="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.9.1/dist/angular-material-datetimepicker.min.js.map"></script>
-<link href="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.9.1/dist/material-datetimepicker.min.css" rel="stylesheet" type="text/css">
+<script src="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.9.2/dist/angular-material-datetimepicker.min.js"></script>
+<script src="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.9.2/dist/angular-material-datetimepicker.min.js.map"></script>
+<link href="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.9.2/dist/material-datetimepicker.min.css" rel="stylesheet" type="text/css">
 ```
 or
 ```
-<script src="https://cdn.jsdelivr.net/npm/ng-material-datetimepicker@v1.9.1/dist/angular-material-datetimepicker.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/ng-material-datetimepicker@v1.9.1/dist/angular-material-datetimepicker.min.js.map"></script>
-<link href="https://cdn.jsdelivr.net/npm/ng-material-datetimepicker@v1.9.1/dist/material-datetimepicker.min.css" rel="stylesheet" type="text/css">
+<script src="https://cdn.jsdelivr.net/npm/ng-material-datetimepicker@v1.9.2/dist/angular-material-datetimepicker.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/ng-material-datetimepicker@v1.9.2/dist/angular-material-datetimepicker.min.js.map"></script>
+<link href="https://cdn.jsdelivr.net/npm/ng-material-datetimepicker@v1.9.2/dist/material-datetimepicker.min.css" rel="stylesheet" type="text/css">
 ```
 
 ## Live Example
@@ -131,6 +131,7 @@ The directive accepts several attributes which are described below:
 | **edit-input**            | Boolean                 | true => Input editable and don't show dialog (default: false)        |
 | **click-outside-to-close**| Boolean                 | true => A click outside close the dialog (default: false)            |
 | **minute-steps**          | Number                  | 1 to 59 minute steps (default: 5)                                    |
+| **show-icon**             | Boolean                 | true => Show calendar or time icon (default: false)                  |
 
 ### Set or update params by injecting `mdcDefaultParams` provider
 To change params like the locale you can use this method instead of attributes for all datetimepicker:
@@ -166,7 +167,7 @@ Example usage:
     })
 ```
 
-The `mdcDateTimeDialog.show` accepts the same options as the directive. 
+The `mdcDateTimeDialog.show` accepts almost the same options as the directive. 
 
 ```javascript
      {

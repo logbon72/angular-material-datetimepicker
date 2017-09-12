@@ -128,7 +128,8 @@
         autoOk: false,
         editInput: false,
         clickOutsideToClose: false,
-        minuteSteps: 5
+        minuteSteps: 5,
+        showIcon: false,
       };
 
       return function (params) {
@@ -174,7 +175,8 @@
             autoOk: '=',
             editInput: '=',
             clickOutsideToClose: '=',
-            minuteSteps: '='
+            minuteSteps: '=',
+            showIcon: '='
           },
           link: function (scope, element, attrs, ngModel) {
             var isOn = false;
@@ -265,8 +267,14 @@
             }
 
             if (!scope.editInput) {
-              element.on('focus', openCalendar);
-            } else {
+              if (scope.showIcon) {
+                element.on('click', openCalendar);
+              } else {
+                element.on('focus', openCalendar);
+              }
+            }
+            
+            if (scope.showIcon) {
               element.addClass('dtp-no-msclear dtp-input');
               var calendarButton =  
               '<md-button class="dtp-btn-calendar md-icon-button" type="button" ' +
@@ -320,7 +328,7 @@
        autoOk: {boolean} =false,
        editInput: {boolean} =false,
        clickOutsideToClose: {boolean} =false,
-       minuteSteps: {int} =5
+       minuteSteps: {int} =5,
      }
      @return promise
     */
@@ -1277,16 +1285,17 @@
                   if (val >= 12) picker.meridien = 'PM';
                   else picker.meridien = 'AM';
                 }
+
                 if (picker.params.autoOk) picker.ok(); // single click
-              } else if (!secondMode){
-                if (val === scope.currentValue) picker.ok(); // double click
+              } else if (!secondMode) {
+                if (val === scope.currentValue && !picker.params.seconds) {
+                  picker.ok(); // double click
+                }
                 picker.currentDate.minute(val);
                 if (!picker.params.seconds) {
                   picker.currentDate.second(0);
-                } else {
-                  if (picker.params.autoOk) picker.ok(); // single click
-                }
-              } else {  
+                } else if (picker.params.autoOk) picker.ok(); // single click
+              } else {
                 if (val === scope.currentValue) picker.ok(); // double click
                 picker.currentDate.second(val);
               }
