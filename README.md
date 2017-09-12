@@ -131,7 +131,7 @@ The directive accepts several attributes which are described below:
 | **edit-input**            | Boolean                 | true => Input editable and don't show dialog (default: false)        |
 | **click-outside-to-close**| Boolean                 | true => A click outside close the dialog (default: false)            |
 | **minute-steps**          | Number                  | 1 to 59 minute steps (default: 5)                                    |
-| **show-icon**             | Boolean                 | true => Show calendar or time icon (default: false)                  |
+| **show-icon**             | Boolean                 | true => Show calendar or time icon before + clear (default: false    |
 
 ### Set or update params by injecting `mdcDefaultParams` provider
 To change params like the locale you can use this method instead of attributes for all datetimepicker:
