@@ -291,6 +291,7 @@
 
               scope.clear = function() {
                 ngModel.$setViewValue(null);
+                scope.currentDate = null;
                 ngModel.$render();
                 $timeout(function() {
                   element[0].focus();
