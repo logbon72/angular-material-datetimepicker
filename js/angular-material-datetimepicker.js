@@ -4,8 +4,9 @@
   function ngMaterialDatePicker(moment) {
   var moduleName = "ngMaterialDatePicker";
 
-  var mdAccesTime = 'data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMDAwMDAwIiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4gICAgPHBhdGggZD0iTTExLjk5IDJDNi40NyAyIDIgNi40OCAyIDEyczQuNDcgMTAgOS45OSAxMEMxNy41MiAyMiAyMiAxNy41MiAyMiAxMlMxNy41MiAyIDExLjk5IDJ6TTEyIDIwYy00LjQyIDAtOC0zLjU4LTgtOHMzLjU4LTggOC04IDggMy41OCA4IDgtMy41OCA4LTggOHoiLz4gICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPiAgICA8cGF0aCBkPSJNMTIuNSA3SDExdjZsNS4yNSAzLjE1Ljc1LTEuMjMtNC41LTIuNjd6Ii8+PC9zdmc+';
-
+  var mdAccesTime = 'data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMDAwMDAwIiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4gICAgPHBhdGggZD0iTTExLjk5IDJDNi40NyAyIDIgNi40OCAyIDEyczQuNDcgMTAgOS45OSAxMEMxNy41MiAyMiAyMiAxNy41MiAyMiAxMlMxNy41MiAyIDExLjk5IDJ6TTEyIDIwYy00LjQyIDAtOC0zLjU4LTgtOHMzLjU4LTggOC04IDggMy41OCA4IDgtMy41OCA4LTggOHoiLz4gICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPiAgICA8cGF0aCBkPSJNMTIuNSA3SDExdjZsNS4yNSAzLjE1Ljc1LTEuMjMtNC41LTIuNjd6Ii8+PC9zdmc+',
+      mdCalendar = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTkgM2gtMVYxaC0ydjJIOFYxSDZ2Mkg1Yy0xLjExIDAtMS45OS45LTEuOTkgMkwzIDE5YzAgMS4xLjg5IDIgMiAyaDE0YzEuMSAwIDItLjkgMi0yVjVjMC0xLjEtLjktMi0yLTJ6bTAgMTZINVY4aDE0djExek03IDEwaDV2NUg3eiIvPjwvc3ZnPg==';
+  
   var VIEW_STATES = {
     DATE: 0,
     HOUR: 1,
@@ -34,7 +35,7 @@
     '                    <md-menu md-offset="8 10" flex>' +
     '                        <div class="dtp-actual-month" flex ng-click="picker.openMenu($mdMenu, $event)">{{picker.currentDate.format("MMM") | uppercase}}</div>' +
     '                        <md-menu-content>' +
-    '                            <md-menu-item ng-repeat="itemMonth in picker.monthsAvailable()">' +
+    '                            <md-menu-item ng-repeat="itemMonth in picker.monthsAvailable() track by $index">' +
     '                            <md-button ng-click="picker.selectMonth(itemMonth)">{{itemMonth}}</md-button>' +
     '                            </md-menu-item>' +
     '                        </md-menu-content>' +
@@ -47,7 +48,7 @@
     '                    <md-menu md-offset="8 10" flex>' +
     '                        <div class="dtp-actual-year" flex ng-click="picker.openMenu($mdMenu, $event)">{{picker.currentDate.format("YYYY")}}</div>' +
     '                        <md-menu-content>' +
-    '                            <md-menu-item ng-repeat="itemYear in picker.yearsAvailable()">' +
+    '                            <md-menu-item ng-repeat="itemYear in picker.yearsAvailable() track by $index">' +
     '                            <md-button ng-click="picker.selectYear(itemYear)">{{itemYear}}</md-button>' +
     '                            </md-menu-item>' +
     '                        </md-menu-content>' +
@@ -144,8 +145,8 @@
         return default_params;
       };
     })
-    .directive('mdcDatetimePicker', ['$mdDialog', '$timeout', '$compile', '$$mdSvgRegistry',
-      function ($mdDialog, $timeout, $compile, $$mdSvgRegistry) {
+    .directive('mdcDatetimePicker', ['$mdDialog', '$timeout', '$compile',
+      function ($mdDialog, $timeout, $compile) {
 
         return {
           restrict: 'A',
@@ -280,7 +281,7 @@
               '<md-button class="dtp-btn-calendar md-icon-button" type="button" ' +
                 'tabindex="-1" aria-hidden="true" ' +
                 'ng-click="openCalendarDiag($event)">' +
-                '<md-icon aria-label="md-calendar" md-svg-src="' + (scope.date ? $$mdSvgRegistry.mdCalendar : mdAccesTime) + '"></md-icon>' +
+                '<md-icon aria-label="md-calendar" md-svg-src="' + (scope.date ? mdCalendar : mdAccesTime) + '"></md-icon>' +
               '</md-button>',
               clearButton = '<md-button ng-show="currentDate" class="md-icon-button dtp-clear" aria-hidden="true" ng-click="clear()">&#x2715;</md-button>';
               element.after($compile(calendarButton + clearButton)(scope));
@@ -333,7 +334,7 @@
      }
      @return promise
     */
-    .factory('mdcDateTimeDialog', ["$mdDialog", "$q", "$mdMenu", "mdcDefaultParams", function ($mdDialog, $q, $mdMenu, mdcDefaultParams) {
+    .factory('mdcDateTimeDialog', ["$mdDialog", "$q", "mdcDefaultParams", function ($mdDialog, $q, mdcDefaultParams) {
       var defaultParams = mdcDefaultParams();
       var accepted_options = Object.keys(defaultParams);
       var service = {
@@ -584,7 +585,7 @@
       }
     },
     openMenu: function ($mdMenu, ev) {
-      $mdMenu.open(ev);  
+      $mdMenu.open(ev); 
     },
     monthsAvailable: function () {
       var monthsArr = [], 
