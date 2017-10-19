@@ -131,6 +131,8 @@
         clickOutsideToClose: false,
         minuteSteps: 5,
         showIcon: false,
+        template: template,
+        templateUrl: '',
       };
 
       return function (params) {
@@ -177,7 +179,8 @@
             editInput: '=',
             clickOutsideToClose: '=',
             minuteSteps: '=',
-            showIcon: '='
+            showIcon: '=',
+            templateUrl: '@',
           },
           link: function (scope, element, attrs, ngModel) {
             var isOn = false;
@@ -238,12 +241,10 @@
               options.currentDate = scope.currentDate;
               options.showTodaysDate = dateOfTheDay;
 
-              var locals = {options: options};
-              $mdDialog.show({
-                template: template,
+              var dialogOptions = {
                 controller: PluginController,
                 controllerAs: 'picker',
-                locals: locals,
+                locals: {options: options},
                 openFrom: element,
                 parent: angular.element(document.body),
                 bindToController: true,
@@ -251,8 +252,16 @@
                 disableParentScroll: options.disableParentScroll || false,
                 hasBackDrop: false,
                 skipHide: true,
-                multiple: true
-              }).then(function (v) {
+                multiple: true,
+              };
+
+              if (!options.templateUrl) {
+                dialogOptions.template = template;
+              } else {
+                dialogOptions.templateUrl = options.templateUrl;
+              }
+              
+              $mdDialog.show(dialogOptions).then(function (v) {
                 scope.currentDate = v ? v._d : v;
                 isOn = false;
 
@@ -353,19 +362,25 @@
           }
           options.showTodaysDate = dateOfTheDay;
 
-          var locals = {options: options};
-          $mdDialog.show({
-            template: template,
-            controller: PluginController,
-            controllerAs: 'picker',
-            locals: locals,
-            parent: angular.element(document.body),
-            bindToController: true,
-            clickOutsideToClose: options.clickOutsideToClose || false,
-            disableParentScroll: options.disableParentScroll || false,
-            skipHide: true,
-            multiple: true
-          }).then(function (v) {
+          var dialogOptions = {
+              controller: PluginController,
+              controllerAs: 'picker',
+              locals: {options: options},
+              parent: angular.element(document.body),
+              bindToController: true,
+              clickOutsideToClose: options.clickOutsideToClose || false,
+              disableParentScroll: options.disableParentScroll || false,
+              skipHide: true,
+              multiple: true,
+          };
+
+          if (!options.templateUrl) {
+              dialogOptions.template = template;
+          } else {
+              dialogOptions.templateUrl = options.templateUrl;
+          }
+
+          $mdDialog.show(dialogOptions).then(function (v) {
             var currentDate = v ? v._d : v;
             deferred.resolve(v ? v._d : v);
           }, function () {

@@ -211,6 +211,15 @@
     </div>
 
       <div layout-gt-md="row" layout="column" layout-align-gt-md="center center">
+        <md-input-container flex-gt-md="30">
+          <label>Custom Picker template</label>
+          <input mdc-datetime-picker date="true" time="true" minutes="true" type="text" id="datetimesecond"
+                 placeholder="Date" show-todays-date min-date="date" ng-model="dateTimeNoMin" template-url="customTemplate.html">
+        </md-input-container>
+        <div flex-gt-md="grow" ex-source-code target="input"></div>
+      </div>
+
+      <div layout-gt-md="row" layout="column" layout-align-gt-md="center center">
         <div flex-gt-md="30">
           <p>mdcDateTimeDialog Service</p>
           <md-button class="md-raised md-primary" ng-click="displayDialog()">
