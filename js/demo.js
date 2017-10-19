@@ -1,6 +1,3 @@
-/**
- * Created by intelWorx on 11/11/2015.
- */
 (function () {
   'use strict';
   angular.module('mdDatetimePickerDemo', [

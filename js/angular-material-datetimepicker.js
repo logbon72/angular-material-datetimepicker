@@ -255,13 +255,10 @@
                 multiple: true,
               };
 
-              if (!options.templateUrl) {
-                dialogOptions.template = template;
-              } else {
-                dialogOptions.templateUrl = options.templateUrl;
-              }
+              if (!options.templateUrl) dialogOptions.template = template;
+              else dialogOptions.templateUrl = options.templateUrl;
               
-              $mdDialog.show(dialogOptions).then(function (v) {
+              $mdDialog.show(dialogOptions).then(function(v) {
                 scope.currentDate = v ? v._d : v;
                 isOn = false;
 
@@ -374,11 +371,8 @@
               multiple: true,
           };
 
-          if (!options.templateUrl) {
-              dialogOptions.template = template;
-          } else {
-              dialogOptions.templateUrl = options.templateUrl;
-          }
+          if (!options.templateUrl) dialogOptions.template = template;
+          else dialogOptions.templateUrl = options.templateUrl;
 
           $mdDialog.show(dialogOptions).then(function (v) {
             var currentDate = v ? v._d : v;

@@ -10,10 +10,6 @@ gulp.task('default', function(cb) {
 	runSequence(['js', 'css'], cb);
 });
 
-gulp.task('bump', function(cb) {
-	runSequence(['js', 'css'], 'bump push', cb);
-});
-
 gulp.task('js', function(cb) {
 	pump([
 		gulp.src(['./js/angular-material-datetimepicker.js']),
