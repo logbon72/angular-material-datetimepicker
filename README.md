@@ -14,10 +14,12 @@ Originally designed for Bootstrap Material, this has been modified to work with 
 - Optionnal seconds clock
 - Compatible with right-to-left direction
 - Support RequireJS and Webpack
+- Possibility to set a custom external template
 
 ## Updates
 | Date       | Author   | Description                                            |
 | ---------- | -------- | ------------------------------------------------------ |
+| 2017-10-18 | paragraff | custom template                                       |
 | 2017-09-11 | hexadecy | show-icon button, useful when in edit-input mode       |
 | 2017-08-19 | hexadecy | Quick year and month menu selector                     |
 | 2017-08-12 | hexadecy | Add optionnal seconds clock                            |
@@ -132,6 +134,7 @@ The directive accepts several attributes which are described below:
 | **click-outside-to-close**| Boolean                 | true => A click outside close the dialog (default: false)            |
 | **minute-steps**          | Number                  | 1 to 59 minute steps (default: 5)                                    |
 | **show-icon**             | Boolean                 | true => Show calendar or time icon before + clear (default: false)   |
+| **template-url**          | String                  | You can set a custom HTML template (default: '')                     |
 
 ### Set or update params by injecting `mdcDefaultParams` provider
 To change params like the locale you can use this method instead of attributes for all datetimepicker:
@@ -195,6 +198,8 @@ The `mdcDateTimeDialog.show` accepts almost the same options as the directive.
        editInput: {boolean} =false,
        clickOutsideToClose: {boolean} =false,
        minuteSteps: {int} =5,
+       howIcon: {boolean} =false,
+       templateUrl: {string} =''
      }
 ```
 

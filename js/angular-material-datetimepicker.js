@@ -7,11 +7,7 @@
   var mdAccesTime = 'data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMDAwMDAwIiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4gICAgPHBhdGggZD0iTTExLjk5IDJDNi40NyAyIDIgNi40OCAyIDEyczQuNDcgMTAgOS45OSAxMEMxNy41MiAyMiAyMiAxNy41MiAyMiAxMlMxNy41MiAyIDExLjk5IDJ6TTEyIDIwYy00LjQyIDAtOC0zLjU4LTgtOHMzLjU4LTggOC04IDggMy41OCA4IDgtMy41OCA4LTggOHoiLz4gICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPiAgICA8cGF0aCBkPSJNMTIuNSA3SDExdjZsNS4yNSAzLjE1Ljc1LTEuMjMtNC41LTIuNjd6Ii8+PC9zdmc+',
       mdCalendar = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTkgM2gtMVYxaC0ydjJIOFYxSDZ2Mkg1Yy0xLjExIDAtMS45OS45LTEuOTkgMkwzIDE5YzAgMS4xLjg5IDIgMiAyaDE0YzEuMSAwIDItLjkgMi0yVjVjMC0xLjEtLjktMi0yLTJ6bTAgMTZINVY4aDE0djExek03IDEwaDV2NUg3eiIvPjwvc3ZnPg==';
   
-  var VIEW_STATES = {
-    DATE: 0,
-    HOUR: 1,
-    MINUTE: 2
-  };
+  var VIEW_STATES = {DATE: 0, HOUR: 1, MINUTE: 2};
 
   var css = function (el, name) {
     el = angular.element(el);
@@ -98,10 +94,12 @@
   angular.module(moduleName, ['ngMaterial'])
     .service('mdcDatetimePickerDefaultLocale', ['mdcDefaultParams', function (mdcDefaultParams) {
       this.$get = function () {
+        console.log("mdcDatetimePickerDefaultLocale deprecated!");
         return mdcDefaultParams().lang;
       };
 
       this.setDefaultLocale = function (localeString) {
+        console.log("mdcDatetimePickerDefaultLocale deprecated!");
         mdcDefaultParams({ lang: localeString });
       };
     }])
@@ -337,6 +335,8 @@
        editInput: {boolean} =false,
        clickOutsideToClose: {boolean} =false,
        minuteSteps: {int} =5,
+       showIcon: {boolean} =false,
+       templateUrl: {string} =''
      }
      @return promise
     */
