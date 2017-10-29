@@ -306,40 +306,7 @@
           }
         };
       }])
-    /** Returns a service that opens a dialog when the attribute shown is called
-     The dialog serves to select a date/time/etc. depending on the options given to the function show
-
-     @param options extends mdcDefaultParams
-     {
-       date: {boolean} =true,
-       time: {boolean} =true,
-       minutes: {boolean} =true,
-       seconds: {boolean} =false,
-       format: {string} ='YYYY-MM-DD',
-       minDate: {strign} =null,
-       maxDate: {string} =null,
-       currentDate: {string} =null,
-       lang: {string} =window.navigator.userLanguage || window.navigator.language || 'en',
-       weekStart: {int} =0,
-       shortTime: {boolean} =false,
-       cancelText: {string} ='Cancel',
-       showTodaysDate: {string} ='',
-       todayText: {string} ='Today',
-       okText: {string} ='OK',
-       amText: {string} ='AM',
-       pmText: {string} ='PM',
-       disableDates: {date[]} =[],
-       weekDays: {boolean} =false,
-       disableParentScroll: {boolean} =false,
-       autoOk: {boolean} =false,
-       editInput: {boolean} =false,
-       clickOutsideToClose: {boolean} =false,
-       minuteSteps: {int} =5,
-       showIcon: {boolean} =false,
-       templateUrl: {string} =''
-     }
-     @return promise
-    */
+    // Returns a service that opens a dialog when the attribute shown is called
     .factory('mdcDateTimeDialog', ["$mdDialog", "$q", "mdcDefaultParams", function ($mdDialog, $q, mdcDefaultParams) {
       var defaultParams = mdcDefaultParams();
       var accepted_options = Object.keys(defaultParams);
