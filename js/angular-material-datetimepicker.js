@@ -15,7 +15,7 @@
   };
 
   var template = 
-    '<md-dialog class="dtp" layout="column" style="width: 300px;">' +
+    '<md-dialog class="dtp" layout="column">' +
     '    <md-dialog-content class="dtp-content">' +
     '        <div class="dtp-date-view">' +
     '            <header class="dtp-header">' +
@@ -222,7 +222,7 @@
               
             }
 
-            function openCalendar (e) {
+            function openCalendar(e) {
               e.preventDefault();
               element.blur();
               element.parent().removeClass('md-input-focused');
@@ -1082,13 +1082,17 @@
                 if (minutes >= 60) {
                   minutes = 60 - nearestMin; //always push down
                 }
+                if (!scope.pointAvailable({value: val})) return;
                 picker.currentDate.minute(minutes);
               } else if (!secondMode){
                 if (val === 12) val = 0;
                 if (!picker.params.shortTime) picker.meridien = ray > 84 ? 'AM' : 'PM';
-                picker.currentDate.hour(picker.isPM() ? val + 12 : val);
+                if (picker.isPM()) val += 12;
+                if (!scope.pointAvailable({value: val})) return;
+                picker.currentDate.hour(val);
               } else {
                 if (val >= 60) val = 0;
+                if (!scope.pointAvailable({value: val})) return;
                 picker.currentDate.second(val);
               }
               

@@ -25,7 +25,7 @@
   <script type="text/javascript" src="./js/angular-material-datetimepicker.js"></script>
   <script type="text/javascript" src="./js/demo.js"></script>
 </head>
-<body ng-controller="DemoCtrl" layout="column">
+<body ng-controller="DemoCtrl" layout="column" ng-csp>
 <md-content class="md-padding">
   <div layout="column">
     <h1>Angular Material DateTimePicker</h1>
@@ -99,7 +99,7 @@
           <label>Timepicker Only with seconds and auto ok | 24-hour</label>
           <input mdc-datetime-picker date="false" time="true" seconds="true" type="text" id="time3" 
                  placeholder="Time" minutes="true" auto-ok="true"
-                 min-date="minDate" minute-steps="1"
+                 min-date="minDateNow" minute-steps="1"
                  format="HH:mm:ss" short-time="false"
                  ng-model="time">
         </md-input-container>

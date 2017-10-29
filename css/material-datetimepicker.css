@@ -5,6 +5,7 @@ md-dialog.dtp {
     background-color: #fff;
     max-height: none;
     min-width: 300px;
+    width: 300px;
 }
 
 .noselect {

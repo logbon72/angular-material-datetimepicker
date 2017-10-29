@@ -19,7 +19,7 @@
     .run(function ($templateCache) {
         $templateCache.put(
           'customTemplate.html',
-          '<md-dialog class="dtp" layout="column" style="width: 300px;">' +
+          '<md-dialog class="dtp" layout="column" aria-label="date time picker dialog">' +
           '    <md-dialog-content class="dtp-content">' +
           '        <div class="dtp-date-view">' +
           '            <div class="dtp-time" ng-if="picker.params.time && !picker.params.date">' +
@@ -79,6 +79,7 @@
       $scope.dateTimeNoMin = newDate;
 
       $scope.minDate = moment().subtract(6, 'year');
+      $scope.minDateNow = moment();
       $scope.maxDate = moment().add(6, 'year');
       $scope.dates = [new Date('2017-11-14T00:00:00'), new Date('2017-11-15T00:00:00'),
         new Date('2017-11-30T00:00:00'), new Date('2017-12-12T00:00:00'), new Date('2017-12-13T00:00:00'),
