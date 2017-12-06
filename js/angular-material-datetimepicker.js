@@ -154,6 +154,7 @@
           scope: {
             currentDate: '=ngModel',
             ngChange: '&',
+            ngClear: '&',
             time: '=',
             date: '=',
             minutes: '=',
@@ -298,6 +299,7 @@
                 ngModel.$setViewValue(null);
                 scope.currentDate = null;
                 ngModel.$render();
+                scope.ngClear();
                 $timeout(function() {
                   element[0].focus();
                 }, 0, false);
@@ -1163,16 +1165,13 @@
                   var left24 = (r + x24 + pL / 2) - (pL + mL);
                   var top24 = (r - y24 - mT / 2) - (pT + mT);
 
-                  var hour24 = {
+                  points24.push({
                     left: left24,
                     top: top24,
                     value: h24,
+                    display: h24,
                     style: {'margin-left': left24 + 'px', 'margin-top': top24 + 'px'}
-                  };
-
-                  hour24.display = h24;
-
-                  points24.push(hour24);
+                  });
                 }
                 scope.points24 = points24;
               }

@@ -11,15 +11,15 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.5/angular-material.min.css" rel="stylesheet" type="text/css"/>
   <link rel="stylesheet" href="./css/material-datetimepicker.css" type="text/css"/>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.6/angular.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.6/angular-animate.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.6/angular-aria.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.7/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.7/angular-animate.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.7/angular-aria.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.5/angular-material.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate/2.15.2/angular-translate.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.6/angular-sanitize.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/moment-with-locales.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.6.6/angular-locale_fr.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.6.6/angular-locale_en.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate/2.16.0/angular-translate.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.7/angular-sanitize.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.3/moment-with-locales.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.6.7/angular-locale_fr.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.6.7/angular-locale_en.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script type="text/javascript" src="./beautifier.js"></script>
   <script type="text/javascript" src="./js/angular-material-datetimepicker.js"></script>
@@ -123,7 +123,7 @@
           <input mdc-datetime-picker date="true" time="true" type="text" id="datetimeedit"
                  placeholder="YYYY-MM-DD HH:MM" show-todays-date minutes="true"
                  min-date="date" edit-input="true" show-icon="true"
-                 ng-model="dateTimeEdit">
+                 ng-model="dateTimeEdit" ng-clear="clear('cleared')">
         </md-input-container>
         <div flex-gt-md="grow" ex-source-code target="input"></div>
       </div>

@@ -19,6 +19,7 @@ Originally designed for Bootstrap Material, this has been modified to work with 
 ## Updates
 | Date       | Author   | Description                                            |
 | ---------- | -------- | ------------------------------------------------------ |
+| 2017-12-06 | hexadecy | Add ng-clear to be used with show-icon clear X button  |
 | 2017-10-18 | paragraff | custom template                                       |
 | 2017-09-11 | hexadecy | show-icon button, useful when in edit-input mode       |
 | 2017-08-19 | hexadecy | Quick year and month menu selector                     |
@@ -113,6 +114,7 @@ The directive accepts several attributes which are described below:
 | ------------------------- | ----------------------- | -------------------------------------------------------------------- |
 | **ng-model**              | (String\|Date\|Moment   | Initial Date or model to assign the date to                          |
 | **ng-change**             | Function                | A function to call when the input value changes                      |
+| **ng-clear**              | Function                | A function to call when the input is cleared                         |
 | **format**                | String                  | [MomentJS Format](momentjs.com/docs/#/parsing/string-format/),defaults to `HH:mm` for time picker only, `YYYY-MM-DD` for date picker only and `YYYY-MM-DD HH:mm` for both timepicker and date picker |
 | **short-time**            | Boolean                 | true => Display 12 hours AM\|PM (default: false)                     |
 | **min-date**              | (String\|Date\|Moment)  | Minimum selectable date                                              |

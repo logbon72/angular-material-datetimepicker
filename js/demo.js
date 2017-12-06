@@ -129,6 +129,10 @@
         });
       };
 
+      $scope.clear = function(msg) {
+        console.log(msg);
+      };
+
     })
 
     .directive('exSourceCode', function () {
