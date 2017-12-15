@@ -154,7 +154,6 @@
           scope: {
             currentDate: '=ngModel',
             ngChange: '&',
-            ngClear: '&',
             time: '=',
             date: '=',
             minutes: '=',
@@ -217,8 +216,7 @@
               ngModel.$parsers.push(function (value) {
                 if (typeof value === 'undefined') return;
                 var m = moment(value, scope.format);
-                if (m.isValid()) return m._d;
-                return;
+                return m.isValid() ? m._d : '';
               });
               
             }
@@ -283,7 +281,7 @@
             if (scope.showIcon) {
               element.addClass('dtp-no-msclear dtp-input');
               var calendarButton =  
-              '<md-button class="dtp-btn-calendar md-icon-button" type="button" ' +
+              '<md-button class="dtp-btn-calendar md-icon-button" type="button"' +
                 'tabindex="-1" aria-hidden="true" ' +
                 'ng-click="openCalendarDiag($event)">' +
                 '<md-icon aria-label="md-calendar" md-svg-src="' + (scope.date ? mdCalendar : mdAccesTime) + '"></md-icon>' +
@@ -299,8 +297,8 @@
                 ngModel.$setViewValue(null);
                 scope.currentDate = null;
                 ngModel.$render();
-                scope.ngClear();
                 $timeout(function() {
+                  scope.ngChange();
                   element[0].focus();
                 }, 0, false);
               };
