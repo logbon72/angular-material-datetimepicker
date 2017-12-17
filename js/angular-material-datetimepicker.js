@@ -216,7 +216,7 @@
               ngModel.$parsers.push(function (value) {
                 if (typeof value === 'undefined') return;
                 var m = moment(value, scope.format);
-                return m.isValid() ? m._d : '';
+                return m.isValid() ? m.toDate() : '';
               });
               
             }
@@ -256,7 +256,7 @@
               else dialogOptions.templateUrl = options.templateUrl;
               
               $mdDialog.show(dialogOptions).then(function(v) {
-                scope.currentDate = v ? v._d : v;
+                scope.currentDate = v && !v._isUTC ? v.toDate() : v;
                 isOn = false;
 
                 if (!moment(scope.currentDate).isSame(options.currentDate)) {
@@ -342,8 +342,8 @@
           else dialogOptions.templateUrl = options.templateUrl;
 
           $mdDialog.show(dialogOptions).then(function (v) {
-            var currentDate = v ? v._d : v;
-            deferred.resolve(v ? v._d : v);
+            var currentDate = v ? v.toDate() : v;
+            deferred.resolve(v ? v.toDate() : v);
           }, function () {
             deferred.reject();
           });

@@ -66,6 +66,7 @@
       $scope.date = moment().startOf('day');
       $scope.dateLang = new Date();
       $scope.time = new Date();
+      $scope.timeutc = moment.utc();
       $scope.dateTime = new Date();
       $scope.dateTimeEdit = new Date();
       $scope.timeEdit = new Date();
