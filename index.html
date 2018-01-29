@@ -72,6 +72,18 @@
 
       <div layout-gt-md="row" layout="column" layout-align-gt-md="center center">
         <md-input-container flex-gt-md="30">
+          <label>Timepicker Only | 12-hour | Timezone utc</label>
+          <input mdc-datetime-picker date="false" time="true" 
+                 placeholder="Time" minutes="true" ng-model-options="{timezone: 'utc'}"
+                 min-date="minDate" type="text" id="timez" 
+                 format="hh:mm a Z" short-time="true"
+                 ng-model="timez">
+        </md-input-container>
+        <div flex-gt-md="grow" ex-source-code target="input"></div>
+      </div>
+
+      <div layout-gt-md="row" layout="column" layout-align-gt-md="center center">
+        <md-input-container flex-gt-md="30">
           <label>Timepicker Only | 12-hour | step 15 | auto-ok</label>
           <input mdc-datetime-picker date="false" time="true" type="text" id="time15" 
                  placeholder="Time" minutes="true" minute-steps="15"

@@ -256,6 +256,12 @@
               else dialogOptions.templateUrl = options.templateUrl;
               
               $mdDialog.show(dialogOptions).then(function(v) {
+                if (ngModel.$options.$$options.timezone) {
+                  var offset = ngModel.$options.getOption('timezone');
+                  if (offset === 'utc' || offset === 'UTC') offset = 0;
+                  v.utcOffset(offset, true);
+                } 
+
                 scope.currentDate = v && !v._isUTC ? v.toDate() : v;
                 isOn = false;
 
@@ -342,8 +348,7 @@
           else dialogOptions.templateUrl = options.templateUrl;
 
           $mdDialog.show(dialogOptions).then(function (v) {
-            var currentDate = v ? v.toDate() : v;
-            deferred.resolve(v ? v.toDate() : v);
+            deferred.resolve(v && !v._isUTC ? v.toDate() : v);
           }, function () {
             deferred.reject();
           });
