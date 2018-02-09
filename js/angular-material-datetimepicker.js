@@ -215,14 +215,11 @@
               
               ngModel.$parsers.push(function (value) {
                 if (typeof value === 'undefined') return;
-                var m = moment(value, scope.format);
-                if (scope.minDate) {
-                  ngModel.$setValidity('min', !m.isBefore(scope.minDate));   
-                }
-                if(scope.maxDate)                {
-                  ngModel.$setValidity('max', !m.isAfter(scope.maxDate));
-                }
                 
+                var m = moment(value, scope.format);
+                if (scope.minDate) ngModel.$setValidity('min', !m.isBefore(scope.minDate));   
+                if (scope.maxDate) ngModel.$setValidity('max', !m.isAfter(scope.maxDate));
+
                 return m.isValid() ? m.toDate() : '';
               });
               
