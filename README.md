@@ -43,12 +43,12 @@ Depends on the following library:
 - Moment
 
 ```
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.7/angular.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.7/angular-animate.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.7/angular-aria.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.5/angular-material.min.css" rel="stylesheet" type="text/css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.5/angular-material.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.3/moment-with-locales.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.9/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.9/angular-animate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.9/angular-aria.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.7/angular-material.min.css" rel="stylesheet" type="text/css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.7/angular-material.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment-with-locales.min.js"></script>
 ```
 
 ## Installing via yarn, npm or bower
@@ -60,21 +60,21 @@ bower install ng-material-datetimepicker
 
 ## CDN
 ```
-<script src="https://unpkg.com/ng-material-datetimepicker@1.11.0/dist/angular-material-datetimepicker.min.js"></script>
-<script src="https://unpkg.com/ng-material-datetimepicker@1.11.0/dist/angular-material-datetimepicker.min.js.map"></script>
-<link href="https://unpkg.com/ng-material-datetimepicker@1.11.0/dist/material-datetimepicker.min.css rel="stylesheet" type="text/css">
+<script src="https://unpkg.com/ng-material-datetimepicker@1.12.0/dist/angular-material-datetimepicker.min.js"></script>
+<script src="https://unpkg.com/ng-material-datetimepicker@1.12.0/dist/angular-material-datetimepicker.min.js.map"></script>
+<link href="https://unpkg.com/ng-material-datetimepicker@1.12.0/dist/material-datetimepicker.min.css rel="stylesheet" type="text/css">
 ```
 or
 ```
-<script src="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.11.0/dist/angular-material-datetimepicker.min.js"></script>
-<script src="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.11.0/dist/angular-material-datetimepicker.min.js.map"></script>
-<link href="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.11.0/dist/material-datetimepicker.min.css" rel="stylesheet" type="text/css">
+<script src="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.12.0/dist/angular-material-datetimepicker.min.js"></script>
+<script src="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.12.0/dist/angular-material-datetimepicker.min.js.map"></script>
+<link href="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.12.0/dist/material-datetimepicker.min.css" rel="stylesheet" type="text/css">
 ```
 or
 ```
-<script src="https://cdn.jsdelivr.net/npm/ng-material-datetimepicker@v1.11.0/dist/angular-material-datetimepicker.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/ng-material-datetimepicker@v1.11.0/dist/angular-material-datetimepicker.min.js.map"></script>
-<link href="https://cdn.jsdelivr.net/npm/ng-material-datetimepicker@v1.11.0/dist/material-datetimepicker.min.css" rel="stylesheet" type="text/css">
+<script src="https://cdn.jsdelivr.net/npm/ng-material-datetimepicker@v1.12.0/dist/angular-material-datetimepicker.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/ng-material-datetimepicker@v1.12.0/dist/angular-material-datetimepicker.min.js.map"></script>
+<link href="https://cdn.jsdelivr.net/npm/ng-material-datetimepicker@v1.12.0/dist/material-datetimepicker.min.css" rel="stylesheet" type="text/css">
 ```
 
 ## Live Example
@@ -135,6 +135,7 @@ The directive accepts several attributes which are described below:
 | **minute-steps**          | Number                  | 1 to 59 minute steps (default: 5)                                    |
 | **show-icon**             | Boolean                 | true => Show calendar or time icon before + clear (default: false)   |
 | **template-url**          | String                  | You can set a custom HTML template (default: '')                     |
+| **ng-model-options**      | timezone option         | For example: ng-model-options="{timezone: 'utc'}"                    |
 
 ### Set or update params by injecting `mdcDefaultParams` provider
 To change params like the locale you can use this method instead of attributes for all datetimepicker:
