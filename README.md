@@ -15,23 +15,26 @@ Originally designed for Bootstrap Material, this has been modified to work with 
 - Compatible with right-to-left direction
 - Support RequireJS and Webpack
 - Possibility to set a custom external template
+- Support moment utc or ng-model-options timezone
 
 ## Updates
-| Date       | Author   | Description                                            |
-| ---------- | -------- | ------------------------------------------------------ |
-| 2017-10-18 | paragraff | custom template                                       |
-| 2017-09-11 | hexadecy | show-icon button, useful when in edit-input mode       |
-| 2017-08-19 | hexadecy | Quick year and month menu selector                     |
-| 2017-08-12 | hexadecy | Add optionnal seconds clock                            |
-| 2017-07-30 | hexadecy | Highlight only week-days (business days)               |
-| 2017-07-22 | hexadecy | Mouse or touch move to select time, minute steps param |
-| 2017-04-26 | hexadecy | New 24-hour clock face                                 |
-| 2017-04-17 | hexadecy | Single click to select                                 |
-| 2017-02-27 | hexadecy | Can hide minutes view, Month next and prev buttons     |
-| 2017-02-22 | hexadecy | Fix for rtl website                                    |
-| 2017-02-15 | hexadecy | Fix inputs are not bluring after selection is made     |
-| 2017-01-30 | hexadecy | Add support for angular 1.6.x                          |
-| 2015-11-12 | logbon72 | Adapted plugin for Angular Material                    |
+| Date       | Author      | Description                                            |
+| ---------- | ----------- | ------------------------------------------------------ |
+| 2018-02-09 | hexadecy    | support ng-model-options timezone                      |
+| 2018-01-29 | coennijhuis | min-date max-date validation when not using the picker |
+| 2017-10-18 | paragraff   | custom template                                        |
+| 2017-09-11 | hexadecy    | show-icon button with edit-input mode                  |
+| 2017-08-19 | hexadecy    | Quick year and month menu selector                     |
+| 2017-08-12 | hexadecy    | Add optionnal seconds clock                            |
+| 2017-07-30 | hexadecy    | Highlight only week-days (business days)               |
+| 2017-07-22 | hexadecy    | Mouse or touch move to select time, minute steps param |
+| 2017-04-26 | hexadecy    | New 24-hour clock face                                 |
+| 2017-04-17 | hexadecy    | Single click to select                                 |
+| 2017-02-27 | hexadecy    | Can hide minutes view, Month next and prev buttons     |
+| 2017-02-22 | hexadecy    | Fix for rtl website                                    |
+| 2017-02-15 | hexadecy    | Fix inputs are not bluring after selection is made     |
+| 2017-01-30 | hexadecy    | Add support for angular 1.6.x                          |
+| 2015-11-12 | logbon72    | Adapted plugin for Angular Material                    |
 
 ### Dependencies
 Depends on the following library:
@@ -60,21 +63,21 @@ bower install ng-material-datetimepicker
 
 ## CDN
 ```
-<script src="https://unpkg.com/ng-material-datetimepicker@1.12.0/dist/angular-material-datetimepicker.min.js"></script>
-<script src="https://unpkg.com/ng-material-datetimepicker@1.12.0/dist/angular-material-datetimepicker.min.js.map"></script>
-<link href="https://unpkg.com/ng-material-datetimepicker@1.12.0/dist/material-datetimepicker.min.css rel="stylesheet" type="text/css">
+<script src="https://unpkg.com/ng-material-datetimepicker@1.13.0/dist/angular-material-datetimepicker.min.js"></script>
+<script src="https://unpkg.com/ng-material-datetimepicker@1.13.0/dist/angular-material-datetimepicker.min.js.map"></script>
+<link href="https://unpkg.com/ng-material-datetimepicker@1.13.0/dist/material-datetimepicker.min.css rel="stylesheet" type="text/css">
 ```
 or
 ```
-<script src="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.12.0/dist/angular-material-datetimepicker.min.js"></script>
-<script src="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.12.0/dist/angular-material-datetimepicker.min.js.map"></script>
-<link href="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.12.0/dist/material-datetimepicker.min.css" rel="stylesheet" type="text/css">
+<script src="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.13.0/dist/angular-material-datetimepicker.min.js"></script>
+<script src="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.13.0/dist/angular-material-datetimepicker.min.js.map"></script>
+<link href="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.13.0/dist/material-datetimepicker.min.css" rel="stylesheet" type="text/css">
 ```
 or
 ```
-<script src="https://cdn.jsdelivr.net/npm/ng-material-datetimepicker@v1.12.0/dist/angular-material-datetimepicker.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/ng-material-datetimepicker@v1.12.0/dist/angular-material-datetimepicker.min.js.map"></script>
-<link href="https://cdn.jsdelivr.net/npm/ng-material-datetimepicker@v1.12.0/dist/material-datetimepicker.min.css" rel="stylesheet" type="text/css">
+<script src="https://cdn.jsdelivr.net/npm/ng-material-datetimepicker@v1.13.0/dist/angular-material-datetimepicker.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/ng-material-datetimepicker@v1.13.0/dist/angular-material-datetimepicker.min.js.map"></script>
+<link href="https://cdn.jsdelivr.net/npm/ng-material-datetimepicker@v1.13.0/dist/material-datetimepicker.min.css" rel="stylesheet" type="text/css">
 ```
 
 ## Live Example
