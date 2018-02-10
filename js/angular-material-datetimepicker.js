@@ -153,6 +153,7 @@
           require: 'ngModel',
           scope: {
             currentDate: '=ngModel',
+            ngModelOptions: '=',
             ngChange: '&',
             time: '=',
             date: '=',
@@ -205,8 +206,12 @@
 
             if (ngModel) {
               var ngModelOptions = {'*': '$inherit', debounce: 500};
-              ngModel.$options = ngModel.$options ? ngModel.$options.createChild(ngModelOptions) : ngModelOptions;
-              
+              if (angular.version.major === 1 && angular.version.minor > 5) ngModel.$options = ngModel.$options.createChild(ngModelOptions);
+              else {
+                if (scope.ngModelOptions && scope.ngModelOptions.timezone) ngModelOptions.timezone = scope.ngModelOptions.timezone;
+                ngModel.$options = ngModelOptions;
+              }
+      
               ngModel.$formatters.push(function (value) {
                 if (typeof value === 'undefined') return;
                 var m = moment(value);
@@ -260,11 +265,16 @@
               else dialogOptions.templateUrl = options.templateUrl;
               
               $mdDialog.show(dialogOptions).then(function(v) {
-                if (ngModel.$options.$$options.timezone) {
-                  var offset = ngModel.$options.getOption('timezone');
+
+                var offset;
+                if (angular.version.major === 1 && angular.version.minor > 5 && ngModel.$options.getOption('timezone')) {
+                  offset = ngModel.$options.getOption('timezone');
+                } else if (ngModel.$options.timezone) offset = ngModel.$options.timezone;
+
+                if (offset) {
                   if (offset === 'utc' || offset === 'UTC') offset = 0;
                   v.utcOffset(offset, true);
-                } 
+                }
 
                 scope.currentDate = v && !v._isUTC ? v.toDate() : v;
                 isOn = false;
@@ -830,9 +840,7 @@
               calendar.topIndex = currentMonthIndex(picker.currentDate) - calendar.months[0];
             };
 
-            if (angular.version.major === 1 && angular.version.minor < 5) {
-              this.$onInit();
-            }
+            if (angular.version.major === 1 && angular.version.minor < 5) this.$onInit();
           
             calendar.getItemAtIndex = function (index) {
               var month = ((index + 1) % 12) || 12;
