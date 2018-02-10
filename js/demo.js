@@ -134,10 +134,12 @@
             scope.title = attrs.title || "Source Code";
             var sourceCode = tmp[0].outerHTML
                 .replace('ng-model=', 'angularModel=')
+                .replace('ng-model-options=', 'angularModelOptions=')
                 .replace('ng-click=', 'angularClick=')
                 .replace(/ng-[a-z\-]+/g, '')
                 .replace(/ +/g, ' ')
                 .replace('angularModel=', 'ng-model=')
+                .replace('angularModelOptions=', 'ng-model-options=')
                 .replace('angularClick=', 'ng-click=');
 
             scope.sourceCode = style_html(sourceCode, {
