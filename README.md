@@ -1,3 +1,5 @@
+[![Known Vulnerabilities](https://snyk.io/test/github/beenote/angular-material-datetimepicker/badge.svg)](https://snyk.io/test/github/beenote/angular-material-datetimepicker)
+
 # Angular Material DateTimePicker
 Originally designed for Bootstrap Material, this has been modified to work with [Angular Material](https://material.angularjs.org/). This is an Android style date-time picker for Angular Material. Some added features include:
 
