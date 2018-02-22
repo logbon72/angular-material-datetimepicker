@@ -1,4 +1,10 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/beenote/angular-material-datetimepicker/badge.svg)](https://snyk.io/test/github/beenote/angular-material-datetimepicker)
+[![npm version](https://badge.fury.io/js/ng-material-datetimepicker.svg)](https://badge.fury.io/js/ng-material-datetimepicker)
+[![Bower version](https://badge.fury.io/bo/ng-material-datetimepicker.svg)](https://badge.fury.io/bo/ng-material-datetimepicker)
+[![Open Source Love](https://badges.frapsoft.com/os/mit/mit.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
+[![Dependency Status](https://david-dm.org/beenote/angular-material-datetimepicker.svg)](https://david-dm.org/beenote/angular-material-datetimepicker)
+[![devDependency Status](https://david-dm.org/bbeenote/angular-material-datetimepicker/dev-status.svg)](https://david-dm.org/beenote/angular-material-datetimepicker#info=devDependencies)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 # Angular Material DateTimePicker
 Originally designed for Bootstrap Material, this has been modified to work with [Angular Material](https://material.angularjs.org/). This is an Android style date-time picker for Angular Material. Some added features include:
