@@ -3,12 +3,7 @@ var gulp = require('gulp'),
 	uglify = require('gulp-uglify'),
 	cleanCSS = require('gulp-clean-css'),
 	sourcemaps = require('gulp-sourcemaps'),
-	rename = require('gulp-rename'),
-	runSequence = require('run-sequence');
-
-gulp.task('default', function(cb) {
-	runSequence(['js', 'css'], cb);
-});
+	rename = require('gulp-rename');
 
 gulp.task('js', function(cb) {
 	pump([
@@ -29,3 +24,5 @@ gulp.task('css', function(cb) {
 		gulp.dest('./dist/')
 	], cb);
 });
+
+gulp.task('default', gulp.parallel('js', 'css'));
