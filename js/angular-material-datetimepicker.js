@@ -195,6 +195,11 @@
               }
             }
 
+            var offset;
+            if (angular.version.major === 1 && angular.version.minor > 5 && ngModel.$options.getOption('timezone')) {
+                offset = ngModel.$options.getOption('timezone');
+            } else if (ngModel.$options.timezone) offset = ngModel.$options.timezone;
+
             var dateOfTheDay = null;
             if (scope.showTodaysDate !== undefined && scope.showTodaysDate !== "false") {
               dateOfTheDay = moment();
@@ -222,6 +227,10 @@
                 if (typeof value === 'undefined') return;
                 
                 var m = moment(value, scope.format);
+                if (scope.editInput && offset) {
+                    if (offset === 'utc' || offset === 'UTC') offset = 0;
+                    m.utcOffset(offset, true);
+                }
                 if (scope.minDate) ngModel.$setValidity('min', !m.isBefore(scope.minDate));   
                 if (scope.maxDate) ngModel.$setValidity('max', !m.isAfter(scope.maxDate));
                 ngModel.$setValidity('format', moment(value, scope.format, true).isValid());
@@ -266,11 +275,6 @@
               else dialogOptions.templateUrl = options.templateUrl;
               
               $mdDialog.show(dialogOptions).then(function(v) {
-
-                var offset;
-                if (angular.version.major === 1 && angular.version.minor > 5 && ngModel.$options.getOption('timezone')) {
-                  offset = ngModel.$options.getOption('timezone');
-                } else if (ngModel.$options.timezone) offset = ngModel.$options.timezone;
 
                 if (offset) {
                   if (offset === 'utc' || offset === 'UTC') offset = 0;
