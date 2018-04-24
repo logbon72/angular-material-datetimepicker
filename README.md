@@ -60,7 +60,7 @@ Depends on the following library:
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.10/angular-aria.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.8/angular-material.min.css" rel="stylesheet" type="text/css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.8/angular-material.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.1/moment-with-locales.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment-with-locales.min.js"></script>
 ```
 
 ## Installing via yarn, npm or bower

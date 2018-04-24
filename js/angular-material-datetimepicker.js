@@ -195,11 +195,6 @@
               }
             }
 
-            var offset;
-            if (angular.version.major === 1 && angular.version.minor > 5 && ngModel.$options.getOption('timezone')) {
-                offset = ngModel.$options.getOption('timezone');
-            } else if (ngModel.$options.timezone) offset = ngModel.$options.timezone;
-
             var dateOfTheDay = null;
             if (scope.showTodaysDate !== undefined && scope.showTodaysDate !== "false") {
               dateOfTheDay = moment();
@@ -209,13 +204,18 @@
               scope.currentDate = moment(scope.currentDate, scope.format);
             }
 
+            var offset;
             if (ngModel) {
               var ngModelOptions = {'*': '$inherit', debounce: 500};
-              if (angular.version.major === 1 && angular.version.minor > 5) ngModel.$options = ngModel.$options.createChild(ngModelOptions);
-              else {
+              if (angular.version.major === 1 && angular.version.minor > 5) {
+                ngModel.$options = ngModel.$options.createChild(ngModelOptions);
+                if (ngModel.$options.getOption('timezone')) offset = ngModel.$options.getOption('timezone');
+              } else {
                 if (scope.ngModelOptions && scope.ngModelOptions.timezone) ngModelOptions.timezone = scope.ngModelOptions.timezone;
                 ngModel.$options = ngModelOptions;
+                if (ngModel.$options.timezone) offset = ngModel.$options.timezone;
               }
+              if (offset==='utc' || offset==='UTC') offset = 0;
       
               ngModel.$formatters.push(function (value) {
                 if (typeof value === 'undefined') return;
@@ -227,15 +227,13 @@
                 if (typeof value === 'undefined') return;
                 
                 var m = moment(value, scope.format);
-                if (scope.editInput && offset) {
-                    if (offset === 'utc' || offset === 'UTC') offset = 0;
-                    m.utcOffset(offset, true);
-                }
-                if (scope.minDate) ngModel.$setValidity('min', !m.isBefore(scope.minDate));   
+                if (offset !== undefined) m.utcOffset(offset, false);
+            
+                if (scope.minDate) ngModel.$setValidity('min', !m.isBefore(scope.minDate));
                 if (scope.maxDate) ngModel.$setValidity('max', !m.isAfter(scope.maxDate));
                 ngModel.$setValidity('format', moment(value, scope.format, true).isValid());
 
-                return m.isValid() ? m.toDate() : '';
+                return m.isValid() ? (m._isUTC ? m : m.toDate()) : '';
               });
               
             }
@@ -276,10 +274,7 @@
               
               $mdDialog.show(dialogOptions).then(function(v) {
 
-                if (offset) {
-                  if (offset === 'utc' || offset === 'UTC') offset = 0;
-                  v.utcOffset(offset, true);
-                }
+                if (offset !== undefined) v.utcOffset(offset, true);
 
                 scope.currentDate = v && !v._isUTC ? v.toDate() : v;
                 isOn = false;
