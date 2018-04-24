@@ -2,7 +2,8 @@
   'use strict';
   angular.module('mdDatetimePickerDemo', [
     'ngMaterialDatePicker',
-    'pascalprecht.translate'
+    'pascalprecht.translate',
+    'ngMessages'
   ])
     .config(function($translateProvider) {
       $translateProvider.translations('en', {

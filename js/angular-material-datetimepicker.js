@@ -224,6 +224,7 @@
                 var m = moment(value, scope.format);
                 if (scope.minDate) ngModel.$setValidity('min', !m.isBefore(scope.minDate));   
                 if (scope.maxDate) ngModel.$setValidity('max', !m.isAfter(scope.maxDate));
+                ngModel.$setValidity('format', moment(value, scope.format, true).isValid());
 
                 return m.isValid() ? m.toDate() : '';
               });

@@ -13,6 +13,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.9/angular.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.9/angular-animate.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.9/angular-messages.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.9/angular-aria.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.8/angular-material.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate/2.17.0/angular-translate.min.js"></script>
@@ -129,16 +130,25 @@
         <div flex-gt-md="grow" ex-source-code target="input"></div>
       </div>
 
-      <div layout-gt-md="row" layout="column" layout-align-gt-md="center center">
-        <md-input-container flex-gt-md="30">
-          <label>Date/Time Picker edit input</label>
-          <input mdc-datetime-picker date="true" time="true" type="text" id="datetimeedit"
-                 placeholder="YYYY-MM-DD HH:MM" show-todays-date minutes="true"
-                 min-date="minDate" max-date="maxDate" edit-input="true" show-icon="true"
-                 ng-model="dateTimeEdit">
-        </md-input-container>
-        <div flex-gt-md="grow" ex-source-code target="input"></div>
-      </div>
+      <form name="frm">
+        <div layout-gt-md="row" layout="column" layout-align-gt-md="center center">
+          <div layout="column" flex-gt-md="30">
+            <md-input-container>
+              <label>Date/Time Picker edit input</label>
+              <input mdc-datetime-picker date="true" time="true" type="text" id="datetimeedit"
+                    placeholder="YYYY-MM-DD HH:MM" show-todays-date minutes="true"
+                    min-date="minDate" max-date="maxDate" edit-input="true" show-icon="true"
+                    ng-model="dateTimeEdit" name="datetimeedit">
+            </md-input-container>
+            <div ng-messages="frm.datetimeedit.$error" style="color:red" role="alert">
+              <div ng-message="format">invalid date format</div>
+              <div ng-message="min">less than min date</div>
+              <div ng-message="max">greater than max date</div>
+            </div>
+          </div>
+          <div flex-gt-md="grow" ex-source-code target="input"></div>
+        </div>
+      </form>
 
       <div layout-gt-md="row" layout="column" layout-align-gt-md="center center">
         <md-input-container flex-gt-md="30">
