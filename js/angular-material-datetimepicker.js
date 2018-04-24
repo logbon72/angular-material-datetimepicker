@@ -229,7 +229,7 @@
                 var m = moment(value, scope.format);
                 if (scope.editInput && offset) {
                     if (offset === 'utc' || offset === 'UTC') offset = 0;
-                    v.utcOffset(offset, true);
+                    m.utcOffset(offset, true);
                 }
                 if (scope.minDate) ngModel.$setValidity('min', !m.isBefore(scope.minDate));   
                 if (scope.maxDate) ngModel.$setValidity('max', !m.isAfter(scope.maxDate));
