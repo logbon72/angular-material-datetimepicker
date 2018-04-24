@@ -1,7 +1,7 @@
 {
   "name": "ng-material-datetimepicker",
   "description": "A datetime picker for AngularJS Material",
-  "version": "1.13.1",
+  "version": "1.13.2",
   "keywords": [
     "css",
     "js",
@@ -16,12 +16,12 @@
   "homepage": "https://beenote.github.io/angular-material-datetimepicker/",
   "main": "js/angular-material-datetimepicker.js",
   "dependencies": {
-    "angular": "^1.6.9",
-    "angular-animate": "^1.6.9",
-    "angular-aria": "^1.6.9",
+    "angular": "^1.6.10",
+    "angular-animate": "^1.6.10",
+    "angular-aria": "^1.6.10",
     "angular-material": "^1.1.8",
-    "angular-messages": "^1.6.9",
-    "moment": "^2.21.0"
+    "angular-messages": "^1.6.10",
+    "moment": "^2.21.1"
   },
   "repository": {
     "type": "git",
