@@ -61,7 +61,7 @@
           '            <md-button class="dtp-btn-ok md-button" ng-click="picker.ok()"> {{picker.params.okText}}</md-button>' +
           '      </md-dialog-actions>' +
           '</md-dialog>'
-        )
+        );
     })
     .controller('DemoCtrl', function ($scope, mdcDateTimeDialog, $translate, mdcDefaultParams) {
       $scope.date = moment().startOf('day');
@@ -70,6 +70,7 @@
       $scope.timeutc = moment.utc();
       $scope.dateTime = new Date();
       $scope.dateTimeEdit = new Date();
+      $scope.timez = moment.utc();
       $scope.timeEdit = new Date();
      
       // current date + 1 hour, no minutes, no seconds, no milliseconds
