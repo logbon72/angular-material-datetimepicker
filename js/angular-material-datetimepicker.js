@@ -404,11 +404,16 @@
       if (minutes >= 60) {
         minutes = 60 - nearestMin; //always push down
       }
-      var seconds = date.second();
-      if (seconds >= 60) {
-        seconds = 60 - 1; //always push down
-      }
-      return moment(date).minutes(minutes).seconds(seconds);
+
+      var seconds;
+      if (this.params.seconds) {
+        seconds = date.second();
+        if (seconds >= 60) {
+          seconds = 60 - 1; //always push down
+        }
+      } else seconds = 0;
+
+      return moment(date).minutes(minutes).seconds(seconds).millisecond(0);
     },
     initDates: function () {
       var that = this;
@@ -432,8 +437,7 @@
               ret = input;
             }
           }
-        }
-        else {
+        } else {
           ret = fallback;
         }
         return ret;
@@ -676,7 +680,16 @@
       if (minutes >= 60) {
         minutes = 60 - nearestMin; //always push down
       }
-      this.selectDate(moment(date).minutes(minutes));
+
+      var seconds;
+      if (this.params.seconds) {
+        seconds = date.second();
+        if (seconds >= 60) {
+          seconds = 60 - 1; //always push down
+        }
+      } else seconds = 0;
+
+      this.selectDate(moment(date).minutes(minutes).seconds(seconds).millisecond(0));
     },
     ok: function () {
       switch (this.currentView) {
