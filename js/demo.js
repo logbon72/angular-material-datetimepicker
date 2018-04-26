@@ -90,13 +90,16 @@
 
       $scope.langs = [{'value': 'en', 'label': 'English'},{'value': 'fr', 'label': 'Français'}];
 
-      $scope.displayDialog = function () {
+      $scope.displayDialog = function(event) {
         mdcDateTimeDialog.show({
           currentDate: moment().startOf('day'),
           maxDate: $scope.maxDate,
           showTodaysDate: '',
           time: true,
-          clickOutsideToClose: true
+          clickOutsideToClose: true,
+          targetEvent: event,
+          openFrom: angular.element(document.querySelector('#pickerbutton')),
+          closeTo: angular.element(document.querySelector('#pickerbutton'))
         })
           .then(function (date) {
             $scope.selectedDateTime = date;

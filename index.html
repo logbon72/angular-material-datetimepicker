@@ -245,7 +245,7 @@
       <div layout-gt-md="row" layout="column" layout-align-gt-md="center center">
         <div flex-gt-md="30">
           <p>mdcDateTimeDialog Service</p>
-          <md-button class="md-raised md-primary" ng-click="displayDialog()">
+          <md-button id="pickerbutton" class="md-raised md-primary" ng-click="displayDialog($event)">
             Display Picker
           </md-button>
           <p ng-if="selectedDateTime">Date: {{selectedDateTime|date:'medium'}}</p>

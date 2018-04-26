@@ -263,6 +263,7 @@
                 controllerAs: 'picker',
                 locals: {options: options},
                 openFrom: element,
+                closeTo: element,
                 parent: angular.element(document.body),
                 bindToController: true,
                 clickOutsideToClose: options.clickOutsideToClose || false,

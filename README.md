@@ -206,13 +206,16 @@ The `mdcDateTimeDialog.show` accepts almost the same options as the directive.
        pmText: {string} ='PM',
        disableDates: {date[]} =[],
        weekDays: {boolean} =false,
-       disableParentScroll: {boolean} = false,
+       disableParentScroll: {boolean} =false,
        autoOk: {boolean} =false,
        editInput: {boolean} =false,
        clickOutsideToClose: {boolean} =false,
        minuteSteps: {int} =5,
        howIcon: {boolean} =false,
        templateUrl: {string} =''
+       targetEvent: {DOMClickEvent}=null,
+       openFrom: {string|Element|object}=null,
+       closeTo: {string|Element|object}=null
      }
 ```
 
