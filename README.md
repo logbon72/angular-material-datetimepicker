@@ -72,21 +72,21 @@ bower install ng-material-datetimepicker
 
 ## CDN
 ```
-<script src="https://unpkg.com/ng-material-datetimepicker@1.14.0/dist/angular-material-datetimepicker.min.js"></script>
-<script src="https://unpkg.com/ng-material-datetimepicker@1.14.0/dist/angular-material-datetimepicker.min.js.map"></script>
-<link href="https://unpkg.com/ng-material-datetimepicker@1.14.0/dist/material-datetimepicker.min.css rel="stylesheet" type="text/css">
+<script src="https://unpkg.com/ng-material-datetimepicker@1.15.0/dist/angular-material-datetimepicker.min.js"></script>
+<script src="https://unpkg.com/ng-material-datetimepicker@1.15.0/dist/angular-material-datetimepicker.min.js.map"></script>
+<link href="https://unpkg.com/ng-material-datetimepicker@1.15.0/dist/material-datetimepicker.min.css rel="stylesheet" type="text/css">
 ```
 or
 ```
-<script src="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.14.0/dist/angular-material-datetimepicker.min.js"></script>
-<script src="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.14.0/dist/angular-material-datetimepicker.min.js.map"></script>
-<link href="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.14.0/dist/material-datetimepicker.min.css" rel="stylesheet" type="text/css">
+<script src="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.15.0/dist/angular-material-datetimepicker.min.js"></script>
+<script src="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.15.0/dist/angular-material-datetimepicker.min.js.map"></script>
+<link href="https://cdn.rawgit.com/beenote/angular-material-datetimepicker/v1.15.0/dist/material-datetimepicker.min.css" rel="stylesheet" type="text/css">
 ```
 or
 ```
-<script src="https://cdn.jsdelivr.net/npm/ng-material-datetimepicker@v1.14.0/dist/angular-material-datetimepicker.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/ng-material-datetimepicker@v1.14.0/dist/angular-material-datetimepicker.min.js.map"></script>
-<link href="https://cdn.jsdelivr.net/npm/ng-material-datetimepicker@v1.14.0/dist/material-datetimepicker.min.css" rel="stylesheet" type="text/css">
+<script src="https://cdn.jsdelivr.net/npm/ng-material-datetimepicker@v1.15.0/dist/angular-material-datetimepicker.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/ng-material-datetimepicker@v1.15.0/dist/angular-material-datetimepicker.min.js.map"></script>
+<link href="https://cdn.jsdelivr.net/npm/ng-material-datetimepicker@v1.15.0/dist/material-datetimepicker.min.css" rel="stylesheet" type="text/css">
 ```
 
 ## Live Example
