@@ -131,6 +131,9 @@
         showIcon: false,
         template: template,
         templateUrl: '',
+        targetEvent: null,
+        openFrom: null,
+        closeTo: null
       };
 
       return function (params) {
@@ -356,6 +359,9 @@
               disableParentScroll: options.disableParentScroll || false,
               skipHide: true,
               multiple: true,
+              targetEvent: options.targetEvent,
+              openFrom: options.openFrom,
+              closeTo: options.closeTo,
           };
 
           if (!options.templateUrl) dialogOptions.template = template;
