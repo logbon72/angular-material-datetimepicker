@@ -408,16 +408,12 @@
 
       var date = this.currentDate || moment();
       var minutes = (nearestMin * Math.round(date.minute() / nearestMin));
-      if (minutes >= 60) {
-        minutes = 60 - nearestMin; //always push down
-      }
+      if (minutes >= 60) minutes = 60 - nearestMin;
 
       var seconds;
       if (this.params.seconds) {
         seconds = date.second();
-        if (seconds >= 60) {
-          seconds = 60 - 1; //always push down
-        }
+        if (seconds >= 60) seconds = 60 - 1;
       } else seconds = 0;
 
       return moment(date).minutes(minutes).seconds(seconds).millisecond(0);
@@ -665,6 +661,15 @@
     isMinuteAvailable: function (minute) {
       var _date = moment(this.currentDate);
       _date.minute(minute).second(0);
+
+      var nearestMin = this.params.minuteSteps;
+      if (nearestMin > 1 && 5 % nearestMin !== 0){
+        var _curmin = _date.minute();
+        var minutes = (nearestMin * Math.round(_curmin / nearestMin));
+        if (minutes >= 60) minutes = 60 - nearestMin;
+        if (minutes !== _curmin) return false;
+      }
+
       return this.isAfterMinDate(_date, true, true) && this.isBeforeMaxDate(_date, true, true);
     },
     isSecondAvailable: function (second) {
@@ -684,16 +689,12 @@
       var nearestMin = this.params.minuteSteps;
       var date = moment();
       var minutes = (nearestMin * Math.round(date.minute() / nearestMin));
-      if (minutes >= 60) {
-        minutes = 60 - nearestMin; //always push down
-      }
+      if (minutes >= 60) minutes = 60 - nearestMin;
 
       var seconds;
       if (this.params.seconds) {
         seconds = date.second();
-        if (seconds >= 60) {
-          seconds = 60 - 1; //always push down
-        }
+        if (seconds >= 60) seconds = 60 - 1;
       } else seconds = 0;
 
       this.selectDate(moment(date).minutes(minutes).seconds(seconds).millisecond(0));
@@ -1083,9 +1084,8 @@
                 if (nearestMin < 1 || nearestMin > 59) nearestMin = 1;
 
                 var minutes = (nearestMin * Math.round(val / nearestMin));
-                if (minutes >= 60) {
-                  minutes = 60 - nearestMin; //always push down
-                }
+                if (minutes >= 60) minutes = 60 - nearestMin;
+
                 if (!scope.pointAvailable({value: val})) return;
                 picker.currentDate.minute(minutes);
               } else if (!secondMode){
