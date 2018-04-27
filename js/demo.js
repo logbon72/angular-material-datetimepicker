@@ -15,9 +15,9 @@
         TODAY: "Aujourd'hui",
       });
       $translateProvider.preferredLanguage('en');
-		  $translateProvider.useSanitizeValueStrategy('sceParameters');
+      $translateProvider.useSanitizeValueStrategy('sceParameters');
     })
-    .run(function ($templateCache) {
+    .run(['$templaceCache', function($templateCache) {
         $templateCache.put(
           'customTemplate.html',
           '<md-dialog class="dtp" layout="column" aria-label="date time picker dialog">' +
@@ -62,7 +62,7 @@
           '      </md-dialog-actions>' +
           '</md-dialog>'
         );
-    })
+    }])
     .controller('DemoCtrl', function ($scope, mdcDateTimeDialog, $translate, mdcDefaultParams) {
       $scope.date = moment().startOf('day');
       $scope.dateLang = new Date();
@@ -75,18 +75,15 @@
      
       // current date + 1 hour, no minutes, no seconds, no milliseconds
       var newDate = new Date();
-      newDate.setHours(newDate.getHours() +1);
-      newDate.setMinutes(0);
-      newDate.setSeconds(0);
-      newDate.setMilliseconds(0);
+      newDate.setHours(newDate.getHours() +1, 0, 0, 0);
       $scope.dateTimeNoMin = newDate;
 
       $scope.minDate = moment().subtract(6, 'year');
       $scope.minDateNow = moment();
       $scope.maxDate = moment().add(6, 'year');
-      $scope.dates = [new Date('2017-11-14T00:00:00'), new Date('2017-11-15T00:00:00'),
-        new Date('2017-11-30T00:00:00'), new Date('2017-12-12T00:00:00'), new Date('2017-12-13T00:00:00'),
-        new Date('2017-12-31T00:00:00')];
+      $scope.dates = [new Date('2018-11-14T00:00:00'), new Date('2018-11-15T00:00:00'),
+        new Date('2018-11-30T00:00:00'), new Date('2018-12-12T00:00:00'), new Date('2018-12-13T00:00:00'),
+        new Date('2018-12-31T00:00:00')];
 
       $scope.langs = [{'value': 'en', 'label': 'English'},{'value': 'fr', 'label': 'Français'}];
 
@@ -100,11 +97,10 @@
           targetEvent: event,
           openFrom: angular.element(document.querySelector('#pickerbutton')),
           closeTo: angular.element(document.querySelector('#pickerbutton'))
-        })
-          .then(function (date) {
-            $scope.selectedDateTime = date;
-            console.log('New Date / Time selected:', date);
-          }, function(){});
+        }).then(function (date) {
+          $scope.selectedDateTime = date;
+          console.log('New Date / Time selected:', date);
+        }, function(){});
       };
 
       // Set and change the text direction

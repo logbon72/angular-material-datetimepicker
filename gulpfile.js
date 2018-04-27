@@ -1,11 +1,13 @@
-var gulp = require('gulp'),
-	pump = require('pump'),
-	uglify = require('gulp-uglify'),
-	cleanCSS = require('gulp-clean-css'),
-	sourcemaps = require('gulp-sourcemaps'),
-	rename = require('gulp-rename');
+/*jshint esversion: 6 */
 
-gulp.task('js', function(cb) {
+const gulp = require('gulp');
+const pump = require('pump');
+const uglify = require('gulp-uglify');
+const cleanCSS = require('gulp-clean-css');
+const sourcemaps = require('gulp-sourcemaps');
+const rename = require('gulp-rename');
+
+gulp.task('js', cb => {
 	pump([
 		gulp.src(['./js/angular-material-datetimepicker.js']),
 		sourcemaps.init(),
@@ -16,7 +18,7 @@ gulp.task('js', function(cb) {
 	], cb);
 });
 
-gulp.task('css', function(cb) {
+gulp.task('css', cb => {
 	pump([
 		gulp.src(['./css/material-datetimepicker.css']),
 		cleanCSS(),
