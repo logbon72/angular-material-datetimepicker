@@ -4,8 +4,8 @@
   function ngMaterialDatePicker(moment) {
   var moduleName = "ngMaterialDatePicker";
 
-  var mdAccesTime = 'data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMDAwMDAwIiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4gICAgPHBhdGggZD0iTTExLjk5IDJDNi40NyAyIDIgNi40OCAyIDEyczQuNDcgMTAgOS45OSAxMEMxNy41MiAyMiAyMiAxNy41MiAyMiAxMlMxNy41MiAyIDExLjk5IDJ6TTEyIDIwYy00LjQyIDAtOC0zLjU4LTgtOHMzLjU4LTggOC04IDggMy41OCA4IDgtMy41OCA4LTggOHoiLz4gICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPiAgICA8cGF0aCBkPSJNMTIuNSA3SDExdjZsNS4yNSAzLjE1Ljc1LTEuMjMtNC41LTIuNjd6Ii8+PC9zdmc+',
-      mdCalendar = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTkgM2gtMVYxaC0ydjJIOFYxSDZ2Mkg1Yy0xLjExIDAtMS45OS45LTEuOTkgMkwzIDE5YzAgMS4xLjg5IDIgMiAyaDE0YzEuMSAwIDItLjkgMi0yVjVjMC0xLjEtLjktMi0yLTJ6bTAgMTZINVY4aDE0djExek03IDEwaDV2NUg3eiIvPjwvc3ZnPg==';
+  var mdAccesTime = 'data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMDAwMDAwIiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4gICAgPHBhdGggZD0iTTExLjk5IDJDNi40NyAyIDIgNi40OCAyIDEyczQuNDcgMTAgOS45OSAxMEMxNy41MiAyMiAyMiAxNy41MiAyMiAxMlMxNy41MiAyIDExLjk5IDJ6TTEyIDIwYy00LjQyIDAtOC0zLjU4LTgtOHMzLjU4LTggOC04IDggMy41OCA4IDgtMy41OCA4LTggOHoiLz4gICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPiAgICA8cGF0aCBkPSJNMTIuNSA3SDExdjZsNS4yNSAzLjE1Ljc1LTEuMjMtNC41LTIuNjd6Ii8+PC9zdmc+';
+  var mdCalendar = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTkgM2gtMVYxaC0ydjJIOFYxSDZ2Mkg1Yy0xLjExIDAtMS45OS45LTEuOTkgMkwzIDE5YzAgMS4xLjg5IDIgMiAyaDE0YzEuMSAwIDItLjkgMi0yVjVjMC0xLjEtLjktMi0yLTJ6bTAgMTZINVY4aDE0djExek03IDEwaDV2NUg3eiIvPjwvc3ZnPg==';
   
   var VIEW_STATES = {DATE: 0, HOUR: 1, MINUTE: 2};
 
@@ -92,17 +92,6 @@
     '</md-dialog>';
 
   angular.module(moduleName, ['ngMaterial'])
-    .service('mdcDatetimePickerDefaultLocale', ['mdcDefaultParams', function (mdcDefaultParams) {
-      this.$get = function () {
-        console.log("mdcDatetimePickerDefaultLocale deprecated!");
-        return mdcDefaultParams().lang;
-      };
-
-      this.setDefaultLocale = function (localeString) {
-        console.log("mdcDatetimePickerDefaultLocale deprecated!");
-        mdcDefaultParams({ lang: localeString });
-      };
-    }])
     .factory('mdcDefaultParams', function () {
       var default_params = {
         date: true,
@@ -139,12 +128,9 @@
       return function (params) {
         if (params) {
           for (var i in params) {
-            if (default_params.hasOwnProperty(i) && params.hasOwnProperty(i)) {
-              default_params[i] = params[i];
-            }
+            if (default_params.hasOwnProperty(i) && params.hasOwnProperty(i)) default_params[i] = params[i];
           }
         }
-
         return default_params;
       };
     })
@@ -187,15 +173,10 @@
           link: function (scope, element, attrs, ngModel) {
             var isOn = false;
             if (!scope.format) {
-              if (scope.date && scope.time && scope.seconds) {
-                scope.format = 'YYYY-MM-DD HH:mm:ss';
-              } else if (scope.date && scope.time) {
-                scope.format = 'YYYY-MM-DD HH:mm';
-              } else if (scope.date) {
-                scope.format = 'YYYY-MM-DD';
-              } else {
-                scope.format = 'HH:mm';
-              }
+              if (scope.date && scope.time && scope.seconds) scope.format = 'YYYY-MM-DD HH:mm:ss';
+              else if (scope.date && scope.time) scope.format = 'YYYY-MM-DD HH:mm';
+              else if (scope.date) scope.format = 'YYYY-MM-DD';
+              else scope.format = 'HH:mm';
             }
 
             var dateOfTheDay = null;
@@ -792,17 +773,13 @@
     },
     convertHours: function (h) {
       var _return = h;
-      if ((h < 12) && this.isPM())
-        _return += 12;
+      if (h < 12 && this.isPM()) _return += 12;
 
       return _return;
     },
     hide: function (okBtn) {
-      if (okBtn) {
-        this._dialog.hide(this.currentDate);
-      } else {
-        this._dialog.cancel();
-      }
+      if (okBtn) this._dialog.hide(this.currentDate);
+      else this._dialog.cancel();
     }
   };
 
@@ -823,7 +800,7 @@
           low = low ? low : 0;
           var year = date.year();
           var month = date.month();
-          return (((year - YEAR_MIN) * 12) + month - 1 ) - low;
+          return (((year - YEAR_MIN) * 12) + month - 1) - low;
         };
 
         return {
@@ -842,9 +819,7 @@
 
               var days = [];
               for (var i = picker.params.weekStart; days.length < 7; i++) {
-                if (i > 6) {
-                  i = 0;
-                }
+                if (i > 6) i = 0;
                 days.push(i.toString());
               }
               calendar.week = days;
@@ -1144,18 +1119,16 @@
                   pickerEl = angular.element(componentRoot.querySelector('.dtp-picker'));
 
               var w = componentRoot.querySelector('.dtp-content').offsetWidth;
-              var pl = parseInt(css(pickerEl, 'paddingLeft').replace('px', '')) || 0;
-              var pr = parseInt(css(pickerEl, 'paddingRight').replace('px', '')) || 0;
-              var ml = parseInt(css(clock, 'marginLeft').replace('px', '')) || 0;
-              var mr = parseInt(css(clock, 'marginRight').replace('px', '')) || 0;
-              //set width
-              var clockWidth = (w - (ml + mr + pl + pr));
-              clock.css('width', (clockWidth) + 'px');
-
               var pL = parseInt(css(pickerEl, 'paddingLeft').replace('px', '')) || 0;
+              var pR = parseInt(css(pickerEl, 'paddingRight').replace('px', '')) || 0;
               var pT = parseInt(css(pickerEl, 'paddingTop').replace('px', '')) || 0;
               var mL = parseInt(css(clock, 'marginLeft').replace('px', '')) || 0;
+              var mR = parseInt(css(clock, 'marginRight').replace('px', '')) || 0;
               var mT = parseInt(css(clock, 'marginTop').replace('px', '')) || 0;
+
+              //set width
+              var clockWidth = (w - (mL + mR + pL + pR));
+              clock.css('width', (clockWidth) + 'px');
 
               var r = (clockWidth / 2);
               var j = r / 1.2; // radius for low number
@@ -1179,7 +1152,7 @@
                   hour.display = hour.value < 10 ? ('0' + hour.value) : hour.value;
                 } else {
                   if (picker.params.shortTime) {
-                    hour.display = (h === 0) ? 12 : h;
+                    hour.display = h === 0 ? 12 : h;
                   } else {
                     hour.display = h;
                   }
@@ -1215,11 +1188,11 @@
               clock.css('height', clockWidth + 'px');
 
               var clockCenter = element[0].querySelector('.dtp-clock-center');
-              var centerWidth = (clockCenter.offsetWidth / 2) || 7.5,
-                centerHeight = (clockCenter.offsetHeight / 2) || 7.5;
+              var centerWidth = (clockCenter.offsetWidth / 2) || 7.5;
+              var centerHeight = (clockCenter.offsetHeight / 2) || 7.5;
               var _hL = r / (picker.params.shortTime ? 1.8 : 2.3);
               var _mL = r / 1.4;
-              var _sL = r / 1;
+              var _sL = r;
 
               angular.element(element[0].querySelector('.dtp-hour-hand')).css({
                 left: r + (mL * 1.5) + 'px',
@@ -1227,22 +1200,20 @@
                 marginTop: (r - _hL - pL) + 'px'
               }).addClass(!minuteMode && !secondMode ? 'on' : '');
 
-              angular.element(element[0].querySelector('.dtp-minute-hand')).css
-              ({
+              angular.element(element[0].querySelector('.dtp-minute-hand')).css({
                 left: r + (mL * 1.5) + 'px',
                 height: _mL + 'px',
-                marginTop: (r - _mL - pL) + 'px'
+                marginTop: r - _mL - pL + 'px'
               }).addClass(minuteMode ? 'on' : '');
 
-              angular.element(element[0].querySelector('.dtp-second-hand')).css
-              ({
+              angular.element(element[0].querySelector('.dtp-second-hand')).css({
                 left: r + (mL * 1.5) + 'px',
                 height: _sL + 'px',
-                marginTop: (r - _sL - pL) + 'px'
+                marginTop: r - _sL - pL + 'px'
               }).addClass(secondMode ? 'on' : '');
 
               angular.element(clockCenter).css({
-                left: (r + pL + mL - centerWidth) + 'px',
+                left: r + pL + mL - centerWidth + 'px',
                 marginTop: (r - (mL / 2)) - centerHeight + 'px'
               });
               animateHands();
@@ -1272,13 +1243,9 @@
             var setCurrentValue = function () {
               var date = picker.currentNearestMinute();
               var nbH = picker.params.shortTime ? 12 : 24;
-              if (minuteMode) {
-                scope.currentValue = date.minute();
-              } else if (secondMode) {
-                scope.currentValue = date.second();
-              } else {
-                scope.currentValue = date.hour() % nbH;
-              }
+              if (minuteMode) scope.currentValue = date.minute();
+              else if (secondMode) scope.currentValue = date.second();
+              else scope.currentValue = date.hour() % nbH;
             };
 
             scope.$watch(function () {
@@ -1303,9 +1270,8 @@
 
                 if (picker.params.autoOk) picker.ok(); // single click
               } else if (!secondMode) {
-                if (val === scope.currentValue && !picker.params.seconds) {
-                  picker.ok(); // double click
-                }
+                if (val === scope.currentValue && !picker.params.seconds) picker.ok(); // double click
+    
                 picker.currentDate.minute(val);
                 if (!picker.params.seconds) {
                   picker.currentDate.second(0);
@@ -1317,13 +1283,9 @@
             };
 
             scope.pointAvailable = function (point) {
-              if (minuteMode) {
-                return picker.isMinuteAvailable(point.value);
-              } else if (secondMode) {
-                return picker.isSecondAvailable(point.value);
-              } else {
-                return picker.isHourAvailable(point.value);
-              }
+              if (minuteMode) return picker.isMinuteAvailable(point.value);
+              else if (secondMode) return picker.isSecondAvailable(point.value);
+              else return picker.isHourAvailable(point.value);
             };
 
             var unWatcher = scope.$watch(function () {
