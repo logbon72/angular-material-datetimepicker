@@ -17,7 +17,7 @@
       $translateProvider.preferredLanguage('en');
       $translateProvider.useSanitizeValueStrategy('sceParameters');
     })
-    .run(['$templaceCache', function($templateCache) {
+    .run(['$templateCache', function($templateCache) {
         $templateCache.put(
           'customTemplate.html',
           '<md-dialog class="dtp" layout="column" aria-label="date time picker dialog">' +
