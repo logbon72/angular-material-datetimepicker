@@ -416,8 +416,9 @@
             if (angular.isDate(input)) {
               var x = input.getTime();
               ret = moment(x, "x").locale(that.params.lang);
-            } else if (input._isAMomentObject) {
-              ret = input;
+            } else if (moment.isMoment(input)) {
+              if (input.isValid()) ret = input;
+              else ret = fallback;
             }
           }
         } else {
