@@ -200,6 +200,26 @@
                 if (ngModel.$options.timezone) offset = ngModel.$options.timezone;
               }
               if (offset==='utc' || offset==='UTC') offset = 0;
+
+              if (scope.minDate) {
+                scope.$watch(function () {
+                  return scope.minDate;
+                }, function (val2, val1) {
+                  if (val2 !== val1) {
+                    ngModel.$setValidity('min', !scope.currentDate.isBefore(scope.minDate));
+                  }
+                });
+              }
+
+              if (scope.maxDate) {
+                scope.$watch(function () {
+                  return scope.maxDate;
+                }, function (val2, val1) {
+                  if (val2 !== val1) {
+                    ngModel.$setValidity('max', !scope.currentDate.isAfter(scope.maxDate));
+                  }
+                });
+              }
       
               ngModel.$formatters.push(function (value) {
                 if (typeof value === 'undefined') return;
