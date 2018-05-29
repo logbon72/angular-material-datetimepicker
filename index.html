@@ -198,20 +198,19 @@
           <md-input-container>
             <label>Start Date/Time</label>
             <input mdc-datetime-picker date="true" time="true" type="text"
-                   placeholder="Date" minutes="true"
-                   max-date="dateTimeEnd"
+                   placeholder="Date" minutes="true" edit-input="true"
+                   max-date="dateTimeEnd" show-icon="true"
                    ng-model="dateTimeStart"/>
           </md-input-container>
           <md-input-container>
             <label>End Date/Time</label>
             <input mdc-datetime-picker date="true" time="true" type="text"
-                   placeholder="Date" minutes="true"
-                   min-date="dateTimeStart"
+                   placeholder="Date" minutes="true" edit-input="true"
+                   min-date="dateTimeStart" show-icon="true"
                    ng-model="dateTimeEnd">
           </md-input-container>
         </div>
-
-        <div flex-gt-md="grow" ex-source-code target="div.range" title="DateRange Example"></div>
+        <div flex-gt-md="70" ex-source-code target="div.range" title="DateRange Example"></div>
       </div>
 
       <div layout-gt-md="row" layout="column" layout-align-gt-md="center center">

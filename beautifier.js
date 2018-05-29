@@ -49,7 +49,7 @@ function style_html(html_source, options) {
   indent_size = options.indent_size || 4;
   indent_character = options.indent_char || ' ';
   brace_style = options.brace_style || 'collapse';
-  max_char = options.max_char == 0 ? Infinity : options.max_char || 70;
+  max_char = options.max_char === 0 ? Infinity : options.max_char || 70;
   unformatted = options.unformatted || ['a'];
 
   function Parser() {
@@ -204,8 +204,7 @@ function style_html(html_source, options) {
           space = false;
         }
 
-        if (content.length && content[content.length - 1] !== '=' && input_char !== '>'
-          && space) { //no space after = or before >
+        if (content.length && content[content.length - 1] !== '=' && input_char !== '>' && space) { //no space after = or before >
           if (this.line_char_count >= this.max_char) {
             this.print_newline(false, content);
             this.line_char_count = 0;
@@ -231,8 +230,7 @@ function style_html(html_source, options) {
       if (tag_complete.charAt(tag_complete.length - 2) === '/' ||
         this.Utils.in_array(tag_check, this.Utils.single_token)) { //if this tag name is a single tag type (either in the list or has a closing /)
         this.tag_type = 'SINGLE';
-      }
-      else if (tag_check === 'script') { //for later script handling
+      } else if (tag_check === 'script') { //for later script handling
         this.record_tag(tag_check);
         this.tag_type = 'SCRIPT';
       }
@@ -299,7 +297,7 @@ function style_html(html_source, options) {
         }
 
         input_char = this.input.charAt(this.pos);
-        this.pos++
+        this.pos++;
 
         if (this.Utils.in_array(input_char, this.Utils.whitespace)) {
           if (!space) {
@@ -331,7 +329,7 @@ function style_html(html_source, options) {
       var token;
 
       if (this.last_token === 'TK_TAG_SCRIPT' || this.last_token === 'TK_TAG_STYLE') { //check if we need to format javascript
-        var type = this.last_token.substr(7)
+        var type = this.last_token.substr(7);
         token = this.get_contents_to(type);
         if (typeof token !== 'string') {
           return token;
@@ -366,7 +364,7 @@ function style_html(html_source, options) {
         return '';
 
       return Array(level + 1).join(this.indent_string);
-    }
+    };
 
 
     this.printer = function (js_source, indent_character, indent_size, max_char, brace_style) { //handles input/output and some other printing functions
