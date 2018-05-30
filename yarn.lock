@@ -39,24 +39,24 @@ amdefine@>=0.0.4:
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
 
 angular-animate@^1.6.10:
-  version "1.6.10"
-  resolved "https://registry.yarnpkg.com/angular-animate/-/angular-animate-1.6.10.tgz#c520f6d341370e34e0a62060c99bcf47b7d7db8c"
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/angular-animate/-/angular-animate-1.7.0.tgz#c04293068ee0986dc00ba154626d74bf51f25576"
 
 angular-aria@^1.6.10:
-  version "1.6.10"
-  resolved "https://registry.yarnpkg.com/angular-aria/-/angular-aria-1.6.10.tgz#472bfff8682c4cfe634d4bfda0524443e07e3501"
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/angular-aria/-/angular-aria-1.7.0.tgz#fb96f5650959a86f30695ea814a071387e6e71b2"
 
 angular-material@^1.1.8:
-  version "1.1.8"
-  resolved "https://registry.yarnpkg.com/angular-material/-/angular-material-1.1.8.tgz#6ddec2db18812506144ccf204cf8ecec330bc85c"
+  version "1.1.9"
+  resolved "https://registry.yarnpkg.com/angular-material/-/angular-material-1.1.9.tgz#840574f8701629fc39eadfea7fd8e235cc5d97c6"
 
 angular-messages@^1.6.10:
-  version "1.6.10"
-  resolved "https://registry.yarnpkg.com/angular-messages/-/angular-messages-1.6.10.tgz#09eedc5b50db99eeed9776414428c587c1259715"
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/angular-messages/-/angular-messages-1.7.0.tgz#ae0ec5fec710898dbbe9f0146ca87e0649f6c3d6"
 
 angular@^1.6.10:
-  version "1.6.10"
-  resolved "https://registry.yarnpkg.com/angular/-/angular-1.6.10.tgz#eed3080a34d29d0f681ff119b18ce294e3f74826"
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/angular/-/angular-1.7.0.tgz#e45d679fc8d81040a4894c7ccc16a4e1ad0a9ca6"
 
 ansi-colors@^1.0.1:
   version "1.1.0"
