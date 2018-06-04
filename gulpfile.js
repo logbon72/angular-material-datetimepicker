@@ -6,6 +6,7 @@ const uglify = require('gulp-uglify');
 const cleanCSS = require('gulp-clean-css');
 const sourcemaps = require('gulp-sourcemaps');
 const rename = require('gulp-rename');
+const exec = require('child_process').exec;
 
 gulp.task('js', cb => {
 	pump([
@@ -28,3 +29,11 @@ gulp.task('css', cb => {
 });
 
 gulp.task('default', gulp.parallel('js', 'css'));
+
+gulp.task('serve', function (cb) {
+	exec('npm run dev', function (err, stdout, stderr) {
+		console.log(stdout);
+		console.log(stderr);
+		cb(err);
+	});
+});

@@ -237,3 +237,11 @@ Copy this css code in your project to override default color.
   background: #009796;
 }
 ```
+
+### Development
+Use any:
+```
+npm run dev
+yarn run dev
+gulp serve
+```
