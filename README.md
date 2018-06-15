@@ -143,6 +143,12 @@ The directive accepts several attributes which are described below:
 | **template-url**          | String                  | You can set a custom HTML template (default: '')                     |
 | **ng-model-options**      | timezone option         | For example: ng-model-options="{timezone: 'utc'}"                    |
 
+### UTC Time Zone
+You should normally use the browser local time zone and use UTC only on the server side.
+But if you have special case, you can set the model to a moment.utc() and it will stay a moment utc object.
+You can also use the `format="YYYY-MM-DD HH:mmZ"` for parsing if your server returns an UTC date time.
+Also, if you want your user to manually enter an UTC time use the `ng-model-options timezone` as shown in the demo.
+
 ### Set or update params by injecting `mdcDefaultParams` provider
 To change params like the locale you can use this method instead of attributes for all datetimepicker:
 ```javascript
