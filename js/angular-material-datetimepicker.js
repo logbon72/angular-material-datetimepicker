@@ -19,8 +19,8 @@
     '    <md-dialog-content class="dtp-content">' +
     '        <div class="dtp-date-view">' +
     '            <header class="dtp-header">' +
-    '                <div class="dtp-actual-day" ng-if="picker.dateMode">{{picker.currentNearestMinute().format("dddd")}}</div>' +
-    '                <div class="dtp-actual-day" ng-if="!picker.timeMode">{{picker.params.shortTime ? picker.currentDate.format("A"):" "}}</div>' +
+    '                <div class="dtp-actual-day" ng-if="::picker.dateMode">{{picker.currentNearestMinute().format("dddd")}}</div>' +
+    '                <div class="dtp-actual-day" ng-if="::!picker.timeMode">{{picker.params.shortTime?picker.currentDate.format("A"):" "}}</div>' +
     '                <div class="dtp-close text-right noselect">' +
     '                    <a href="#" mdc-dtp-noclick ng-click="picker.hide()">&times;</a>' +
     '                </div>' +
@@ -29,7 +29,7 @@
     '                <div layout="row">' +
     '                    <div ng-click="picker.incrementMonth(-1)" class="dtp-month-btn dtp-month-btn-prev noselect" flex="30"><span ng-if="picker.isPreviousMonthVisible()">&#x25C4;</span></div>' +
     '                    <md-menu md-offset="8 10" flex>' +
-    '                        <div class="dtp-actual-month" flex ng-click="picker.openMenu($mdMenu, $event)">{{picker.currentDate.format("MMM") | uppercase}}</div>' +
+    '                        <div class="dtp-actual-month" flex ng-click="picker.openMenu($mdMenu, $event)">{{picker.currentDate.format("MMM")|uppercase}}</div>' +
     '                        <md-menu-content>' +
     '                            <md-menu-item ng-repeat="itemMonth in picker.monthsAvailable() track by $index">' +
     '                            <md-button ng-click="picker.selectMonth(itemMonth)">{{itemMonth}}</md-button>' +
@@ -52,28 +52,28 @@
     '                    <div ng-click="picker.incrementYear(1)" class="dtp-year-btn dtp-year-btn-next noselect" flex="30"><span ng-if="picker.isNextYearVisible()">&#x25BA;</span></div>' +
     '                </div>'+
     '            </div>' + //start time 
-    '            <div class="dtp-time" ng-if="picker.params.time && !picker.params.date">' +
+    '            <div class="dtp-time" ng-if="picker.params.time&&!picker.params.date">' +
     '                <div class="dtp-actual-maxtime">' +
-    '                    <span ng-if="!picker.params.seconds"><span ng-class="{selected: picker.currentView===picker.VIEWS.HOUR}">{{picker.currentNearestMinute().format(picker.params.shortTime ? "hh":"HH")}}</span>:<span ng-class="{selected: picker.currentView===picker.VIEWS.MINUTE}">{{picker.currentNearestMinute().format("mm")}}</span></span>'+
-    '                    <span ng-if="picker.params.seconds"><span ng-class="{selected: picker.currentView===picker.VIEWS.HOUR}">{{picker.currentNearestMinute().format(picker.params.shortTime ? "hh":"HH")}}</span>:<span ng-class="{selected: picker.currentView===picker.VIEWS.MINUTE}">{{picker.currentNearestMinute().format("mm")}}</span>:<span ng-class="{selected: picker.currentView===picker.VIEWS.SECOND}">{{picker.currentNearestMinute().format("ss")}}</span></span>'+
+    '                    <span ng-if="!picker.params.seconds"><span ng-class="{selected:picker.currentView===picker.VIEWS.HOUR}">{{picker.currentNearestMinute().format(picker.params.shortTime ? "hh":"HH")}}</span>:<span ng-class="{selected: picker.currentView===picker.VIEWS.MINUTE}">{{picker.currentNearestMinute().format("mm")}}</span></span>'+
+    '                    <span ng-if="picker.params.seconds"><span ng-class="{selected:picker.currentView===picker.VIEWS.HOUR}">{{picker.currentNearestMinute().format(picker.params.shortTime ? "hh":"HH")}}</span>:<span ng-class="{selected: picker.currentView===picker.VIEWS.MINUTE}">{{picker.currentNearestMinute().format("mm")}}</span>:<span ng-class="{selected: picker.currentView===picker.VIEWS.SECOND}">{{picker.currentNearestMinute().format("ss")}}</span></span>'+
     '                    <span class="dtp-actual-meridien" ng-if="picker.params.shortTime">{{picker.currentDate.format("A")}}</span>'+
     '                </div>' +
     '            </div>' +
     '            <div class="dtp-picker">' +
-    '                <mdc-datetime-picker-calendar date="picker.currentDate" picker="picker" class="dtp-picker-calendar" ng-if="picker.currentView === picker.VIEWS.DATE"></mdc-datetime-picker-calendar>' +
-    '                <div class="dtp-picker-datetime" ng-cloak ng-if="picker.currentView !== picker.VIEWS.DATE">' +
+    '                <mdc-datetime-picker-calendar date="picker.currentDate" picker="picker" class="dtp-picker-calendar" ng-if="picker.currentView===picker.VIEWS.DATE"></mdc-datetime-picker-calendar>' +
+    '                <div class="dtp-picker-datetime" ng-cloak ng-if="picker.currentView!==picker.VIEWS.DATE">' +
     '                    <div class="dtp-actual-meridien">' +
     '                        <div ng-if="picker.params.shortTime" class="left p20">' +
-    '                            <a id="time-periods-am" href="#" mdc-dtp-noclick class="dtp-meridien-am" ng-class="{selected: picker.meridien===\'AM\'}" ng-click="picker.selectAM()">{{picker.params.amText}}</a>' +
+    '                            <a id="time-periods-am" href="#" mdc-dtp-noclick class="dtp-meridien-am" ng-class="{selected:picker.meridien===\'AM\'}" ng-click="picker.selectAM()">{{::picker.params.amText}}</a>' +
     '                        </div>' +
-    '                        <div ng-if="!picker.timeMode && !picker.params.seconds" class="dtp-actual-time p60">' +
-    '                            <span ng-class="{selected: picker.currentView===picker.VIEWS.HOUR}">{{picker.currentNearestMinute().format(picker.params.shortTime ? "hh":"HH")}}</span>:<span ng-class="{selected: picker.currentView===picker.VIEWS.MINUTE}">{{picker.currentNearestMinute().format("mm")}}</span>' +
+    '                        <div ng-if="!picker.timeMode&&!picker.params.seconds" class="dtp-actual-time p60">' +
+    '                            <span ng-class="{selected:picker.currentView===picker.VIEWS.HOUR}">{{picker.currentNearestMinute().format(picker.params.shortTime?"hh":"HH")}}</span>:<span ng-class="{selected:picker.currentView===picker.VIEWS.MINUTE}">{{picker.currentNearestMinute().format("mm")}}</span>' +
     '                        </div>' +
-    '                        <div ng-if="!picker.timeMode && picker.params.seconds" class="dtp-actual-time p60">' +
-    '                            <span ng-class="{selected: picker.currentView===picker.VIEWS.HOUR}">{{picker.currentNearestMinute().format(picker.params.shortTime ? "hh":"HH")}}</span>:<span ng-class="{selected: picker.currentView===picker.VIEWS.MINUTE}">{{picker.currentNearestMinute().format("mm")}}</span>:<span ng-class="{selected: picker.currentView===picker.VIEWS.SECOND}">{{picker.currentNearestMinute().format("ss")}}</span>' +
+    '                        <div ng-if="!picker.timeMode&&picker.params.seconds" class="dtp-actual-time p60">' +
+    '                            <span ng-class="{selected: picker.currentView===picker.VIEWS.HOUR}">{{picker.currentNearestMinute().format(picker.params.shortTime?"hh":"HH")}}</span>:<span ng-class="{selected:picker.currentView===picker.VIEWS.MINUTE}">{{picker.currentNearestMinute().format("mm")}}</span>:<span ng-class="{selected:picker.currentView===picker.VIEWS.SECOND}">{{picker.currentNearestMinute().format("ss")}}</span>' +
     '                        </div>' +
     '                        <div ng-if="picker.params.shortTime" class="right p20">' +
-    '                            <a id="time-periods-pm" href="#" mdc-dtp-noclick class="dtp-meridien-pm" ng-class="{selected: picker.meridien===\'PM\'}" ng-click="picker.selectPM()">{{picker.params.pmText}}</a>' +
+    '                            <a id="time-periods-pm" href="#" mdc-dtp-noclick class="dtp-meridien-pm" ng-class="{selected:picker.meridien===\'PM\'}" ng-click="picker.selectPM()">{{::picker.params.pmText}}</a>' +
     '                        </div>' +
     '                        <div class="clearfix"></div>' +
     '                    </div>' +
@@ -85,10 +85,10 @@
     '        </div>' +
     '    </md-dialog-content>' +
     '    <md-dialog-actions class="dtp-buttons">' +
-    '            <md-button class="dtp-btn-today md-button" ng-click="picker.today()"> {{picker.params.todayText}}</md-button>' +
-    '            <md-button class="dtp-btn-cancel md-button" ng-click="picker.cancel()"> {{picker.params.cancelText}}</md-button>' +
-    '            <md-button class="dtp-btn-ok md-button" ng-click="picker.ok()"> {{picker.params.okText}}</md-button>' +
-    '      </md-dialog-actions>' +
+    '        <md-button ng-if="::picker.params.todayBtn" class="dtp-btn-today md-button" ng-click="picker.today()"> {{::picker.params.todayText}}</md-button>' +
+    '        <md-button class="dtp-btn-cancel md-button" ng-click="picker.cancel()"> {{::picker.params.cancelText}}</md-button>' +
+    '        <md-button class="dtp-btn-ok md-button" ng-click="picker.ok()"> {{::picker.params.okText}}</md-button>' +
+    '    </md-dialog-actions>' +
     '</md-dialog>';
 
   angular.module(moduleName, ['ngMaterial'])
@@ -109,6 +109,7 @@
         okText: 'OK',
         amText: 'AM',
         pmText: 'PM',
+        todayBtn: true,
         todayText: 'Today',
         disableDates: [],
         weekDays: false,
@@ -161,6 +162,7 @@
             amText: '@',
             pmText: '@',
             showTodaysDate: '@',
+            todayBtn: '=',
             todayText: '@',
             disableParentScroll: '=',
             autoOk: '=',
@@ -931,7 +933,7 @@
           template: 
           '<md-virtual-repeat-container md-top-index="cal.topIndex" class="months">' +
           '<div md-virtual-repeat="idx in ::cal.months" md-auto-shrink md-item-size="' + ITEM_HEIGHT + '">' +
-          '     <div mdc-datetime-picker-calendar-month idx="idx"></div>' +
+          '  <div mdc-datetime-picker-calendar-month idx="idx"></div>' +
           '</div>' +
           '</md-virtual-repeat-container>'
         };
@@ -980,13 +982,13 @@
           template: 
             '<div class="dtp-picker-month">{{month.name}}</div>' +
             '<table class="table dtp-picker-days">' +
-            '    <thead>' +
+            '  <thead>' +
             '    <tr>' +
-            '        <th ng-repeat="day in cal.week track by $index">{{cal.toDay(day)}}</th>' +
+            '      <th ng-repeat="day in cal.week track by $index">{{cal.toDay(day)}}</th>' +
             '    </tr>' +
-            '    </thead>' +
-            '    <tbody>' +
-            '    </tbody>' +
+            '  </thead>' +
+            '  <tbody>' +
+            '  </tbody>' +
             '</table>',
           link: function (scope, element, attrs, calendar) {
             scope.cal = calendar;
@@ -1021,13 +1023,13 @@
       function ($timeout) {
 
         var template = 
-          '<div id="timePicker" class="dtp-picker-clock"><span ng-if="!points || points.length < 1">&nbsp;</span>' +
+          '<div id="timePicker" class="dtp-picker-clock"><span ng-if="!points||points.length < 1">&nbsp;</span>' +
           '<div ng-repeat="point in points" class="dtp-picker-time noselect" ng-style="point.style">' +
-          '   <a href="#" id="time-{{mode}}-{{point.display}}" mdc-dtp-noclick ng-class="{selected: point.value===currentValue}" class="dtp-select-hour" ng-click="setTime(point.value)" ng-if="pointAvailable(point)">{{point.display}}</a>' +
+          '   <a href="#" id="time-{{mode}}-{{point.display}}" mdc-dtp-noclick ng-class="{selected:point.value===currentValue}" class="dtp-select-hour" ng-click="setTime(point.value)" ng-if="pointAvailable(point)">{{point.display}}</a>' +
           '   <a href="#" mdc-dtp-noclick class="disabled dtp-select-hour" ng-if="!pointAvailable(point)">{{point.display}}</a>' +
           '</div>' +
           '<div ng-if="points24.length" ng-repeat="point24 in points24" class="dtp-picker-time noselect" ng-style="point24.style">' +
-          '   <a href="#" id="time-24hours-{{point24.display}}" mdc-dtp-noclick ng-class="{selected: point24.value===currentValue}" class="dtp-select-hour" ng-click="setTime(point24.value)" ng-if="pointAvailable(point24)">{{point24.display}}</a>' +
+          '   <a href="#" id="time-24hours-{{point24.display}}" mdc-dtp-noclick ng-class="{selected:point24.value===currentValue}" class="dtp-select-hour" ng-click="setTime(point24.value)" ng-if="pointAvailable(point24)">{{point24.display}}</a>' +
           '   <a href="#" mdc-dtp-noclick class="disabled dtp-select-hour" ng-if="!pointAvailable(point24)">{{point24.display}}</a>' +
           '</div>' +
           '<div class="dtp-hand dtp-hour-hand"></div>' +

@@ -28,6 +28,7 @@ Originally designed for Bootstrap Material, this has been modified to work with 
 ## Updates
 | Date       | Author      | Description                                            |
 | ---------- | ----------- | ------------------------------------------------------ |
+| 2018-06-15 | hexadecy    | Can hide Today button                                  |
 | 2018-02-09 | hexadecy    | support ng-model-options timezone                      |
 | 2018-01-29 | coennijhuis | min-date max-date validation when not using the picker |
 | 2017-10-18 | paragraff   | custom template                                        |
@@ -128,6 +129,7 @@ The directive accepts several attributes which are described below:
 | **minutes**               | Boolean                 | true => Has Timepicker minutes (default: true)                       |
 | **seconds**               | Boolean                 | true => Has Timepicker seconds (default: false)                      |
 | **cancel-text**           | String                  | Text for the cancel button (default: Cancel)                         |
+| **today-btn**             | Boolean                 | true => Show today button (default: true)                            |
 | **today-text**            | String                  | Text for the today button (default: Today)                           |
 | **ok-text**               | String                  | Text for the OK button (default: OK)                                 |
 | **week-start**            | Number                  | First day of the week (default: 0 => Sunday)                         |
@@ -147,7 +149,7 @@ The directive accepts several attributes which are described below:
 You should normally use the browser local time zone and use UTC only on the server side.
 But if you have special case, you can set the model to a moment.utc() and it will stay a moment utc object.
 You can also use the `format="YYYY-MM-DD HH:mmZ"` for parsing if your server returns an UTC date time.
-Also, if you want your user to manually enter an UTC time use the `ng-model-options timezone` as shown in the demo.
+Also, if you want your user to manually enter an UTC time use the `ng-model-options timezone` as in the demo.
 
 ### Set or update params by injecting `mdcDefaultParams` provider
 To change params like the locale you can use this method instead of attributes for all datetimepicker:
@@ -199,6 +201,7 @@ The `mdcDateTimeDialog.show` accepts almost the same options as the directive.
        weekStart: {int} =0,
        shortTime: {boolean} =false,
        cancelText: {string} ='Cancel',
+       todayBtn: {boolean} =true,
        todayText: {string} ='Today',
        showTodaysDate: {string} ='',
        okText: {string} ='OK',
@@ -245,9 +248,12 @@ Copy this css code in your project to override default color.
 ```
 
 ### Development
-Use any:
+To run the demo:
 ```
 npm run dev
 yarn run dev
 gulp serve
 ```
+
+To build:
+`gulp`
