@@ -55,13 +55,13 @@ Depends on the following library:
 - Moment
 
 ```
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.0/angular.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.0/angular-animate.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.0/angular-messages.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.0/angular-aria.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.9/angular-material.min.css" rel="stylesheet" type="text/css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.9/angular-material.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment-with-locales.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular-animate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular-messages.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular-aria.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.10/angular-material.min.css" rel="stylesheet" type="text/css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.10/angular-material.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
 ```
 
 ## Installing via yarn, npm or bower
