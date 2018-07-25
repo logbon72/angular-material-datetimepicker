@@ -30,7 +30,7 @@
     '                    <div ng-click="picker.incrementMonth(-1)" class="dtp-month-btn dtp-month-btn-prev noselect" flex="30"><span ng-if="picker.isPreviousMonthVisible()">&#x25C4;</span></div>' +
     '                    <md-menu md-offset="8 10" flex>' +
     '                        <div class="dtp-actual-month" flex ng-click="picker.openMenu($mdMenu, $event)">{{picker.currentDate.format("MMM")|uppercase}}</div>' +
-    '                        <md-menu-content>' +
+    '                        <md-menu-content class="dtp-month-list">' +
     '                            <md-menu-item ng-repeat="itemMonth in picker.monthsAvailable() track by $index">' +
     '                            <md-button ng-click="picker.selectMonth(itemMonth)">{{itemMonth}}</md-button>' +
     '                            </md-menu-item>' +
@@ -43,7 +43,7 @@
     '                    <div ng-click="picker.incrementYear(-1)" class="dtp-year-btn dtp-year-btn-prev noselect" flex="30"><span ng-if="picker.isPreviousYearVisible()">&#x25C4;</span></div>' +
     '                    <md-menu md-offset="8 10" flex>' +
     '                        <div class="dtp-actual-year" flex ng-click="picker.openMenu($mdMenu, $event)">{{picker.currentDate.format("YYYY")}}</div>' +
-    '                        <md-menu-content>' +
+    '                        <md-menu-content class="dtp-year-list">' +
     '                            <md-menu-item ng-repeat="itemYear in picker.yearsAvailable() track by $index">' +
     '                            <md-button ng-click="picker.selectYear(itemYear)">{{itemYear}}</md-button>' +
     '                            </md-menu-item>' +
