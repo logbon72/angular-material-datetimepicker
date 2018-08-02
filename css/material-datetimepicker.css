@@ -69,6 +69,10 @@ md-dialog.dtp {
     cursor: pointer;
 }
 
+md-menu-content.dtp-month-list {
+    background-color: #ffffff;
+}
+
 .dtp div.dtp-actual-num {
     font-size: 2em;
     line-height: 0.9;
@@ -88,6 +92,10 @@ md-dialog.dtp {
     font-size: 1.6em;
     color: #DCEDC8;
     cursor: pointer;
+}
+
+md-menu-content.dtp-year-list {
+    background-color: #ffffff;
 }
 
 .dtp div.dtp-month-btn {

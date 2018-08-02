@@ -245,6 +245,15 @@ Copy this css code in your project to override default color.
 .dtp > .dtp-content > .dtp-date-view > header.dtp-header {
   background: #009796;
 }
+
+md-menu-content.dtp-month-list {
+  background-color: #d0f0f0;
+}
+
+md-menu-content.dtp-year-list {
+  background-color: #d0f0f0;
+}
+
 ```
 
 ### Development
