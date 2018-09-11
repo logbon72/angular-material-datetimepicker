@@ -264,5 +264,15 @@ yarn run dev
 gulp serve
 ```
 
-To build:
-`gulp`
+To build with gulp 4:
+
+Global
+```
+gulp
+````
+
+Local
+```
+./node_modules/.bin/gulp
+```
+

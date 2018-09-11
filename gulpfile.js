@@ -29,6 +29,7 @@ gulp.task('css', cb => {
 });
 
 gulp.task('default', gulp.parallel('js', 'css'));
+gulp.task('build', gulp.parallel('js', 'css'));
 
 gulp.task('serve', function (cb) {
 	exec('npm run dev', function (err, stdout, stderr) {
