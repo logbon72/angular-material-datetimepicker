@@ -263,6 +263,7 @@
                 if (offset !== undefined) v.utcOffset(offset, true);
 
                 scope.currentDate = v && !v._isUTC ? v.toDate() : v;
+                ngModel.$setValidity('format', true);
                 isOn = false;
 
                 if (!moment(scope.currentDate).isSame(options.currentDate)) {
