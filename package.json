@@ -16,14 +16,15 @@
   "homepage": "https://beenote.github.io/angular-material-datetimepicker/",
   "main": "js/angular-material-datetimepicker.js",
   "scripts": {
+    "start": "lite-server",
     "dev": "lite-server"
   },
   "dependencies": {
-    "angular": "^1.7.4",
-    "angular-animate": "^1.7.4",
-    "angular-aria": "^1.7.4",
+    "angular": "^1.7.5",
+    "angular-animate": "^1.7.5",
+    "angular-aria": "^1.7.5",
     "angular-material": "^1.1.10",
-    "angular-messages": "^1.7.4",
+    "angular-messages": "^1.7.5",
     "moment": "^2.22.2"
   },
   "repository": {

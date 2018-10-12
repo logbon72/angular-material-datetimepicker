@@ -6,7 +6,7 @@ const uglify = require('gulp-uglify');
 const cleanCSS = require('gulp-clean-css');
 const sourcemaps = require('gulp-sourcemaps');
 const rename = require('gulp-rename');
-const exec = require('child_process').exec;
+const spawn = require('child_process').spawn;
 
 gulp.task('js', cb => {
 	pump([
@@ -31,10 +31,18 @@ gulp.task('css', cb => {
 gulp.task('default', gulp.parallel('js', 'css'));
 gulp.task('build', gulp.parallel('js', 'css'));
 
-gulp.task('serve', function (cb) {
-	exec('npm run dev', function (err, stdout, stderr) {
-		console.log(stdout);
-		console.log(stderr);
-		cb(err);
+gulp.task('serve', function () {
+	const child = spawn(/^win/.test(process.platform) ? 'npm.cmd' : 'npm', ['start']);
+	
+	child.stdout.on('data', (data) => {
+		console.log(`stdout: ${data}`);
+	});
+
+	child.stderr.on('data', (data) => {
+		console.log(`stderr: ${data}`);
+	});
+
+	child.on('close', (code) => {
+		console.log(`child process exited with code ${code}`);
 	});
 });

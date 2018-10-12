@@ -259,8 +259,8 @@ md-menu-content.dtp-year-list {
 ### Development
 To run the demo:
 ```
-npm run dev
-yarn run dev
+npm start
+yarn start
 gulp serve
 ```
 

@@ -51,7 +51,7 @@
     '                    </md-menu>' +
     '                    <div ng-click="picker.incrementYear(1)" class="dtp-year-btn dtp-year-btn-next noselect" flex="30"><span ng-if="picker.isNextYearVisible()">&#x25BA;</span></div>' +
     '                </div>'+
-    '            </div>' + //start time 
+    '            </div>' + //start time
     '            <div class="dtp-time" ng-if="picker.params.time&&!picker.params.date">' +
     '                <div class="dtp-actual-maxtime">' +
     '                    <span ng-if="!picker.params.seconds"><span ng-class="{selected:picker.currentView===picker.VIEWS.HOUR}">{{picker.currentNearestMinute().format(picker.params.shortTime ? "hh":"HH")}}</span>:<span ng-class="{selected: picker.currentView===picker.VIEWS.MINUTE}">{{picker.currentNearestMinute().format("mm")}}</span></span>'+
@@ -763,7 +763,7 @@
       }
     },
     selectPM: function () {
-      if (this.isHourAvailable(13) || this.isHourAvailable(24)) {
+      if (this.isHourAvailable(12) || this.isHourAvailable(24)) {
         if (this.currentDate.hour() < 12) {
           this.selectDate(this.currentDate.add(12, 'hours'));
         }
@@ -1136,7 +1136,7 @@
 
               var r = (clockWidth / 2);
               var j = r / 1.2; // radius for low number
-   
+
               var points = [];
 
               for (var h = 0; h < 12; ++h) {
