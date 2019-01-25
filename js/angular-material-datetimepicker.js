@@ -14,7 +14,7 @@
     return ('getComputedStyle' in window) ? window.getComputedStyle(el[0])[name] : el.css(name);
   };
 
-  var template = 
+  var template =
     '<md-dialog class="dtp" layout="column">' +
     '    <md-dialog-content class="dtp-content">' +
     '        <div class="dtp-date-view">' +
@@ -602,10 +602,10 @@
       if (_maxDate && _minDate) {
         len = _maxDate - _minDate;
         startYear = _minDate;
-      } else if (_minDate) { 
+      } else if (_minDate) {
         len = 115;
         startYear = _minDate;
-      } else if (_maxDate) { 
+      } else if (_maxDate) {
         len = 30;
         startYear = _maxDate - len;
       } else {
@@ -613,7 +613,7 @@
         startYear = _date - len/2;
       }
      
-      for (var i=0; i < len; i++) {
+      for (var i=0; i <= len; i++) {
         yearsArr.push(startYear+i);
       }
       return yearsArr;
@@ -730,7 +730,7 @@
             break;
           case VIEW_STATES.SECOND:
             this.initMinutes();
-            break;  
+            break;
         }
       }
       else {
