@@ -123,7 +123,8 @@
         templateUrl: '',
         targetEvent: null,
         openFrom: null,
-        closeTo: null
+        closeTo: null,
+        dayOfWeekLen: 1
       };
 
       return function (params) {
@@ -171,6 +172,7 @@
             minuteSteps: '=',
             showIcon: '=',
             templateUrl: '@',
+            dayOfWeekLen: '='
           },
           link: function (scope, element, attrs, ngModel) {
             var isOn = false;
@@ -895,8 +897,8 @@
             calendar.toDay = function (i) {
               return moment(parseInt(i), "d")
                 .locale(picker.params.lang)
-                .format("dd")
-                .substring(0, 1);
+                .format("ddd")
+                .substring(0, picker.params.dayOfWeekLen);
             };
 
             calendar.isInRange = function (date) {

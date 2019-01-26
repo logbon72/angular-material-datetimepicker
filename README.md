@@ -55,13 +55,13 @@ Depends on the following library:
 - Moment
 
 ```
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular-animate.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular-messages.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular-aria.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.10/angular-material.min.css" rel="stylesheet" type="text/css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.10/angular-material.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.6/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.6/angular-animate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.6/angular-messages.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.6/angular-aria.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.12/angular-material.min.css" rel="stylesheet" type="text/css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.12/angular-material.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment-with-locales.min.js"></script>
 ```
 
 ## Installing via yarn, npm or bower
@@ -144,6 +144,7 @@ The directive accepts several attributes which are described below:
 | **show-icon**             | Boolean                 | true => Show calendar or time icon before + clear (default: false)   |
 | **template-url**          | String                  | You can set a custom HTML template (default: '')                     |
 | **ng-model-options**      | timezone option         | For example: ng-model-options="{timezone: 'utc'}"                    |
+| **day-of-week-len**       | Number                  | Day of the week length (default: 1 => S) Possible value 0-3          |
 
 ### UTC Time Zone
 You should normally use the browser local time zone and use UTC only on the server side.
@@ -218,7 +219,8 @@ The `mdcDateTimeDialog.show` accepts almost the same options as the directive.
        templateUrl: {string} =''
        targetEvent: {DOMClickEvent}=null,
        openFrom: {string|Element|object}=null,
-       closeTo: {string|Element|object}=null
+       closeTo: {string|Element|object}=null,
+       dayOfWeekLen: {int} =1
      }
 ```
 

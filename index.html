@@ -6,22 +6,27 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <link rel="icon" type="image/png" href="favicon.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com/">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com/">
+  <link rel="dns-prefetch" href="https://code.angularjs.org/">
+
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet" type="text/css">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.10/angular-material.min.css" rel="stylesheet" type="text/css"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.12/angular-material.min.css" rel="stylesheet" type="text/css"/>
   <link rel="stylesheet" href="./css/material-datetimepicker.css" type="text/css"/>
 
-  <script src="https://code.angularjs.org/1.7.5/angular.min.js"></script>
-  <script src="https://code.angularjs.org/1.7.5/angular-animate.min.js"></script>
-  <script src="https://code.angularjs.org/1.7.5/angular-messages.min.js"></script>
-  <script src="https://code.angularjs.org/1.7.5/angular-aria.min.js"></script>
-  <script src="https://code.angularjs.org/1.7.5/angular-sanitize.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.10/angular-material.min.js"></script>
+  <script src="https://code.angularjs.org/1.7.6/angular.min.js"></script>
+  <script src="https://code.angularjs.org/1.7.6/angular-animate.min.js"></script>
+  <script src="https://code.angularjs.org/1.7.6/angular-messages.min.js"></script>
+  <script src="https://code.angularjs.org/1.7.6/angular-aria.min.js"></script>
+  <script src="https://code.angularjs.org/1.7.6/angular-sanitize.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.12/angular-material.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate/2.18.1/angular-translate.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
-  <script type="text/javascript" src="https://code.angularjs.org/1.7.5/i18n/angular-locale_fr.js"></script>
-  <script type="text/javascript" src="https://code.angularjs.org/1.7.5/i18n/angular-locale_en.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment-with-locales.min.js"></script>
+  <script type="text/javascript" src="https://code.angularjs.org/1.7.6/i18n/angular-locale_fr.js"></script>
+  <script type="text/javascript" src="https://code.angularjs.org/1.7.6/i18n/angular-locale_en.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
   <script type="text/javascript" src="./beautifier.js"></script>
   <script type="text/javascript" src="./js/angular-material-datetimepicker.js"></script>
   <script type="text/javascript" src="./js/demo.js"></script>
@@ -52,7 +57,7 @@
       <div layout-gt-md="row" layout="column" layout-align-gt-md="center center">
         <md-input-container flex-gt-md="30">
           <label>Datepicker Only</label>
-          <input time="false" date="true" mdc-datetime-picker type="text" id="date"
+          <input time="false" date="true" mdc-datetime-picker type="text" id="date" day-of-week-len="3"
                  placeholder="Date" click-outside-to-close="true" show-todays-date today-btn="false"
                  ng-model="date" min-date="minDate" max-date="maxDate">
         </md-input-container>
