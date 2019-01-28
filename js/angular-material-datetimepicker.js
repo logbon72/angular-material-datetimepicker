@@ -3,10 +3,8 @@
 
   function ngMaterialDatePicker(moment) {
   var moduleName = "ngMaterialDatePicker";
-
   var mdAccesTime = 'data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMDAwMDAwIiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4gICAgPHBhdGggZD0iTTExLjk5IDJDNi40NyAyIDIgNi40OCAyIDEyczQuNDcgMTAgOS45OSAxMEMxNy41MiAyMiAyMiAxNy41MiAyMiAxMlMxNy41MiAyIDExLjk5IDJ6TTEyIDIwYy00LjQyIDAtOC0zLjU4LTgtOHMzLjU4LTggOC04IDggMy41OCA4IDgtMy41OCA4LTggOHoiLz4gICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPiAgICA8cGF0aCBkPSJNMTIuNSA3SDExdjZsNS4yNSAzLjE1Ljc1LTEuMjMtNC41LTIuNjd6Ii8+PC9zdmc+';
   var mdCalendar = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTkgM2gtMVYxaC0ydjJIOFYxSDZ2Mkg1Yy0xLjExIDAtMS45OS45LTEuOTkgMkwzIDE5YzAgMS4xLjg5IDIgMiAyaDE0YzEuMSAwIDItLjkgMi0yVjVjMC0xLjEtLjktMi0yLTJ6bTAgMTZINVY4aDE0djExek03IDEwaDV2NUg3eiIvPjwvc3ZnPg==';
-  
   var VIEW_STATES = {DATE: 0, HOUR: 1, MINUTE: 2};
 
   var css = function (el, name) {
@@ -138,7 +136,6 @@
     })
     .directive('mdcDatetimePicker', ['$mdDialog', '$timeout', '$compile',
       function ($mdDialog, $timeout, $compile) {
-
         return {
           restrict: 'A',
           require: 'ngModel',
@@ -316,24 +313,12 @@
         };
       }])
     // Returns a service that opens a dialog when the attribute shown is called
-    .factory('mdcDateTimeDialog', ["$mdDialog", "$q", "mdcDefaultParams", function ($mdDialog, $q, mdcDefaultParams) {
-      var defaultParams = mdcDefaultParams();
-      var accepted_options = Object.keys(defaultParams);
+    .factory('mdcDateTimeDialog', ["$mdDialog", "$q", function ($mdDialog, $q) {
       var service = {
         show: function (options) {
           var deferred = $q.defer();
-          var params = angular.copy(defaultParams);
-          for (var i in options) {
-            if (accepted_options.indexOf[i] != -1 && options.hasOwnProperty(i)) {
-              params = options[i];
-            }
-          }
 
-          var dateOfTheDay = null;
-          if (options.showTodaysDate !== undefined && options.showTodaysDate !== "false") {
-            dateOfTheDay = moment();
-          }
-          options.showTodaysDate = dateOfTheDay;
+          if (options.showTodaysDate !== undefined && options.showTodaysDate !== "false") options.showTodaysDate = moment();
 
           var dialogOptions = {
               controller: PluginController,
@@ -366,7 +351,7 @@
     }])
   ;
 
-  var PluginController = function ($scope, $mdDialog, mdcDefaultParams) {
+  var PluginController = function ($mdDialog, mdcDefaultParams) {
     this.currentView = VIEW_STATES.DATE;
     this._dialog = $mdDialog;
 
@@ -379,7 +364,7 @@
     this.init();
   };
 
-  PluginController.$inject = ['$scope', '$mdDialog', 'mdcDefaultParams'];
+  PluginController.$inject = ['$mdDialog', 'mdcDefaultParams'];
   PluginController.prototype = {
     init: function () {
       this.timeMode = this.params.time && !this.params.date;
@@ -1062,10 +1047,8 @@
               if (minuteMode) {
                 var nearestMin = picker.params.minuteSteps;
                 if (nearestMin < 1 || nearestMin > 59) nearestMin = 1;
-
                 var minutes = (nearestMin * Math.round(val / nearestMin));
                 if (minutes >= 60) minutes = 60 - nearestMin;
-
                 if (!scope.pointAvailable({value: val})) return;
                 picker.currentDate.minute(minutes);
               } else if (!secondMode){
@@ -1079,7 +1062,6 @@
                 if (!scope.pointAvailable({value: val})) return;
                 picker.currentDate.second(val);
               }
-              
             };
 
             var isTouchSupported = ('ontouchstart' in window) ? true : false,
@@ -1099,9 +1081,9 @@
               
               var x = ((closestTarget.offsetWidth / 2) - (e.pageX - clientRect.left)),
                   y = ((e.pageY - clientRect.top) - (closestTarget.offsetHeight / 2));
-              
-              var ray = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
-              var deg = Math.round((Math.atan2(x, y) * (180 / Math.PI)));
+
+              var ray = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2)),
+                  deg = Math.round((Math.atan2(x, y) * (180 / Math.PI)));
 
               $timeout(function() {
                 setTimeDegRay(deg+180, ray);
@@ -1227,9 +1209,7 @@
 
             var animateHands = function () {
               var _date = picker.currentNearestMinute();
-              var h = _date.hour();
-              var m = _date.minute();
-              var s = _date.second();
+              var h = _date.hour(), m = _date.minute(), s = _date.second();
 
               rotateElement(angular.element(element[0].querySelector('.dtp-hour-hand')), 30 * h);
               rotateElement(angular.element(element[0].querySelector('.dtp-minute-hand')), 6 * m);

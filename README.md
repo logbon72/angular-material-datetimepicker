@@ -155,13 +155,11 @@ Also, if you want your user to manually enter an UTC time use the `ng-model-opti
 ### Set or update params by injecting `mdcDefaultParams` provider
 To change params like the locale you can use this method instead of attributes for all datetimepicker:
 ```javascript
-  mdcDefaultParams({ lang: 'fr', cancelText: 'annuler', todayText: 'maintenant', okText: 'ok' });
+  mdcDefaultParams({lang: 'fr', cancelText: 'annuler', todayText: 'maintenant', okText: 'ok', dayOfWeekLen: 3});
   ...
-  mdcDefaultParams({ lang: 'en', cancelText: 'cancel', todayText: 'now', okText: 'ok' });
+  mdcDefaultParams({lang: 'en', cancelText: 'cancel', todayText: 'now', okText: 'ok', dayOfWeekLen: 3});
 ```
 #### Notes
-`mdcDatetimePickerDefaultLocale` is no more.
-
 If you use https://github.com/lgalfaso/angular-dynamic-locale it will always override the locale.
 
 ### Date/Time Dialog Service
@@ -277,4 +275,3 @@ Local
 ```
 ./node_modules/.bin/gulp
 ```
-

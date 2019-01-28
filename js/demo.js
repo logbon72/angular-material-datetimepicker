@@ -9,10 +9,12 @@
       $translateProvider.translations('en', {
         CANCEL: "Cancel",
         TODAY: "Today",
+        INSTRUCTION: "You can double click or double tap to make selections.",
       });
       $translateProvider.translations('fr', {
         CANCEL: "Annuler",
         TODAY: "Aujourd'hui",
+        INSTRUCTION: "Vous pouvez double-cliquer ou appuyer deux fois pour effectuer des sélections.",
       });
       $translateProvider.preferredLanguage('en');
       $translateProvider.useSanitizeValueStrategy('sceParameters');
@@ -91,7 +93,7 @@
         mdcDateTimeDialog.show({
           currentDate: moment().startOf('day'),
           maxDate: $scope.maxDate,
-          showTodaysDate: '',
+          showTodaysDate: true,
           time: true,
           clickOutsideToClose: true,
           targetEvent: event,
@@ -127,7 +129,7 @@
 
     .directive('exSourceCode', function () {
       return {
-        template: '<h4>{{title}}</h4><pre  hljs class="html"><code>{{sourceCode}}</code></pre>',
+        template: '<h4>{{title}}</h4><pre hljs class="html"><code>{{sourceCode}}</code></pre>',
         scope: {},
         link: function (scope, element, attrs) {
           var tmp = angular.element((element.parent()[0]).querySelector(attrs.target || 'md-input-container'));
