@@ -144,8 +144,8 @@
             <md-input-container>
               <label>Date/Time Picker edit input</label>
               <input mdc-datetime-picker date="true" time="true" type="text" id="datetimeedit"
-                    placeholder="YYYY-MM-DD HH:MM" show-todays-date minutes="true"
-                    min-date="minDate" max-date="maxDate" edit-input="true" show-icon="true"
+                    placeholder="YYYY-MM-DD HH:MM" show-todays-date minutes="true" short-time="true"
+                    min-date="minDate" max-date="maxDateNow" edit-input="true" show-icon="true"
                     ng-model="dateTimeEdit" name="datetimeedit">
             </md-input-container>
             <div ng-messages="frm.datetimeedit.$error" style="color:red" role="alert">

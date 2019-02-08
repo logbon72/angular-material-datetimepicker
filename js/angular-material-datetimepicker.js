@@ -524,11 +524,11 @@
     selectDate: function (date) {
       if (date) {
         this.currentDate = moment(date);
-        if (!this.isAfterMinDate(this.currentDate)) {
+        if (!this.isAfterMinDate(this.currentDate, true, true)) {
           this.currentDate = moment(this.minDate);
         }
 
-        if (!this.isBeforeMaxDate(this.currentDate)) {
+        if (!this.isBeforeMaxDate(this.currentDate, true, true)) {
           this.currentDate = moment(this.maxDate);
         }
         this.currentDate.locale(this.params.lang);

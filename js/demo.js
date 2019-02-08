@@ -82,6 +82,7 @@
 
       $scope.minDate = moment().subtract(6, 'year');
       $scope.minDateNow = moment();
+      $scope.maxDateNow = moment();
       $scope.maxDate = moment().add(6, 'year');
       $scope.dates = [new Date('2018-11-14T00:00:00'), new Date('2018-11-15T00:00:00'),
         new Date('2018-11-30T00:00:00'), new Date('2018-12-12T00:00:00'), new Date('2018-12-13T00:00:00'),
