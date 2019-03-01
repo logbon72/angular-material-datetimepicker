@@ -268,9 +268,7 @@
                 if (!moment(scope.currentDate).isSame(options.currentDate)) {
                   $timeout(scope.ngChange, 0);
                 }
-                ngModel.$setViewValue(v.format(scope.format));
-                ngModel.$commitViewValue();
-                ngModel.$render();
+
                 element.parent().removeClass('md-input-focused');
               }, function () {
                 isOn = false;
