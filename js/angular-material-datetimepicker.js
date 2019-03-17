@@ -263,6 +263,8 @@
 
                 scope.currentDate = v && !v._isUTC ? v.toDate() : v;
                 ngModel.$setValidity('format', true);
+                ngModel.$setViewValue(scope.currentDate);
+                ngModel.$setDirty();
                 isOn = false;
 
                 if (!moment(scope.currentDate).isSame(options.currentDate)) {
