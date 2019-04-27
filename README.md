@@ -145,6 +145,7 @@ The directive accepts several attributes which are described below:
 | **template-url**          | String                  | You can set a custom HTML template (default: '')                     |
 | **ng-model-options**      | timezone option         | For example: ng-model-options="{timezone: 'utc'}"                    |
 | **day-of-week-len**       | Number                  | Day of the week length (default: 1 => S) Possible value 0-3          |
+| **has-backdrop**          | Boolean                 | true => Has Backdrop (default: true)                                |
 
 ### UTC Time Zone
 You should normally use the browser local time zone and use UTC only on the server side.
@@ -218,7 +219,8 @@ The `mdcDateTimeDialog.show` accepts almost the same options as the directive.
        targetEvent: {DOMClickEvent}=null,
        openFrom: {string|Element|object}=null,
        closeTo: {string|Element|object}=null,
-       dayOfWeekLen: {int} =1
+       dayOfWeekLen: {int} =1,
+       hasBackdrop: {boolean} =true
      }
 ```
 

@@ -122,7 +122,8 @@
         targetEvent: null,
         openFrom: null,
         closeTo: null,
-        dayOfWeekLen: 1
+        dayOfWeekLen: 1,
+        hasBackdrop: true,
       };
 
       return function (params) {
@@ -169,7 +170,8 @@
             minuteSteps: '=',
             showIcon: '=',
             templateUrl: '@',
-            dayOfWeekLen: '='
+            dayOfWeekLen: '=',
+            hasBackdrop: '='
           },
           link: function (scope, element, attrs, ngModel) {
             var isOn = false;
@@ -249,7 +251,7 @@
                 bindToController: true,
                 clickOutsideToClose: options.clickOutsideToClose || false,
                 disableParentScroll: options.disableParentScroll || false,
-                hasBackDrop: false,
+                hasBackdrop: options.hasBackdrop === undefined ? true : options.hasBackdrop,
                 skipHide: true,
                 multiple: true,
               };
@@ -332,6 +334,7 @@
               disableParentScroll: options.disableParentScroll || false,
               skipHide: true,
               multiple: true,
+              hasBackdrop: options.hasBackdrop === undefined ? true : options.hasBackdrop,
               targetEvent: options.targetEvent,
               openFrom: options.openFrom,
               closeTo: options.closeTo,
