@@ -20,11 +20,11 @@
     "dev": "lite-server"
   },
   "dependencies": {
-    "angular": "^1.7.7",
-    "angular-animate": "^1.7.7",
-    "angular-aria": "^1.7.7",
-    "angular-material": "^1.1.13",
-    "angular-messages": "^1.7.7",
+    "angular": "^1.7.8",
+    "angular-animate": "^1.7.8",
+    "angular-aria": "^1.7.8",
+    "angular-material": "^1.1.20",
+    "angular-messages": "^1.7.8",
     "moment": "^2.24.0"
   },
   "repository": {
@@ -32,12 +32,12 @@
     "url": "https://github.com/beenote/angular-material-datetimepicker"
   },
   "devDependencies": {
-    "gulp": "^4.0.0",
-    "gulp-clean-css": "^4.0.0",
+    "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.2.0",
     "gulp-rename": "^1.4.0",
     "gulp-sourcemaps": "^2.6.5",
     "gulp-uglify": "^3.0.2",
-    "lite-server": "^2.4.0",
+    "lite-server": "^2.5.4",
     "pump": "^3.0.0"
   }
 }
