@@ -18,7 +18,7 @@
     '        <div class="dtp-date-view">' +
     '            <header class="dtp-header">' +
     '                <div class="dtp-actual-day" ng-if="::picker.dateMode">{{picker.currentNearestMinute().format("dddd")}}</div>' +
-    '                <div class="dtp-actual-day" ng-if="::!picker.timeMode">{{picker.params.shortTime?picker.currentDate.format("A"):" "}}</div>' +
+    '                <div class="dtp-actual-day" ng-if="::!picker.timeMode&&picker.params.time">{{picker.params.shortTime?picker.currentDate.format("A"):" "}}</div>' +
     '                <div class="dtp-close text-right noselect">' +
     '                    <a href="#" mdc-dtp-noclick ng-click="picker.hide()">&times;</a>' +
     '                </div>' +
