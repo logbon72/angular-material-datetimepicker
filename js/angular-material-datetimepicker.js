@@ -117,6 +117,7 @@
         clickOutsideToClose: false,
         minuteSteps: 5,
         showIcon: false,
+        showClear: true,
         template: template,
         templateUrl: '',
         targetEvent: null,
@@ -169,6 +170,7 @@
             clickOutsideToClose: '=',
             minuteSteps: '=',
             showIcon: '=',
+            showClear: '=',
             templateUrl: '@',
             dayOfWeekLen: '=',
             hasBackdrop: '='
@@ -296,7 +298,7 @@
                 'ng-click="openCalendarDiag($event)">' +
                 '<md-icon aria-label="md-calendar" md-svg-src="' + (scope.date ? mdCalendar : mdAccesTime) + '"></md-icon>' +
               '</md-button>',
-              clearButton = '<md-button ng-show="currentDate" class="md-icon-button dtp-clear" aria-hidden="true" ng-click="clear()">&#x2715;</md-button>';
+              clearButton = scope.showClear === undefined || scope.showClear ? '<md-button ng-show="currentDate" class="md-icon-button dtp-clear" aria-hidden="true" ng-click="clear()">&#x2715;</md-button>' : '';
               element.after($compile(calendarButton + clearButton)(scope));
 
               scope.openCalendarDiag = function(e) {

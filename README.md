@@ -143,7 +143,8 @@ The directive accepts several attributes which are described below:
 | **edit-input**            | Boolean                 | true => Input editable and don't show dialog (default: false)        |
 | **click-outside-to-close**| Boolean                 | true => A click outside close the dialog (default: false)            |
 | **minute-steps**          | Number                  | 1 to 59 minute steps (default: 5)                                    |
-| **show-icon**             | Boolean                 | true => Show calendar or time icon before + clear (default: false)   |
+| **show-icon**             | Boolean                 | true => Show calendar or time icon before (default: false)           |
+| **show-clear**            | Boolean                 | true => clear (default: true if show-icon)                           |
 | **template-url**          | String                  | You can set a custom HTML template (default: '')                     |
 | **ng-model-options**      | timezone option         | For example: ng-model-options="{timezone: 'utc'}"                    |
 | **day-of-week-len**       | Number                  | Day of the week length (default: 1 => S) Possible value 0-3          |
@@ -216,7 +217,8 @@ The `mdcDateTimeDialog.show` accepts almost the same options as the directive.
        editInput: {boolean} =false,
        clickOutsideToClose: {boolean} =false,
        minuteSteps: {int} =5,
-       howIcon: {boolean} =false,
+       showIcon: {boolean} =false,
+       showClear: {boolean} =true,
        templateUrl: {string} =''
        targetEvent: {DOMClickEvent}=null,
        openFrom: {string|Element|object}=null,

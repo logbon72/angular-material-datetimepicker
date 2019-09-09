@@ -141,6 +141,17 @@
         <div flex-gt-md="grow" ex-source-code target="input"></div>
       </div>
 
+      <div layout-gt-md="row" layout="column" layout-align-gt-md="center center">
+        <md-input-container flex-gt-md="30">
+          <label>Date/Time Picker with no clear</label>
+          <input mdc-datetime-picker date="true" time="true" type="text" id="datetimenoclear"
+                 placeholder="Date" show-todays-date minutes="true"
+                 min-date="date" show-icon="true" show-clear="false"
+                 ng-model="dateTime">
+        </md-input-container>
+        <div flex-gt-md="grow" ex-source-code target="input"></div>
+      </div>
+
       <form name="frm">
         <div layout-gt-md="row" layout="column" layout-align-gt-md="center center">
           <div layout="column" flex-gt-md="30">
