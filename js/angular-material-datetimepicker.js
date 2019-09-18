@@ -547,20 +547,12 @@
       return this.meridien === 'PM';
     },
     incrementMonth: function (amount) {
-      if (amount === 1 && this.isNextMonthVisible()) {
-        this.selectDate(this.currentDate.add(amount, 'month'));
-      }
-
-      if (amount === -1 && this.isPreviousMonthVisible()) {
+      if ((amount === 1 && this.isNextMonthVisible()) || (amount === -1 && this.isPreviousMonthVisible())) {
         this.selectDate(this.currentDate.add(amount, 'month'));
       }
     },
     incrementYear: function (amount) {
-      if (amount === 1 && this.isNextYearVisible()) {
-        this.selectDate(this.currentDate.add(amount, 'year'));
-      }
-
-      if (amount === -1 && this.isPreviousYearVisible()) {
+      if ((amount === 1 && this.isNextYearVisible()) || (amount === -1 && this.isPreviousYearVisible())) {
         this.selectDate(this.currentDate.add(amount, 'year'));
       }
     },
@@ -568,8 +560,7 @@
       $mdMenu.open(ev); 
     },
     monthsAvailable: function () {
-      var monthsArr = [], 
-          _date = moment(this.currentDate);
+      var monthsArr = [], _date = moment(this.currentDate);
 
       for (var m = 0; m < 12; m++) {
         var curMonth = _date.month(m);
@@ -788,7 +779,6 @@
         var YEAR_MIN = 1920,
           YEAR_MAX = new Date().getFullYear() + 30,
           MONTHS_IN_ALL = (YEAR_MAX - YEAR_MIN + 1) * 12,
-          ITEM_HEIGHT = 240,
           MONTHS = [];
         for (var i = 0; i < MONTHS_IN_ALL; i++) {
           MONTHS.push(i);
@@ -796,9 +786,7 @@
 
         var currentMonthIndex = function (date, low) {
           low = low ? low : 0;
-          var year = date.year();
-          var month = date.month();
-          return (((year - YEAR_MIN) * 12) + month - 1) - low;
+          return (((date.year() - YEAR_MIN) * 12) + date.month() - 1) - low;
         };
 
         return {
@@ -826,7 +814,7 @@
                 calendar.months = MONTHS;
               } else {
                 var low = picker.minDate ? currentMonthIndex(picker.minDate) : 0;
-                var high = picker.maxDate ? (currentMonthIndex(picker.maxDate) + 1) : MONTHS_IN_ALL;
+                var high = picker.maxDate ? (currentMonthIndex(picker.maxDate) +1) : MONTHS_IN_ALL;
                 calendar.months = MONTHS.slice(low, high);
               }
 
@@ -847,7 +835,7 @@
             }, function (val2, val1) {
               if (val2 != val1) {
                 var nDate = moment(val2, 'YYYY-MM');
-                var low = picker.minDate ? currentMonthIndex(picker.minDate) : 0;
+                var low = picker.minDate ? currentMonthIndex(picker.minDate): 0;
                 var index = currentMonthIndex(nDate, low);
                 if (calendar.topIndex != index) {
                   calendar.topIndex = index;
@@ -927,7 +915,7 @@
           }],
           template: 
           '<md-virtual-repeat-container md-top-index="cal.topIndex" class="months">' +
-          '<div md-virtual-repeat="idx in ::cal.months" md-auto-shrink md-item-size="' + ITEM_HEIGHT + '">' +
+          '<div md-virtual-repeat="idx in cal.months">' +
           '  <div mdc-datetime-picker-calendar-month idx="idx"></div>' +
           '</div>' +
           '</md-virtual-repeat-container>'
