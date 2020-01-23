@@ -20,11 +20,11 @@
     "dev": "lite-server"
   },
   "dependencies": {
-    "angular": "^1.7.8",
-    "angular-animate": "^1.7.8",
-    "angular-aria": "^1.7.8",
-    "angular-material": "^1.1.20",
-    "angular-messages": "^1.7.8",
+    "angular": "^1.7.9",
+    "angular-animate": "^1.7.9",
+    "angular-aria": "^1.7.9",
+    "angular-material": "^1.1.21",
+    "angular-messages": "^1.7.9",
     "moment": "^2.24.0"
   },
   "repository": {
