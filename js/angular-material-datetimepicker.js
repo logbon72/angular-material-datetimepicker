@@ -295,10 +295,17 @@
               var calendarButton =
               '<md-button class="dtp-btn-calendar md-icon-button" type="button"' +
                 'tabindex="-1" aria-hidden="true" ' +
+                (attrs.ngDisabled === "true" ? 'disabled ' : '') + 
                 'ng-click="openCalendarDiag($event)">' +
                 '<md-icon aria-label="md-calendar" md-svg-src="' + (scope.date ? mdCalendar : mdAccesTime) + '"></md-icon>' +
-              '</md-button>',
-              clearButton = scope.showClear === undefined || scope.showClear ? '<md-button ng-show="currentDate" class="md-icon-button dtp-clear" aria-hidden="true" ng-click="clear()">&#x2715;</md-button>' : '';
+              '</md-button>', clearButton = '';
+
+              if (scope.showClear === undefined || scope.showClear) {
+                clearButton = '<md-button ' +
+                (attrs.ngDisabled === "true" ? 'disabled ' : '') + 
+                'ng-show="currentDate" class="md-icon-button dtp-clear" aria-hidden="true" ng-click="clear()">&#x2715;</md-button>';
+              }
+             
               element.after($compile(calendarButton + clearButton)(scope));
 
               scope.openCalendarDiag = function(e) {
