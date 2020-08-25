@@ -373,14 +373,12 @@
     this.VIEWS = VIEW_STATES;
     this.params = angular.copy(mdcDefaultParams());
     this.meridien = 'AM';
-    this.params = angular.extend(this.params, this.options);
-
-    this.init();
   };
 
   PluginController.$inject = ['$mdDialog', 'mdcDefaultParams'];
   PluginController.prototype = {
-    init: function () {
+    $onInit: function () {
+      this.params = angular.extend(this.params, this.options);
       this.timeMode = this.params.time && !this.params.date;
       this.dateMode = this.params.date;
       this.initDates();
