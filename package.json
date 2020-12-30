@@ -20,12 +20,12 @@
     "dev": "lite-server"
   },
   "dependencies": {
-    "angular": "^1.8.0",
-    "angular-animate": "^1.8.0",
-    "angular-aria": "^1.8.0",
-    "angular-material": "^1.1.26",
-    "angular-messages": "^1.8.0",
-    "moment": "^2.27.0"
+    "angular": "^1.8.2",
+    "angular-animate": "^1.8.2",
+    "angular-aria": "^1.8.2",
+    "angular-material": "^1.2.2",
+    "angular-messages": "^1.8.2",
+    "moment": "^2.29.1"
   },
   "repository": {
     "type": "git",
@@ -37,7 +37,7 @@
     "gulp-rename": "^2.0.0",
     "gulp-sourcemaps": "^2.6.5",
     "gulp-uglify": "^3.0.2",
-    "lite-server": "^2.5.4",
+    "lite-server": "^2.6.1",
     "pump": "^3.0.0"
   }
 }
