@@ -1,7 +1,7 @@
 {
   "name": "ng-material-datetimepicker",
   "description": "A datetime picker for AngularJS Material",
-  "version": "1.19.6",
+  "version": "1.19.7",
   "keywords": [
     "css",
     "js",
@@ -17,8 +17,7 @@
   "main": "js/angular-material-datetimepicker.js",
   "scripts": {
     "build": "node build",
-    "start": "lite-server",
-    "dev": "lite-server"
+    "start": "lite-server"
   },
   "dependencies": {
     "angular": "^1.8.2",

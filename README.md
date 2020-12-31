@@ -267,17 +267,11 @@ To run the demo:
 ```
 npm start
 yarn start
-gulp serve
 ```
 
-To build with gulp 4:
-
-Global
+To build with esbuild:
 ```
-gulp
+npm build
+yarn build
 ````
 
-Local
-```
-./node_modules/.bin/gulp
-```
