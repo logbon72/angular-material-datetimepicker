@@ -16,6 +16,7 @@
   "homepage": "https://beenote.github.io/angular-material-datetimepicker/",
   "main": "js/angular-material-datetimepicker.js",
   "scripts": {
+    "build": "node build",
     "start": "lite-server",
     "dev": "lite-server"
   },
@@ -32,12 +33,7 @@
     "url": "https://github.com/beenote/angular-material-datetimepicker"
   },
   "devDependencies": {
-    "gulp": "^4.0.2",
-    "gulp-clean-css": "^4.3.0",
-    "gulp-rename": "^2.0.0",
-    "gulp-sourcemaps": "^2.6.5",
-    "gulp-uglify": "^3.0.2",
-    "lite-server": "^2.6.1",
-    "pump": "^3.0.0"
+    "esbuild": "^0.8.27",
+    "lite-server": "^2.6.1"
   }
 }
