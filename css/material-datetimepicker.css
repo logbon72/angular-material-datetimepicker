@@ -5,8 +5,15 @@ md-dialog.dtp {
     background-color: #fff;
     max-height: none;
     min-width: 300px;
+    width: 300px;
 }
 
+.noselect {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; 
+}
 
 .dtp *:focus {
     outline: none !important;
@@ -43,7 +50,6 @@ md-dialog.dtp {
     background: #689F38;
     color: #fff;
     text-align: center;
-    padding: 3px;
 }
 
 .dtp div.dtp-date, .dtp div.dtp-time {
@@ -60,21 +66,50 @@ md-dialog.dtp {
 
 .dtp div.dtp-actual-month {
     font-size: 1.5em;
+    cursor: pointer;
+}
+
+md-menu-content.dtp-month-list {
+    background-color: #ffffff;
 }
 
 .dtp div.dtp-actual-num {
-    font-size: 3em;
+    font-size: 2em;
     line-height: 0.9;
 }
 
 .dtp div.dtp-actual-maxtime {
-    font-size: 3em;
+    font-size: 2em;
     line-height: 0.9;
+    color: #DCEDC8;
+}
+
+.dtp div.dtp-actual-maxtime span.selected {
+    color: #fff;
 }
 
 .dtp div.dtp-actual-year {
     font-size: 1.6em;
     color: #DCEDC8;
+    cursor: pointer;
+}
+
+md-menu-content.dtp-year-list {
+    background-color: #ffffff;
+}
+
+.dtp div.dtp-month-btn {
+    font-size: 1.4em;
+    line-height: 30px;
+    cursor: pointer;
+}
+
+.dtp div.dtp-month-btn-prev {
+    text-align: right;
+}
+
+.dtp div.dtp-month-btn-next {
+    text-align: left;
 }
 
 .dtp div.dtp-year-btn {
@@ -94,7 +129,7 @@ md-dialog.dtp {
 }
 
 .dtp div.dtp-picker {
-    padding: 10px;
+    padding: 10px 10px 0 10px;
     text-align: center;
 
     /* Prevent dialog resizing when switcing between date/time */
@@ -102,13 +137,18 @@ md-dialog.dtp {
 }
 
 .dtp div.dtp-picker-month, .dtp div.dtp-actual-time {
+    font-size: 1em;
     font-weight: 500;
     text-align: center;
 }
 
+.dtp div.dtp-actual-time.p60 span.selected {
+    color: #689F38;
+}
+
 .dtp .dtp-close {
     position: absolute;
-    top: 0.25em;
+    top: 0;
     right: 5px;
     font-size: 16px;
 }
@@ -124,7 +164,7 @@ md-dialog.dtp {
 
 .dtp table.dtp-picker-days {
     margin: 0;
-    min-height: 220px;
+    min-height: 260px;
 }
 
 .dtp md-virtual-repeat-container.months {
@@ -136,7 +176,7 @@ md-dialog.dtp {
 }
 
 .dtp table.dtp-picker-days tr > td {
-    font-size: 11px;
+    font-size: 12px;
     text-align: center;
     padding: 0;
 }
@@ -189,7 +229,7 @@ md-dialog.dtp {
     color: #757575;
     text-align: center;
     font-weight: 700;
-    padding: 4px 3px;
+    padding: 2px 3px;
     width: 38px;
     height: 28px;
 }
@@ -219,9 +259,20 @@ md-dialog.dtp {
     display: inline-block;
 }
 
+.dtp div.dtp-picker-datetime {
+    padding-bottom: 25px;
+}
+
+.dtp span.dtp-actual-meridien {
+    font-size: 0.6em;
+}
+
+.dtp div.dtp-actual-meridien {
+    height: 20px;
+}
+
 .dtp a.dtp-meridien-am, .dtp a.dtp-meridien-pm {
     position: relative;
-    top: 10px;
     color: #212121;
     font-weight: 500;
     padding: 7px 5px;
@@ -271,6 +322,8 @@ md-dialog.dtp {
     padding: 10px;
     border-radius: 50% !important;
     background: #eee;
+    direction: ltr;
+    cursor: default;
 }
 
 .dtp-clock-center {
@@ -300,6 +353,11 @@ md-dialog.dtp {
 
 .dtp .dtp-minute-hand {
     width: 2px;
+    margin-left: -1px;
+}
+
+.dtp .dtp-second-hand {
+    width: 1px;
     margin-left: -1px;
 }
 
@@ -336,3 +394,37 @@ md-dialog.dtp {
     text-align: center;
 }
 
+[dir=rtl] .dtp div.dtp-year-btn-next, [dir=rtl] .dtp div.dtp-month-btn-next,
+[dir=rtl] .dtp div.dtp-year-btn-prev, [dir=rtl] .dtp div.dtp-month-btn-prev {
+    -ms-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+.dtp-btn-today, .dtp-btn-ok, .dtp-btn-cancel {
+    min-width: 70px;
+}
+
+.dtp-clear {
+    position: absolute; 
+    top: 0;
+    right: -10px;
+}
+
+/* Remove IE clear button */
+.dtp-no-msclear::-ms-clear { 
+    display: none; 
+    width : 0; 
+    height: 0; 
+}
+
+.dtp-btn-calendar {
+    position: absolute;
+    top: -3px;
+    left: -10px;
+}
+
+.dtp-input {
+    margin-left: 30px;
+    max-width: calc(100% - 30px);
+}

@@ -1,7 +1,7 @@
 {
-  "name": "angular-material-datetimepicker",
+  "name": "ng-material-datetimepicker",
   "description": "A datetime picker for AngularJS Material",
-  "version": "1.5.1",
+  "version": "1.19.7",
   "keywords": [
     "css",
     "js",
@@ -13,26 +13,26 @@
     "front-end",
     "web"
   ],
-  "homepage": "http://logbon72.github.io/angular-material-datetimepicker/",
+  "homepage": "https://beenote.github.io/angular-material-datetimepicker/",
   "main": "js/angular-material-datetimepicker.js",
+  "scripts": {
+    "build": "node build",
+    "start": "web-dev-server --watch --open"
+  },
   "dependencies": {
-    "angular": "^1.5.10",
-    "angular-animate": "^1.5.10",
-    "angular-aria": "^1.5.10",
-    "angular-material": "^1.1.1",
-    "moment": "^2.17.1"
+    "angular": "^1.8.2",
+    "angular-animate": "^1.8.2",
+    "angular-aria": "^1.8.2",
+    "angular-material": "^1.2.2",
+    "angular-messages": "^1.8.2",
+    "moment": "^2.29.1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/logbon72/angular-material-datetimepicker"
+    "url": "https://github.com/beenote/angular-material-datetimepicker"
   },
   "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-clean-css": "^2.3.2",
-    "gulp-rename": "^1.2.2",
-    "gulp-sourcemaps": "^2.4.0",
-    "gulp-uglify": "^2.0.1",
-    "pump": "^1.0.2",
-    "run-sequence": "^1.2.2"
+    "@web/dev-server": "^0.1.17",
+    "esbuild": "^0.11.20"
   }
 }
