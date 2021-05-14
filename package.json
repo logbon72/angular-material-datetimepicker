@@ -17,7 +17,7 @@
   "main": "js/angular-material-datetimepicker.js",
   "scripts": {
     "build": "node build",
-    "start": "lite-server"
+    "start": "web-dev-server --watch --open"
   },
   "dependencies": {
     "angular": "^1.8.2",
@@ -32,7 +32,7 @@
     "url": "https://github.com/beenote/angular-material-datetimepicker"
   },
   "devDependencies": {
-    "esbuild": "^0.8.27",
-    "lite-server": "^2.6.1"
+    "@web/dev-server": "^0.1.17",
+    "esbuild": "^0.8.27"
   }
 }
